@@ -6,11 +6,22 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [Header("Scenes")]
-    [SerializeField] private SceneField sceneMenu;
-    [SerializeField] private SceneField sceneMainMaps;
+    private SceneField _currentActiveScene = null;
+    [SerializeField] private SceneField _sceneMenu;
+    [SerializeField] private SceneField _sceneMaps;
+
+    [Header("Component References")]
+    public LoadingScreenHandler loadingScreenHandler;
+
+    private void Start()
+    {
+        StartGame();
+    }
 
     private void StartGame()
     {
-        SceneManager.LoadSceneAsync(sceneMenu, LoadSceneMode.Additive);
+        // SceneManager.LoadSceneAsync(_sceneMenu);
+
+        _currentActiveScene = Instantiate(loadingScreenHandler).LoadSceneWithLoadingScreen(_sceneMenu, 0);
     }
 }

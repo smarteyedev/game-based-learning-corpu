@@ -39,6 +39,7 @@ public class UIParticleSystem : MaskableGraphic
         }
     }
 
+    [System.Obsolete]
     protected bool Initialize()
     {
         // initialize members
@@ -112,6 +113,7 @@ public class UIParticleSystem : MaskableGraphic
         return true;
     }
 
+    [System.Obsolete]
     protected override void Awake()
     {
         base.Awake();
@@ -122,6 +124,7 @@ public class UIParticleSystem : MaskableGraphic
         }
     }
 
+    [System.Obsolete]
     protected override void OnPopulateMesh(VertexHelper vh)
     {
 #if UNITY_EDITOR
