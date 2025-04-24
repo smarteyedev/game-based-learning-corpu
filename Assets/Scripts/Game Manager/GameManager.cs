@@ -5,13 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [Header("Scenes")]
     private SceneField _currentActiveScene = null;
     [SerializeField] private SceneField _sceneMenu;
     [SerializeField] private SceneField _sceneMaps;
 
     [Header("Component References")]
-    public LoadingScreenHandler loadingScreenHandler;
+    [SerializeField] private LoadingScreenHandler loadingScreenHandler;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -20,8 +34,11 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        // SceneManager.LoadSceneAsync(_sceneMenu);
+        SceneManager.LoadSceneAsync(_sceneMenu, LoadSceneMode.Additive);
+    }
 
-        _currentActiveScene = Instantiate(loadingScreenHandler).LoadSceneWithLoadingScreen(_sceneMenu, 0);
+    public void LoadScene()
+    {
+        _currentActiveScene = Instantiate(loadingScreenHandler).LoadSceneWithLoadingScreen(_sceneMaps, 0, _sceneMenu);
     }
 }

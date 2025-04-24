@@ -14,49 +14,61 @@ public class LoadingScreenHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _MessageText;
     [SerializeField] private Image _loadingBar;
 
-    private List<AsyncOperation> _scenesToLoad = new List<AsyncOperation>();
+    private AsyncOperation _currentSceneLoadOp;
 
     public SceneField LoadSceneWithLoadingScreen(SceneField targetScene, int messageId = 0, SceneField targetUnloadScene = null)
     {
         screenPanel.SetActive(true);
 
-        if (targetUnloadScene != null)
-        {
-            UnloadScene(targetUnloadScene);
-        }
-
-        SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
-
-        StartCoroutine(ProgressLoadingBar());
-
         _MessageText.text = _loadingMessages[messageId];
+
+        // Start loading scene and track the operation
+        _currentSceneLoadOp = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+        _currentSceneLoadOp.allowSceneActivation = false;
+
+        StartCoroutine(HandleSceneLoading(targetScene, targetUnloadScene));
 
         return targetScene;
     }
 
-    private IEnumerator ProgressLoadingBar()
+    private IEnumerator HandleSceneLoading(SceneField targetScene, SceneField sceneWillDisappear)
     {
-        float loadProgress = 0f;
-        for (int i = 0; i < _scenesToLoad.Count; i++)
+        while (_currentSceneLoadOp.progress < 0.9f)
         {
-            while (!_scenesToLoad[i].isDone)
-            {
-                loadProgress += _scenesToLoad[i].progress;
-                _loadingBar.fillAmount = loadProgress / _scenesToLoad.Count;
-                yield return null;
-            }
+            _loadingBar.fillAmount = _currentSceneLoadOp.progress;
+            yield return null;
         }
 
-        Invoke(nameof(DestroyGameObject), 1f);
-    }
+        float timer = 0f;
 
-    private void UnloadScene(SceneField targetUnloadScene)
-    {
-        SceneManager.UnloadSceneAsync(targetUnloadScene);
-    }
+        while (timer < 3)
+        {
+            timer += Time.deltaTime;
+            float t = Mathf.Clamp01(timer / 3);
+            _loadingBar.fillAmount = t;
+            yield return null;
+        }
 
-    private void DestroyGameObject()
-    {
+        _loadingBar.fillAmount = 1f;
+
+        _currentSceneLoadOp.allowSceneActivation = true;
+
+        while (!_currentSceneLoadOp.isDone)
+        {
+            yield return null;
+        }
+
+        if (sceneWillDisappear != null)
+        {
+            SceneManager.UnloadSceneAsync(sceneWillDisappear);
+        }
+
+        Scene newScene = SceneManager.GetSceneByName(targetScene.SceneName);
+        if (newScene.IsValid())
+        {
+            SceneManager.SetActiveScene(newScene);
+        }
+
         Destroy(this.gameObject);
     }
 }
