@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceneMenuController : MonoBehaviour
+public abstract class SceneControllerAbstract : MonoBehaviour
 {
-    [SerializeField] private GameObject sceneCanvas;
+    [SerializeField] protected GameObject sceneCanvas;
 
     private void Start()
     {
@@ -15,6 +14,6 @@ public class SceneMenuController : MonoBehaviour
     public void ChangeScene(int sceneId)
     {
         sceneCanvas.SetActive(false);
-        GameManager.instance.LoadScene();
+        GameManager.instance.LoadScene(sceneId - 1);
     }
 }

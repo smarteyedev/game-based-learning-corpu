@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scenes")]
     private SceneField _currentActiveScene = null;
-    [SerializeField] private SceneField _sceneMenu;
-    [SerializeField] private SceneField _sceneMaps;
+    [SerializeField] private SceneField[] sceneArray;
 
     [Header("Component References")]
     [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -34,11 +33,12 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadSceneAsync(_sceneMenu, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(sceneArray[0], LoadSceneMode.Additive);
+        _currentActiveScene = sceneArray[0];
     }
 
-    public void LoadScene()
+    public void LoadScene(int targetId)
     {
-        _currentActiveScene = Instantiate(loadingScreenHandler).LoadSceneWithLoadingScreen(_sceneMaps, 0, _sceneMenu);
+        _currentActiveScene = Instantiate(loadingScreenHandler).LoadSceneWithLoadingScreen(sceneArray[targetId], targetId, _currentActiveScene);
     }
 }

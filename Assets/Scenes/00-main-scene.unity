@@ -304,12 +304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4e705bef4796f48b93fad1bb7c5ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneMenu:
-    _sceneAsset: {fileID: 102900000, guid: 5d6183494d832374da65914a23998768, type: 3}
-    _sceneName: menu-scene
-  _sceneMaps:
-    _sceneAsset: {fileID: 102900000, guid: e0d635bb70eff994288864f9b1e49e7d, type: 3}
-    _sceneName: maps-scene
+  sceneArray:
+  - _sceneAsset: {fileID: 102900000, guid: 5d6183494d832374da65914a23998768, type: 3}
+    _sceneName: 01-menu-scene
+  - _sceneAsset: {fileID: 102900000, guid: e0d635bb70eff994288864f9b1e49e7d, type: 3}
+    _sceneName: 02-maps-scene
   loadingScreenHandler: {fileID: 1254186848528205372, guid: 24df928ea65427f479e70a1d551f92ee,
     type: 3}
 --- !u!1 &1601391484
