@@ -48,12 +48,12 @@ namespace Smarteye.Manager.taufiq
                 yield return null;
             }
 
-            float timer = loadingTime;
+            float timer = 0;
 
-            while (timer < 3)
+            while (timer < loadingTime)
             {
                 timer += Time.deltaTime;
-                float t = Mathf.Clamp01(timer / 3);
+                float t = Mathf.Clamp01(timer / loadingTime);
                 _loadingBar.fillAmount = t;
                 yield return null;
             }

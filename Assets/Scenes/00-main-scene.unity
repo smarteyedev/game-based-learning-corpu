@@ -307,7 +307,7 @@ MonoBehaviour:
   _loadingMessages:
   - Sebentar lagi anda akan masuk ke scene 1
   - Sebentar lagi anda akan masuk ke scene 2
-  loadingTime: 3
+  loadingTime: 3.94
   screenPanel: {fileID: 885446971115821556}
   _MessageText: {fileID: 3907324000695775864}
   _loadingBar: {fileID: 3799214962660669073}

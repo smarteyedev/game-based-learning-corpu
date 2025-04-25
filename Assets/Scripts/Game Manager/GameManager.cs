@@ -54,13 +54,13 @@ namespace Smarteye.Manager.taufiq
 
         void Awake()
         {
-            if (instance == null)
+            if (instance != null && instance != this)
             {
-                instance = this;
+                Destroy(this.gameObject);
             }
             else
             {
-                Destroy(this.gameObject);
+                instance = this;
             }
         }
 
