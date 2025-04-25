@@ -4,45 +4,48 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[System.Serializable]
-public class SceneField
+namespace Smarteye.Manager.taufiq
 {
-    [SerializeField]
-    private Object _sceneAsset;
-
-    [SerializeField]
-    private string _sceneName = "";
-    public string SceneName
+    [System.Serializable]
+    public class SceneField
     {
-        get { return _sceneName; }
-    }
+        [SerializeField]
+        private Object _sceneAsset;
 
-    public static implicit operator string(SceneField sceneField)
-    {
-        return sceneField.SceneName;
+        [SerializeField]
+        private string _sceneName = "";
+        public string SceneName
+        {
+            get { return _sceneName; }
+        }
+
+        public static implicit operator string(SceneField sceneField)
+        {
+            return sceneField.SceneName;
+        }
     }
-}
 
 #if UNITY_EDITOR
-[CustomPropertyDrawer(typeof(SceneField))]
-public class SceneFieldPropertyDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect _position, SerializedProperty _property, GUIContent _label)
+    [CustomPropertyDrawer(typeof(SceneField))]
+    public class SceneFieldPropertyDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(_position, GUIContent.none, _property);
-        SerializedProperty sceneAsset = _property.FindPropertyRelative("_sceneAsset");
-        SerializedProperty sceneName = _property.FindPropertyRelative("_sceneName");
-        _position = EditorGUI.PrefixLabel(_position, GUIUtility.GetControlID(FocusType.Passive), _label);
-        if (sceneAsset != null)
+        public override void OnGUI(Rect _position, SerializedProperty _property, GUIContent _label)
         {
-            sceneAsset.objectReferenceValue = EditorGUI.ObjectField(_position, sceneAsset.objectReferenceValue, typeof(SceneAsset), false);
-
-            if (sceneAsset.objectReferenceValue != null)
+            EditorGUI.BeginProperty(_position, GUIContent.none, _property);
+            SerializedProperty sceneAsset = _property.FindPropertyRelative("_sceneAsset");
+            SerializedProperty sceneName = _property.FindPropertyRelative("_sceneName");
+            _position = EditorGUI.PrefixLabel(_position, GUIUtility.GetControlID(FocusType.Passive), _label);
+            if (sceneAsset != null)
             {
-                sceneName.stringValue = (sceneAsset.objectReferenceValue as SceneAsset).name;
+                sceneAsset.objectReferenceValue = EditorGUI.ObjectField(_position, sceneAsset.objectReferenceValue, typeof(SceneAsset), false);
+
+                if (sceneAsset.objectReferenceValue != null)
+                {
+                    sceneName.stringValue = (sceneAsset.objectReferenceValue as SceneAsset).name;
+                }
             }
+            EditorGUI.EndProperty();
         }
-        EditorGUI.EndProperty();
     }
-}
 #endif
+}

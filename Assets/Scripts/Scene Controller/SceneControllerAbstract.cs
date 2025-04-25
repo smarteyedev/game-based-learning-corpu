@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Smarteye.Manager.taufiq;
 
-public abstract class SceneControllerAbstract : MonoBehaviour
+namespace Smarteye.SceneController.taufiq
 {
-    [SerializeField] protected GameObject sceneCanvas;
-
-    private void Start()
+    public abstract class SceneControllerAbstract : MonoBehaviour
     {
-        // Debug.Log($"start from: ");
-    }
+        protected GameManager gameManager;
 
-    public void ChangeScene(int sceneId)
-    {
-        sceneCanvas.SetActive(false);
-        GameManager.instance.LoadScene(sceneId - 1);
+        private void Awake()
+        {
+            gameManager = GameManager.instance;
+        }
+
+        private void Start()
+        {
+            Init();
+        }
+
+        protected abstract void Init();
+
+        public void ChangeScene(int sceneArrayId)
+        {
+            gameManager.LoadScene(sceneArrayId);
+        }
     }
 }
