@@ -1,4 +1,3 @@
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,8 +28,7 @@ public class TooltipController : MonoBehaviour, IPointerEnterHandler
 
     private void Update()
     {
-        if (gameObject.activeSelf)
-            transform.position = Input.mousePosition;
+        transform.position = Input.mousePosition;
     }
 
     public void SetAndShowTooltip(string message)
@@ -50,7 +48,5 @@ public class TooltipController : MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
-
-        Debug.Log($"pointer enter..");
     }
 }

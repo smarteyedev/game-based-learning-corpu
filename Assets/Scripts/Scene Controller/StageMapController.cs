@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Smarteye.SceneController.taufiq
 {
@@ -11,21 +9,13 @@ namespace Smarteye.SceneController.taufiq
         private int m_stageNumber = 0;
 
         [Header("Component References")]
-        public List<Checkpoint> _progressCheckpoint;
-
-        [Serializable]
-        public class Checkpoint
-        {
-            public GameObject goItem;
-            public Sprite enableSprite;
-            public Sprite disableSprite;
-        }
+        public ButtonStageHandler[] _itemStageBtns;
 
         protected override void StartOnDebugging()
         {
             base.StartOnDebugging();
 
-            m_stageNumber = 1;
+            m_stageNumber = 4;
         }
 
         protected override void Init()
@@ -35,15 +25,55 @@ namespace Smarteye.SceneController.taufiq
                 m_stageNumber = (int)gameManager.currentStage;
             }
 
-            for (int i = 0; i < _progressCheckpoint.Count; i++)
+            for (int i = 0; i < _itemStageBtns.Length; i++)
             {
                 if (i < m_stageNumber)
                 {
-                    _progressCheckpoint[i].goItem.GetComponent<Image>().sprite = _progressCheckpoint[i].enableSprite;
+                    _itemStageBtns[i].SetActiveButton(true);
+                    GameObject go = _itemStageBtns[i].gameObject;
+                    _itemStageBtns[i].onClickCustom.AddListener(() => CheckPopupActivation(go));
                 }
                 else
                 {
-                    _progressCheckpoint[i].goItem.GetComponent<Image>().sprite = _progressCheckpoint[i].disableSprite;
+                    _itemStageBtns[i].SetActiveButton(false);
+                    GameObject go = _itemStageBtns[i].gameObject;
+                    _itemStageBtns[i].onClickCustom.AddListener(() => CheckPopupActivation(go));
+                }
+
+                if (i == m_stageNumber - 1)
+                {
+                    _itemStageBtns[i].SetupBtnChangeScene(true, ChangeScene);
+                }
+                else
+                {
+                    _itemStageBtns[i].SetupBtnChangeScene(false);
+                }
+            }
+        }
+
+        public void CheckPopupActivation(GameObject go)
+        {
+            for (int i = 0; i < _itemStageBtns.Length; i++)
+            {
+                if (go == _itemStageBtns[i].gameObject)
+                {
+                    _itemStageBtns[i].OpenPopupDetail(true);
+                }
+                else
+                {
+                    _itemStageBtns[i].OpenPopupDetail(false);
+                }
+            }
+        }
+
+        public void ResetPopup()
+        {
+            bool hasPopupActive = _itemStageBtns.Any((x) => x.isPopupOpen);
+            if (hasPopupActive)
+            {
+                foreach (var item in _itemStageBtns)
+                {
+                    if (item.isPopupOpen) item.OpenPopupDetail(false);
                 }
             }
         }

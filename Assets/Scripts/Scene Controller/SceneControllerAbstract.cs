@@ -37,6 +37,8 @@ namespace Smarteye.SceneController.taufiq
 
         public void ChangeScene(int sceneArrayId)
         {
+            if (gameManager == null) Debug.LogWarning($"scene controller can't get game manager");
+
             gameManager.LoadScene(sceneArrayId);
         }
     }
