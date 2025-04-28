@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/00-main-scene.unity
+    path: Assets/Scenes/00-gamemanager-scene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/01-menu-scene.unity
     guid: 5d6183494d832374da65914a23998768
   - enabled: 1
-    path: Assets/Scenes/02-progres-scene.unity
+    path: Assets/Scenes/02-rakon-scene.unity
+    guid: d3ac8fc4c0e2eb84dbb9f817b766c686
+  - enabled: 1
+    path: Assets/Scenes/03-progres-scene.unity
     guid: e0d635bb70eff994288864f9b1e49e7d
   m_configObjects: {}

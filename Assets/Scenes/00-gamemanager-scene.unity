@@ -358,8 +358,10 @@ MonoBehaviour:
   sceneArray:
   - _sceneAsset: {fileID: 102900000, guid: 5d6183494d832374da65914a23998768, type: 3}
     _sceneName: 01-menu-scene
+  - _sceneAsset: {fileID: 102900000, guid: d3ac8fc4c0e2eb84dbb9f817b766c686, type: 3}
+    _sceneName: 02-rakon-scene
   - _sceneAsset: {fileID: 102900000, guid: e0d635bb70eff994288864f9b1e49e7d, type: 3}
-    _sceneName: 02-progres-scene
+    _sceneName: 03-progres-scene
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1 &1601391484
 GameObject:
