@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Smarteye.Manager.taufiq;
+using Smarteye.MycoonController.taufiq;
 
 namespace Smarteye.SceneController.taufiq
 {
@@ -10,6 +11,9 @@ namespace Smarteye.SceneController.taufiq
         [Header("Dubugging Components")]
         [SerializeField] protected bool isForDebugging = false;
         [SerializeField] protected GameObject debugObjectParent;
+
+        [Header("Component References")]
+        public MycoonHandler mycoonHandler;
 
         protected GameManager gameManager;
 
@@ -31,15 +35,26 @@ namespace Smarteye.SceneController.taufiq
                 debugObjectParent.SetActive(true);
                 Debug.LogWarning($"Scene on Debugging Mode");
             }
+            else
+            {
+                debugObjectParent.SetActive(false);
+            }
         }
 
         protected abstract void Init();
 
-        public void ChangeScene(int sceneArrayId)
+        public void ChangeSceneTo(int sceneArrayId)
         {
             if (gameManager == null) Debug.LogWarning($"scene controller can't get game manager");
 
-            gameManager.LoadScene(sceneArrayId);
+            gameManager.LoadScene(sceneArrayId - 1);
+        }
+
+        public void AddScene(int sceneArrayId)
+        {
+            if (gameManager == null) Debug.LogWarning($"scene controller can't get game manager");
+
+            gameManager.AddScene(sceneArrayId);
         }
     }
 }

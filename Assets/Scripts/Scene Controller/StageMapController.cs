@@ -15,7 +15,7 @@ namespace Smarteye.SceneController.taufiq
         {
             base.StartOnDebugging();
 
-            m_stageNumber = 4;
+            m_stageNumber = 3;
         }
 
         protected override void Init()
@@ -23,6 +23,8 @@ namespace Smarteye.SceneController.taufiq
             if (!isForDebugging)
             {
                 m_stageNumber = (int)gameManager.currentStage;
+
+                // Debug.Log($"current stage: {m_stageNumber}");
             }
 
             for (int i = 0; i < _itemStageBtns.Length; i++)
@@ -42,7 +44,7 @@ namespace Smarteye.SceneController.taufiq
 
                 if (i == m_stageNumber - 1)
                 {
-                    _itemStageBtns[i].SetupBtnChangeScene(true, ChangeScene);
+                    _itemStageBtns[i].SetupBtnChangeScene(true, ChangeSceneTo);
                 }
                 else
                 {

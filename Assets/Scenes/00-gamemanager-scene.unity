@@ -305,8 +305,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingMessages:
-  - Sebentar lagi anda akan masuk ke scene 1
-  - Sebentar lagi anda akan masuk ke scene 2
+  - currentStage: 0
+    hintMessage: ...
+  - currentStage: 1
+    hintMessage: ini adalah loading untuk stage profiling
+  - currentStage: 2
+    hintMessage: ini adalah loading untuk stage rapport
+  - currentStage: 3
+    hintMessage: ini adalah loading untuk stage probing
+  - currentStage: 4
+    hintMessage: ini adalah loading untuk stage solution
+  - currentStage: 5
+    hintMessage: ini adalah loading untuk stage closing
   loadingTime: 3.94
   screenPanel: {fileID: 885446971115821556}
   _MessageText: {fileID: 3907324000695775864}
@@ -358,10 +368,12 @@ MonoBehaviour:
   sceneArray:
   - _sceneAsset: {fileID: 102900000, guid: 5d6183494d832374da65914a23998768, type: 3}
     _sceneName: 01-menu-scene
-  - _sceneAsset: {fileID: 102900000, guid: d3ac8fc4c0e2eb84dbb9f817b766c686, type: 3}
-    _sceneName: 02-rakon-scene
   - _sceneAsset: {fileID: 102900000, guid: e0d635bb70eff994288864f9b1e49e7d, type: 3}
-    _sceneName: 03-progres-scene
+    _sceneName: 02-progres-scene
+  - _sceneAsset: {fileID: 102900000, guid: 625c67cbb5be91147bd9d7598cc38b14, type: 3}
+    _sceneName: 03-computer-scene-profiling
+  - _sceneAsset: {fileID: 102900000, guid: 1a74f9eae6874684784f765b884af660, type: 3}
+    _sceneName: 04-visual-novel-scene-rapport
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1 &1601391484
 GameObject:
@@ -490,7 +502,7 @@ GameObject:
   - component: {fileID: 8681786663557044394}
   - component: {fileID: 137512142001979622}
   m_Layer: 7
-  m_Name: Panel
+  m_Name: Loading_Pannel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

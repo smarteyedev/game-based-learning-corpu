@@ -71,7 +71,7 @@ namespace Smarteye.Manager.taufiq
 
         private void StartGame()
         {
-            SceneManager.LoadSceneAsync(sceneArray[0], LoadSceneMode.Additive);
+            AddScene(0);
             m_currentActiveScene = sceneArray[0];
         }
 
@@ -82,7 +82,19 @@ namespace Smarteye.Manager.taufiq
         /// <param name="targetSceneArrayId">index element, scene pertama dimulai dari 0</param>
         public void LoadScene(int targetSceneArrayId)
         {
-            m_currentActiveScene = loadingScreenHandler.LoadSceneWithLoadingScreen(sceneArray[targetSceneArrayId], targetSceneArrayId, m_currentActiveScene);
+            m_currentActiveScene = loadingScreenHandler.LoadSceneWithLoadingScreen(sceneArray[targetSceneArrayId], currentStage, m_currentActiveScene);
+
+            // Debug.Log($"load scene {sceneArray[targetSceneArrayId].SceneName}");
+        }
+
+        /// <summary>
+        /// Menambahkan scene ke dalam game, dengan memanggil scene yang ada di Game Manager. 
+        /// untuk melihat lebih detail silahkan lihat Game Manger di scene "00-main-scene"
+        /// </summary>
+        /// <param name="targetSceneArrayId">index element, scene pertama dimulai dari 0</param>
+        public void AddScene(int targetSceneArrayId)
+        {
+            loadingScreenHandler.AddSceneAdditive(sceneArray[targetSceneArrayId]);
         }
     }
 }

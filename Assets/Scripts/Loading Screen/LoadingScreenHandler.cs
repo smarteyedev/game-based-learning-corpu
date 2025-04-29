@@ -5,13 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Smarteye.Manager.taufiq
 {
     public class LoadingScreenHandler : MonoBehaviour
     {
         [Header("Loading Config")]
-        [SerializeField] private List<string> _loadingMessages;
+        [SerializeField] private List<LoadingHint> _loadingMessages;
+
+        [Serializable]
+        public class LoadingHint
+        {
+            public Stage currentStage;
+            public string hintMessage;
+        }
+
         [Range(1f, 10f)]
         [SerializeField] private float loadingTime = 3f;
 
@@ -23,21 +34,27 @@ namespace Smarteye.Manager.taufiq
 
         private AsyncOperation _currentSceneLoadOp;
 
-        public SceneField LoadSceneWithLoadingScreen(SceneField targetNextScene, int messageId = 0, SceneField targetUnloadScene = null)
+        public void AddSceneAdditive(SceneField _targetNextScene)
         {
-            SceneManager.UnloadSceneAsync(targetUnloadScene);
+            _currentSceneLoadOp = SceneManager.LoadSceneAsync(_targetNextScene, LoadSceneMode.Additive);
+        }
+
+        public SceneField LoadSceneWithLoadingScreen(SceneField _targetNextScene, Stage _currentStage, SceneField _targetUnloadScene = null)
+        {
+            SceneManager.UnloadSceneAsync(_targetUnloadScene);
 
             screenPanel.SetActive(true);
 
-            _MessageText.text = _loadingMessages[messageId];
+            LoadingHint msg = _loadingMessages.First((x) => x.currentStage == _currentStage);
+            _MessageText.text = msg.hintMessage;
 
             // Start loading scene and track the operation
-            _currentSceneLoadOp = SceneManager.LoadSceneAsync(targetNextScene, LoadSceneMode.Additive);
+            _currentSceneLoadOp = SceneManager.LoadSceneAsync(_targetNextScene, LoadSceneMode.Additive);
             _currentSceneLoadOp.allowSceneActivation = false;
 
-            StartCoroutine(HandleSceneLoading(targetNextScene));
+            StartCoroutine(HandleSceneLoading(_targetNextScene));
 
-            return targetNextScene;
+            return _targetNextScene;
         }
 
         private IEnumerator HandleSceneLoading(SceneField targetScene)
