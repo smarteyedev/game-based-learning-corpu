@@ -3,14 +3,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace Smarteye.Manager.taufiq
 {
-    [Header("Scenes")]
-    [SerializeField] private SceneField sceneMenu;
-    [SerializeField] private SceneField sceneMainMaps;
-
-    private void StartGame()
+    public enum Stage
     {
-        SceneManager.LoadSceneAsync(sceneMenu, LoadSceneMode.Additive);
+        None = 0, Profiling = 1, Rapport = 2, Probing = 3, Solution = 4, Closing = 5
+    }
+
+    public class GameManager : MonoBehaviour
+    {
+        public static GameManager instance;
+
+        [Header("Progress")]
+        private Stage m_currentStage = Stage.None;
+        public Stage currentStage
+        {
+            get
+            {
+                return m_currentStage;
+            }
+            set
+            {
+                switch ((int)value)
+                {
+                    case 1:
+                        m_currentStage = Stage.Profiling;
+                        break;
+                    case 2:
+                        m_currentStage = Stage.Rapport;
+                        break;
+                    case 3:
+                        m_currentStage = Stage.Probing;
+                        break;
+                    case 4:
+                        m_currentStage = Stage.Solution;
+                        break;
+                    case 5:
+                        m_currentStage = Stage.Closing;
+                        break;
+                }
+            }
+        }
+
+        [Header("Scenes")]
+        private SceneField m_currentActiveScene = null;
+        [SerializeField] private SceneField[] sceneArray;
+
+        [Header("Component References")]
+        [SerializeField] private LoadingScreenHandler loadingScreenHandler;
+
+        void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+        }
+
+        private void Start()
+        {
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            AddScene(0);
+            m_currentActiveScene = sceneArray[0];
+        }
+
+        /// <summary>
+        /// Mengganti scene berdasarkan index element pada variable "Scene Array" di component Game Manager. 
+        /// untuk melihat lebih detail silahkan lihat Game Manger di scene "00-main-scene"
+        /// </summary>
+        /// <param name="targetSceneArrayId">index element, scene pertama dimulai dari 0</param>
+        public void LoadScene(int targetSceneArrayId)
+        {
+            m_currentActiveScene = loadingScreenHandler.LoadSceneWithLoadingScreen(sceneArray[targetSceneArrayId], currentStage, m_currentActiveScene);
+
+            // Debug.Log($"load scene {sceneArray[targetSceneArrayId].SceneName}");
+        }
+
+        /// <summary>
+        /// Menambahkan scene ke dalam game, dengan memanggil scene yang ada di Game Manager. 
+        /// untuk melihat lebih detail silahkan lihat Game Manger di scene "00-main-scene"
+        /// </summary>
+        /// <param name="targetSceneArrayId">index element, scene pertama dimulai dari 0</param>
+        public void AddScene(int targetSceneArrayId)
+        {
+            loadingScreenHandler.AddSceneAdditive(sceneArray[targetSceneArrayId]);
+        }
     }
 }

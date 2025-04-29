@@ -1,0 +1,119 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+namespace Smarteye.MycoonController.taufiq
+{
+    [Serializable]
+    public class PanelAnimationConfig
+    {
+        public enum AnimationType
+        {
+
+        }
+        public string infoText;
+    }
+
+    public class MycoonController : MonoBehaviour
+    {
+        [SerializeField] private List<ContentData> panelContentDatas;
+        private int currentContentIndex;
+        private Action onInfoCompleted;
+
+        [Header("Component References")]
+        [SerializeField] private CanvasGroup panelCanvasGroup;
+        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TextMeshProUGUI explanationText;
+        [SerializeField] private Button buttonNext;
+        [SerializeField] private Image mycoonImage;
+
+        [Serializable]
+        public class ContentData
+        {
+            public string title;
+            [TextArea(10, 10)]
+            public string explanation;
+            public Sprite mycoonSprite;
+        }
+
+        private Sequence m_sequence;
+
+        public void SetupPanelInfo(List<ContentData> _datas, Action _onCompleted = null)
+        {
+            FadeInCanvasGroup(panelCanvasGroup, 2f, () => buttonNext.gameObject.SetActive(true));
+
+            panelContentDatas.AddRange(_datas);
+
+            AssignContent(0);
+            onInfoCompleted = _onCompleted;
+        }
+
+        private void Start()
+        {
+            panelCanvasGroup.alpha = 0;
+            currentContentIndex = 0;
+            buttonNext.onClick.AddListener(OnClickNext);
+        }
+
+        void OnDisable()
+        {
+            // Hentikan semua animasi jika objek dinonaktifkan
+            if (m_sequence != null)
+            {
+                m_sequence.Kill();
+            }
+
+            panelCanvasGroup.alpha = 0;
+            currentContentIndex = 0;
+        }
+
+        private void AssignContent(int _index)
+        {
+            titleText.text = panelContentDatas[_index].title;
+            explanationText.text = panelContentDatas[_index].explanation;
+            mycoonImage.sprite = panelContentDatas[_index].mycoonSprite;
+        }
+
+        private void OnClickNext()
+        {
+            if (currentContentIndex == panelContentDatas.Count - 1)
+            {
+                onInfoCompleted?.Invoke();
+                // Debug.Log($"next scenee.... | current content {currentContentIndex}");
+
+                DestroyMycoonPanel();
+            }
+            else
+            {
+                currentContentIndex++;
+                AssignContent(currentContentIndex);
+            }
+        }
+
+        private void FadeInCanvasGroup(CanvasGroup _cg, float _duration, Action _onComplate = null)
+        {
+            if (m_sequence != null)
+            {
+                Debug.Log($"there is canvas group");
+                m_sequence.Kill();
+            }
+
+            m_sequence = DOTween.Sequence();
+
+            m_sequence.Append(_cg.DOFade(1f, _duration).SetEase(Ease.InOutQuad)
+                .OnComplete(() =>
+                {
+                    _onComplate?.Invoke();
+                }));
+        }
+
+        public void DestroyMycoonPanel()
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
