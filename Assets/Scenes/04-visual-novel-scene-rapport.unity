@@ -228,6 +228,7 @@ RectTransform:
   m_Children:
   - {fileID: 224402948}
   - {fileID: 1234651393}
+  - {fileID: 1431810249}
   m_Father: {fileID: 584176967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -388,9 +389,9 @@ RectTransform:
   - {fileID: 1430854972}
   m_Father: {fileID: 913421525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -555}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76358923
@@ -405,9 +406,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a288f2409e14c674483ea1de25966b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSprite: {fileID: 0}
-  klickSprite: {fileID: 0}
+  defalutSprite: {fileID: 21300000, guid: 6f04f6aa010dece4f845e9aa3aa20931, type: 3}
+  textDefalutColor: {r: 0.45490196, g: 0.15686275, b: 0.15686275, a: 1}
+  hoverSprite: {fileID: 21300000, guid: 257a21c8d5213484daf1a2eb44631186, type: 3}
+  textHoverColor: {r: 1, g: 0.93333334, b: 0.8156863, a: 1}
   buttonImage: {fileID: 76358924}
+  buttonsText:
+  - {fileID: 1530236539}
+  - {fileID: 1430854973}
+  OnDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &76358924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,9 +496,9 @@ RectTransform:
   - {fileID: 1866402313}
   m_Father: {fileID: 913421525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -430}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &95648880
@@ -498,9 +513,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a288f2409e14c674483ea1de25966b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSprite: {fileID: 0}
-  klickSprite: {fileID: 0}
+  defalutSprite: {fileID: 21300000, guid: 6f04f6aa010dece4f845e9aa3aa20931, type: 3}
+  textDefalutColor: {r: 0.45490196, g: 0.15686275, b: 0.15686275, a: 1}
+  hoverSprite: {fileID: 21300000, guid: 257a21c8d5213484daf1a2eb44631186, type: 3}
+  textHoverColor: {r: 1, g: 0.93333334, b: 0.8156863, a: 1}
   buttonImage: {fileID: 95648881}
+  buttonsText:
+  - {fileID: 1912762899}
+  - {fileID: 1866402314}
+  OnDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &95648881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,9 +888,9 @@ RectTransform:
   - {fileID: 1761322173}
   m_Father: {fileID: 913421525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -305}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510716924
@@ -876,9 +905,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a288f2409e14c674483ea1de25966b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSprite: {fileID: 0}
-  klickSprite: {fileID: 0}
+  defalutSprite: {fileID: 21300000, guid: 6f04f6aa010dece4f845e9aa3aa20931, type: 3}
+  textDefalutColor: {r: 0.45490196, g: 0.15686275, b: 0.15686275, a: 1}
+  hoverSprite: {fileID: 21300000, guid: 257a21c8d5213484daf1a2eb44631186, type: 3}
+  textHoverColor: {r: 1, g: 0.93333334, b: 0.8156863, a: 1}
   buttonImage: {fileID: 510716925}
+  buttonsText:
+  - {fileID: 2139327715}
+  - {fileID: 1761322174}
+  OnDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510716925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,9 +1212,11 @@ MonoBehaviour:
       options:
       - optionText: Bertanya ke orang tua
         score: 10
+        nextBlockIndex: 0
         animationType: 0
       - optionText: Cari informasi sendiri ah..
         score: 0
+        nextBlockIndex: 0
         animationType: 0
   - sceneId: 0
     preNarationDatas:
@@ -1189,9 +1234,11 @@ MonoBehaviour:
       options:
       - optionText: Mendaftar perkuliahan ke TEL-U
         score: 10
+        nextBlockIndex: 0
         animationType: 0
       - optionText: Mencari informasi lain
         score: 0
+        nextBlockIndex: 0
         animationType: 1
 --- !u!1 &913421524
 GameObject:
@@ -1233,7 +1280,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -488, y: 252}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 610}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &913421526
 MonoBehaviour:
@@ -1307,10 +1354,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1234651393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 77}
-  m_SizeDelta: {x: 700, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 779.5, y: -39.52}
+  m_SizeDelta: {x: 370.1, y: 29.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &925753537
 MonoBehaviour:
@@ -1783,10 +1830,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1234651393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 96}
-  m_SizeDelta: {x: 1421.7411, y: 159.4924}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 779.5, y: -122.12}
+  m_SizeDelta: {x: 1300, y: 116.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096086972
 MonoBehaviour:
@@ -1808,11 +1855,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' *Nama Player*, hari ini kamu coba approach salah satu perusahaan besar
-    di Kota-mu, yaitu  PT Sinar Logistik Nusantara (SLN)  ya, Perusahaan ini baru
-    7 tahun berdiri, fokus di pengiriman regional Indonesia Timur. Mereka belum pakai
-    layanan Telkom, hanya mengandalkan internet biasa dan sistem operasional manual.
-    Coba tawarkan produk/solusi kita"'
+  m_text: hari ini kamu coba approach salah satu perusahaan besar di Kota-mu, yaitu 
+    PT Sinar Logistik Nusantara (SLN)  ya, Perusahaan ini baru 7 tahun berdiri, fokus
+    di pengiriman regional Indonesia Timur. Mereka belum pakai layanan Telkom, hanya
+    mengandalkan internet biasa dan sistem operasional manual. Coba tawarkan produk/solusi
+    kita"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2b1978450d84e54ebffbb34bb661c6e, type: 2}
   m_sharedMaterial: {fileID: -8182650824263559565, guid: e2b1978450d84e54ebffbb34bb661c6e,
@@ -1935,6 +1982,8 @@ GameObject:
   - component: {fileID: 1234651393}
   - component: {fileID: 1234651395}
   - component: {fileID: 1234651394}
+  - component: {fileID: 1234651396}
+  - component: {fileID: 1234651397}
   m_Layer: 5
   m_Name: Dialog-Background
   m_TagString: Untagged
@@ -1956,13 +2005,12 @@ RectTransform:
   m_Children:
   - {fileID: 925753536}
   - {fileID: 1096086971}
-  - {fileID: 1431810249}
   m_Father: {fileID: 13055371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 152}
-  m_SizeDelta: {x: 1559, y: 230}
+  m_SizeDelta: {x: 1559, y: 205.20001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234651394
 MonoBehaviour:
@@ -1984,8 +2032,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3011989b1279c7744b77df352ab2de14, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 8cac7691087ce0549804d6329188fa5f, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2002,6 +2050,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234651392}
   m_CullTransparentMesh: 1
+--- !u!114 &1234651396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234651392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 25
+    m_Bottom: 25
+  m_ChildAlignment: 4
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &1234651397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234651392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1316525925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1316525926
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2329,7 +2417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1431810249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2337,16 +2425,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431810248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1234651393}
+  m_Father: {fileID: 13055371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 834, y: -96}
+  m_AnchoredPosition: {x: 834, y: -429.5}
   m_SizeDelta: {x: 159, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431810250
@@ -2422,9 +2510,9 @@ RectTransform:
   - {fileID: 1079645010}
   m_Father: {fileID: 913421525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -55}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1465748909
@@ -2477,9 +2565,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a288f2409e14c674483ea1de25966b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSprite: {fileID: 0}
-  klickSprite: {fileID: 0}
+  defalutSprite: {fileID: 21300000, guid: 6f04f6aa010dece4f845e9aa3aa20931, type: 3}
+  textDefalutColor: {r: 0.45490196, g: 0.15686275, b: 0.15686275, a: 1}
+  hoverSprite: {fileID: 21300000, guid: 257a21c8d5213484daf1a2eb44631186, type: 3}
+  textHoverColor: {r: 1, g: 0.93333334, b: 0.8156863, a: 1}
   buttonImage: {fileID: 1465748909}
+  buttonsText:
+  - {fileID: 369227732}
+  - {fileID: 1079645011}
+  OnDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1512806513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,9 +2827,9 @@ RectTransform:
   - {fileID: 1738929247}
   m_Father: {fileID: 913421525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -180}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587194139
@@ -2742,9 +2844,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a288f2409e14c674483ea1de25966b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSprite: {fileID: 0}
-  klickSprite: {fileID: 0}
+  defalutSprite: {fileID: 21300000, guid: 6f04f6aa010dece4f845e9aa3aa20931, type: 3}
+  textDefalutColor: {r: 0.45490196, g: 0.15686275, b: 0.15686275, a: 1}
+  hoverSprite: {fileID: 21300000, guid: 257a21c8d5213484daf1a2eb44631186, type: 3}
+  textHoverColor: {r: 1, g: 0.93333334, b: 0.8156863, a: 1}
   buttonImage: {fileID: 1587194140}
+  buttonsText:
+  - {fileID: 1331929547}
+  - {fileID: 1738929248}
+  OnDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1587194140
 MonoBehaviour:
   m_ObjectHideFlags: 0
