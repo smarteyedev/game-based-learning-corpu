@@ -51,15 +51,34 @@ namespace Smarteye.VisualNovel.taufiq
         [Space(5f)]
         [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
 
+        private State m_VNState = State.COMPLETED;
+        public enum State
+        {
+            PLAYING, SPEEDED_UP, COMPLETED
+        }
+
+        private float m_speedFactor = 1f;
+        private Coroutine m_myCoroutine = null;
+
         [Header("Component References for Visual Novel")]
         [Space(5f)]
         [SerializeField] private GameObject dialogPanel;
+        [SerializeField] private TextMeshProUGUI speakerNameText;
+        [SerializeField] private TextMeshProUGUI dialogText;
+
+        [Space(10f)]
         [SerializeField] private GameObject decisionPanel;
 
 
         protected override void Init()
         {
-            // DisplayBlock(block1);
+            // DisplayBlock(block1); this is old-system-visual-novel
+
+            if (isForDebugging)
+            {
+                ShowDialog();
+                return;
+            }
 
             if (gameManager.currentStage == Stage.Rapport)
             {
@@ -70,7 +89,39 @@ namespace Smarteye.VisualNovel.taufiq
         public void ShowDialog()
         {
             dialogPanel.SetActive(true);
+
+            m_myCoroutine = StartCoroutine(RunningText("saya adalah taufiq dari smarteye", dialogText));
         }
+
+        private IEnumerator RunningText(string text, TextMeshProUGUI target)
+        {
+            m_VNState = State.PLAYING;
+            target.text = "";
+            int wordIndex = 0;
+
+            while (m_VNState != State.COMPLETED)
+            {
+                target.text += text[wordIndex];
+                yield return new WaitForSeconds(m_speedFactor * 0.05f);
+
+                if (++wordIndex == text.Length)
+                {
+                    m_VNState = State.COMPLETED;
+                    m_myCoroutine = null;
+                    break;
+                }
+            }
+        }
+
+        private void SpeedupRunningText()
+        {
+            if (!isPlayNormalSpeed()) return;
+
+            m_VNState = State.SPEEDED_UP;
+            m_speedFactor = 0f;
+        }
+
+        private bool isPlayNormalSpeed() => m_speedFactor == 1f && m_VNState == State.PLAYING;
 
         #region   Old-System-Visual-Novel
         /* private void DisplayBlock(StoryBlock block)
