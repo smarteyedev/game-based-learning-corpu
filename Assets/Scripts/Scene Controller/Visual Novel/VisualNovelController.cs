@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Smarteye.SceneController.taufiq;
 
-namespace Smarteye.SceneController.taufiq
+namespace Smarteye.VisualNovel.taufiq
 {
     public class StoryBlock
     {
@@ -42,6 +43,20 @@ namespace Smarteye.SceneController.taufiq
         static StoryBlock block2 = new StoryBlock("kamu mendapatkan arahan dari orang tua mu untuk terus melanjutkan ke perkuliahan dan mengambil jurusan teknologi informatika", "Mencari informasi lain", "Mendaftar perkuliahan ke TEL-U", block3, block4);
         static StoryBlock block1 = new StoryBlock("Saat ini aku baru lulus dari SMA, apa cara yang harus aku lakukan ya untuk menjadi seorang game developer yang gajinya sesuai denganku?", "Bertanya ke orang tua", "Cari informasi sendiri ah..", block2, block3);
 
+        [Header("New Visual Novel Sytem")]
+        [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
+
+        protected override void Init()
+        {
+            // DisplayBlock(block1);
+        }
+
+        public void ShowDialog()
+        {
+            
+        }
+
+        #region   Old-System-Visual-Novel
         private void DisplayBlock(StoryBlock block)
         {
             narationText.text = block.naration;
@@ -78,10 +93,6 @@ namespace Smarteye.SceneController.taufiq
                 option2Btn.gameObject.SetActive(false);
             }
         }
-
-        protected override void Init()
-        {
-            DisplayBlock(block1);
-        }
+        #endregion
     }
 }
