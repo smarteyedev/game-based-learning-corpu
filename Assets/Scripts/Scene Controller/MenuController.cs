@@ -17,7 +17,7 @@ namespace Smarteye.SceneController.taufiq
 
         public void HasFinishedOpening()
         {
-            mycoonHandler.ShowMycoonInfo(() =>
+            mycoonHandler.ShowMycoonInfo(Stage.None, () =>
             {
                 ChangeSceneTo(2);
                 gameManager.currentStage = (Stage)1;

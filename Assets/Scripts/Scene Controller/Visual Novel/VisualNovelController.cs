@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Smarteye.SceneController.taufiq;
+using Smarteye.Manager.taufiq;
 
 namespace Smarteye.VisualNovel.taufiq
 {
@@ -27,7 +28,8 @@ namespace Smarteye.VisualNovel.taufiq
 
     public class VisualNovelController : SceneControllerAbstract
     {
-        public TextMeshProUGUI narationText;
+        #region   Old-System-Visual-Novel
+        /* public TextMeshProUGUI narationText;
         public Button option1Btn;
         public Button option2Btn;
 
@@ -42,22 +44,36 @@ namespace Smarteye.VisualNovel.taufiq
         static StoryBlock block3 = new StoryBlock("Kamu mencari sumber informasi lain seperti tanya ke kakak kelas atau mencari konten youtube yang membahas cara untuk menjadi game programmer. setelah kamu mendaftar ke perusahaan sayangnya kamu ditolak", "Mengikuti bootcamp", "Mencari perkerjaan lain", block6, block9);
         static StoryBlock block2 = new StoryBlock("kamu mendapatkan arahan dari orang tua mu untuk terus melanjutkan ke perkuliahan dan mengambil jurusan teknologi informatika", "Mencari informasi lain", "Mendaftar perkuliahan ke TEL-U", block3, block4);
         static StoryBlock block1 = new StoryBlock("Saat ini aku baru lulus dari SMA, apa cara yang harus aku lakukan ya untuk menjadi seorang game developer yang gajinya sesuai denganku?", "Bertanya ke orang tua", "Cari informasi sendiri ah..", block2, block3);
+ */
+        #endregion
 
         [Header("New Visual Novel Sytem")]
+        [Space(5f)]
         [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
+
+        [Header("Component References for Visual Novel")]
+        [Space(5f)]
+        [SerializeField] private GameObject dialogPanel;
+        [SerializeField] private GameObject decisionPanel;
+
 
         protected override void Init()
         {
             // DisplayBlock(block1);
+
+            if (gameManager.currentStage == Stage.Rapport)
+            {
+                mycoonHandler.ShowMycoonInfo(Stage.Rapport);
+            }
         }
 
         public void ShowDialog()
         {
-            
+            dialogPanel.SetActive(true);
         }
 
         #region   Old-System-Visual-Novel
-        private void DisplayBlock(StoryBlock block)
+        /* private void DisplayBlock(StoryBlock block)
         {
             narationText.text = block.naration;
             option1Btn.GetComponentInChildren<TextMeshProUGUI>().text = block.option1Text;
@@ -92,7 +108,7 @@ namespace Smarteye.VisualNovel.taufiq
                 option1Btn.gameObject.SetActive(false);
                 option2Btn.gameObject.SetActive(false);
             }
-        }
+        } */
         #endregion
     }
 }

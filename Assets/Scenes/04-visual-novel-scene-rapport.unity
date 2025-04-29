@@ -208,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 13055371}
   m_Layer: 5
-  m_Name: Dialog-NPC
+  m_Name: Dialog-Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1056,8 +1056,8 @@ RectTransform:
   m_Children:
   - {fileID: 453878082}
   - {fileID: 1939590466}
-  - {fileID: 1316525926}
   - {fileID: 13055371}
+  - {fileID: 1316525926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1073,6 +1073,147 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: targetCanvas
+      value: 
+      objectReference: {fileID: 584176966}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentStage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 767378274}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1939590465}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[0].title
+      value: selanjutnya ini tahap apa?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[1].title
+      value: apa yang dilakukan player?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[2].title
+      value: panel ini akan diisi apa?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[0].explanation
+      value: ini adalah tahap rappo dimana player akan bertemu sama client dan mendiskusikan
+        masalah dari client company.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[1].explanation
+      value: player akan bermain game visual novel yang terdiri dari pre-condition
+        dan decision making
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[2].explanation
+      value: panel ini akan diisi dengan penjelasan tentang materi konsultatif seling
+        bagian rappo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[0].mycoonSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32948f6143f8c2b428d8ad5883df0b70,
+        type: 3}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[1].mycoonSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a226dc78ab5c17b409421e7ce38b24e4,
+        type: 3}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: handlerContentDatas.Array.data[0].contentItem.Array.data[2].mycoonSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a226dc78ab5c17b409421e7ce38b24e4,
+        type: 3}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Smarteye.VisualNovel.taufiq.VisualNovelController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015927181477690513, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
+        type: 3}
+      propertyPath: OnInfoClosed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7304159362912815007, guid: 4a8bbc82da0b32a40830793ce00eeb9a,
         type: 3}
       propertyPath: m_Name
@@ -1192,9 +1333,6 @@ MonoBehaviour:
   isForDebugging: 0
   debugObjectParent: {fileID: 1124621283}
   mycoonHandler: {fileID: 725231044}
-  narationText: {fileID: 1096086972}
-  option1Btn: {fileID: 0}
-  option2Btn: {fileID: 0}
   temp_BlockScenarioData:
   - sceneId: 0
     preNarationDatas:
@@ -1240,6 +1378,8 @@ MonoBehaviour:
         score: 0
         nextBlockIndex: 0
         animationType: 1
+  dialogPanel: {fileID: 13055370}
+  decisionPanel: {fileID: 1316525925}
 --- !u!1 &913421524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +2092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124621284
 Transform:
   m_ObjectHideFlags: 0
@@ -2100,7 +2240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316525926}
   m_Layer: 5
-  m_Name: Decision-Player
+  m_Name: Decision-Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3457,7 +3597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1939590466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3790,6 +3930,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1124621284}
-  - {fileID: 725231043}
   - {fileID: 767378273}
+  - {fileID: 725231043}
   - {fileID: 584176967}

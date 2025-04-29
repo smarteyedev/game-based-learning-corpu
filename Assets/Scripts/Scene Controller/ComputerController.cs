@@ -40,7 +40,7 @@ namespace Smarteye.SceneController.taufiq
         {
             if (gameManager.currentStage == Stage.Profiling)
             {
-                mycoonHandler.ShowMycoonInfo();
+                mycoonHandler.ShowMycoonInfo(Stage.Profiling);
             }
 
             generateBtn.onClick.AddListener(OnClickSubmit);

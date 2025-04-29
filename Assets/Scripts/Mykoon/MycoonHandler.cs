@@ -3,13 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Smarteye.Manager.taufiq;
+using System.Linq;
 
 namespace Smarteye.MycoonController.taufiq
 {
     public class MycoonHandler : MonoBehaviour
     {
         [Header("Config")]
-        public List<MycoonController.ContentData> contentItem;
+        public List<HandlerContentDatas> handlerContentDatas;
+
+        [Serializable]
+        public class HandlerContentDatas
+        {
+            public Stage contentStage;
+            public List<MycoonController.ContentData> contentItem;
+        }
 
         [Header("Unity Event")]
         public UnityEvent OnInfoOpened;
@@ -27,8 +36,19 @@ namespace Smarteye.MycoonController.taufiq
             }); */
         }
 
-        public void ShowMycoonInfo(Action _onCompleted = null)
+        public void ShowMycoonInfo(Stage targetStage, Action _onCompleted = null)
         {
+            List<MycoonController.ContentData> datas = handlerContentDatas
+                .Where((x) => x.contentStage == targetStage)
+                .SelectMany((y) => y.contentItem)
+                .ToList();
+
+            if (datas.Count == 0)
+            {
+                Debug.LogWarning($"mycoon handler data is for stage {targetStage} has not been assigned");
+                return;
+            }
+
             // Menginstansiasi objek dan membuatnya menjadi anak dari canvas
             MycoonController panelMycoon = Instantiate(mycoonPrefab, Vector3.zero, Quaternion.identity, targetCanvas.transform);
 
@@ -37,7 +57,7 @@ namespace Smarteye.MycoonController.taufiq
 
             OnInfoOpened?.Invoke();
 
-            panelMycoon.SetupPanelInfo(contentItem, () =>
+            panelMycoon.SetupPanelInfo(datas, () =>
             {
                 _onCompleted?.Invoke();
                 OnInfoClosed?.Invoke();
