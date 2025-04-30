@@ -52,6 +52,11 @@ namespace Smarteye.MycoonController.taufiq
             onInfoCompleted = _onCompleted;
         }
 
+        private void Awake()
+        {
+            panelCanvasGroup.alpha = 0;
+        }
+
         private void Start()
         {
             panelCanvasGroup.alpha = 0;

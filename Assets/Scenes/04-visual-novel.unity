@@ -414,13 +414,13 @@ MonoBehaviour:
   buttonsText:
   - {fileID: 1530236539}
   - {fileID: 1430854973}
-  OnDown:
+  OnMouseDown:
     m_PersistentCalls:
       m_Calls: []
-  OnHover:
+  OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnExit:
+  OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &76358924
@@ -521,13 +521,13 @@ MonoBehaviour:
   buttonsText:
   - {fileID: 1912762899}
   - {fileID: 1866402314}
-  OnDown:
+  OnMouseDown:
     m_PersistentCalls:
       m_Calls: []
-  OnHover:
+  OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnExit:
+  OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &95648881
@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 369227733}
   - component: {fileID: 369227732}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: IndexOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,13 +1035,13 @@ MonoBehaviour:
   buttonsText:
   - {fileID: 2139327715}
   - {fileID: 1761322174}
-  OnDown:
+  OnMouseDown:
     m_PersistentCalls:
       m_Calls: []
-  OnHover:
+  OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnExit:
+  OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &510716925
@@ -1467,9 +1467,8 @@ MonoBehaviour:
       narationText: Oke Pak
     - speakerName: player
       narationText: Hmm, kira-kira enaknya ngapain dulu yaa...
-    decisionDatas:
-    - question: Saat ini aku baru lulus dari SMA, apa cara yang harus aku lakukan
-        ya untuk menjadi seorang game developer yang gajinya sesuai denganku?
+    decisionData:
+      question: "Apa yang anda lakukan \u201CNama Player\u201D ?"
       options:
       - optionText: Siap, saya cari tahu siapa decision maker di Sucofindo.
         score: 5
@@ -1483,8 +1482,8 @@ MonoBehaviour:
       narationText: Bagaimana anda mencari tahu siapa yang bisa anda hubungi di sucofindo?
     - speakerName: player
       narationText: Hmm... gimana ya
-    decisionDatas:
-    - question: Apa yang akan anda lakukan
+    decisionData:
+      question: "Apa yang anda lakukan \u201CNama Player\u201D ?"
       options:
       - optionText: Cek LinkedIn Sucofindo dan cari Head of IT / Head of Digital
           Transformation.
@@ -1500,20 +1499,31 @@ MonoBehaviour:
     preNarationDatas:
     - speakerName: Narator
       narationText: Anda ditolak oleh resepsionis dan tidak berhasil bertemu siapapun.
-    decisionDatas: []
+    decisionData:
+      question: 
+      options: []
   - sceneId: 1
     preNarationDatas:
     - speakerName: Narator
       narationText: Selamat anda berhasil melewati scene ini
-    decisionDatas: []
-  m_VNState: 2
+    decisionData:
+      question: 
+      options: []
   successBlockIndex: 3
   failBlockIndex: 2
   dialogPanel: {fileID: 13055370}
   speakerNameText: {fileID: 925753537}
   dialogText: {fileID: 1096086972}
   buttonNext: {fileID: 395159086}
+  backgroundBlur: {fileID: 1939590469}
   decisionPanel: {fileID: 1316525925}
+  textQuestion: {fileID: 1964065800}
+  buttonOptions:
+  - {fileID: 1465748911}
+  - {fileID: 1587194139}
+  - {fileID: 510716924}
+  - {fileID: 95648880}
+  - {fileID: 76358923}
 --- !u!1 &796908036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2092,7 @@ GameObject:
   - component: {fileID: 1079645012}
   - component: {fileID: 1079645011}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: OptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2549,7 +2559,7 @@ GameObject:
   - component: {fileID: 1331929548}
   - component: {fileID: 1331929547}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: IndexOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2684,7 +2694,7 @@ GameObject:
   - component: {fileID: 1430854974}
   - component: {fileID: 1430854973}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: OptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2981,13 +2991,13 @@ MonoBehaviour:
   buttonsText:
   - {fileID: 369227732}
   - {fileID: 1079645011}
-  OnDown:
+  OnMouseDown:
     m_PersistentCalls:
       m_Calls: []
-  OnHover:
+  OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnExit:
+  OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1512806513
@@ -3077,7 +3087,7 @@ GameObject:
   - component: {fileID: 1530236540}
   - component: {fileID: 1530236539}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: IndexOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3260,13 +3270,13 @@ MonoBehaviour:
   buttonsText:
   - {fileID: 1331929547}
   - {fileID: 1738929248}
-  OnDown:
+  OnMouseDown:
     m_PersistentCalls:
       m_Calls: []
-  OnHover:
+  OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnExit:
+  OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1587194140
@@ -3319,7 +3329,7 @@ GameObject:
   - component: {fileID: 1738929249}
   - component: {fileID: 1738929248}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: OptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,7 +3464,7 @@ GameObject:
   - component: {fileID: 1761322175}
   - component: {fileID: 1761322174}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: OptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3589,7 +3599,7 @@ GameObject:
   - component: {fileID: 1866402315}
   - component: {fileID: 1866402314}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: OptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3725,7 +3735,7 @@ GameObject:
   - component: {fileID: 1912762900}
   - component: {fileID: 1912762899}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: IndexOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3859,13 +3869,14 @@ GameObject:
   - component: {fileID: 1939590466}
   - component: {fileID: 1939590468}
   - component: {fileID: 1939590467}
+  - component: {fileID: 1939590469}
   m_Layer: 5
   m_Name: Background-Blur-Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1939590466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3923,6 +3934,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939590465}
   m_CullTransparentMesh: 1
+--- !u!225 &1939590469
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939590465}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1964065798
 GameObject:
   m_ObjectHideFlags: 0
@@ -3935,7 +3958,7 @@ GameObject:
   - component: {fileID: 1964065801}
   - component: {fileID: 1964065800}
   m_Layer: 5
-  m_Name: Question
+  m_Name: Text-Question
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4070,7 +4093,7 @@ GameObject:
   - component: {fileID: 2139327716}
   - component: {fileID: 2139327715}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: IndexOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

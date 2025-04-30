@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace Smarteye.VisualNovel.taufiq
 {
@@ -21,6 +20,14 @@ namespace Smarteye.VisualNovel.taufiq
     {
         public SceneId sceneId;
         public List<PreNarationData> preNarationDatas;
+        public DecisionData decisionData;
+
+        public BlockScenarioDataMap(SceneId sceneId, List<PreNarationData> preNarationDatas, DecisionData decisionData)
+        {
+            this.sceneId = sceneId;
+            this.preNarationDatas = preNarationDatas;
+            this.decisionData = decisionData;
+        }
 
         [Serializable]
         public class PreNarationData
@@ -28,8 +35,6 @@ namespace Smarteye.VisualNovel.taufiq
             public string speakerName;
             public string narationText;
         }
-
-        public List<DecisionData> decisionDatas;
 
         [Serializable]
         public class DecisionData

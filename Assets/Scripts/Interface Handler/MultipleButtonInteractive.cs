@@ -21,22 +21,24 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
     public TextMeshProUGUI[] buttonsText;
 
     [Header("Unity Event")]
-    public UnityEvent OnDown;
-    public UnityEvent OnHover;
-    public UnityEvent OnExit;
+    public UnityEvent OnMouseDown;
+    public UnityEvent OnHoverEnter;
+    public UnityEvent OnHoverExit;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
+        OnMouseDown?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        OnHoverEnter?.Invoke();
         SetVisualImage(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        OnHoverExit?.Invoke();
         SetVisualImage(false);
     }
 
@@ -47,7 +49,7 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
             buttonImage = GetComponent<Image>();
         }
 
-        if (buttonsText.Length == 0)
+        /* if (buttonsText.Length == 0)
         {
             TextMeshProUGUI[] b = GetComponentsInChildren<TextMeshProUGUI>();
 
@@ -57,7 +59,7 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
             {
                 buttonsText[i] = b[i];
             }
-        }
+        } */
 
         SetVisualImage(false);
     }
@@ -81,5 +83,14 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
                 item.color = textDefalutColor;
             }
         }
+    }
+
+    public void SetOptionText(string _txt)
+    {
+        TextMeshProUGUI tComp = buttonsText.First((x) => x.gameObject.name == "OptionText");
+        // TextMeshProUGUI tComp = buttonsText[1];
+        tComp.text = _txt;
+
+        // Debug.Log($"{tComp.gameObject.name} : {_txt}");
     }
 }

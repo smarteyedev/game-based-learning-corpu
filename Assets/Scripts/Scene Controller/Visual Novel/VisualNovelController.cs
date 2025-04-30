@@ -51,21 +51,21 @@ namespace Smarteye.VisualNovel.taufiq
  */
         #endregion
 
-        [Header("New Visual Novel Sytem")]
+        [Header("Visual Novel Sytem")]
         [Space(5f)]
         [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
 
-        private int currentBlockIndex = 0;
-        private int dialogIndex = 0;
+        private BlockScenarioDataMap m_currentBlockScenario;
+        private int m_dialogIndex = 0;
 
-        [SerializeField] private State m_VNState = State.COMPLETED;
+        private State m_VNState = State.COMPLETED;
         public enum State
         {
             PLAYING, SPEEDED_UP, COMPLETED
         }
 
-        public int successBlockIndex;
-        public int failBlockIndex;
+        [SerializeField] private int successBlockIndex;
+        [SerializeField] private int failBlockIndex;
 
         private float m_speedFactor = 1f;
         private Coroutine m_myCoroutine = null;
@@ -76,16 +76,20 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogText;
         [SerializeField] private Button buttonNext;
+        [SerializeField] private CanvasGroup backgroundBlur;
 
         [Space(10f)]
         [SerializeField] private GameObject decisionPanel;
+        [SerializeField] private TextMeshProUGUI textQuestion;
+        [SerializeField] private MultipleButtonInteractive[] buttonOptions;
 
 
         protected override void Init()
         {
-            // DisplayBlock(block1); -> this is old-system-visual-novel
+            //? DisplayBlock(block1); -> this is old-system-visual-novel
+            m_currentBlockScenario = temp_BlockScenarioData[0];
 
-            currentBlockIndex = 0;
+            backgroundBlur.alpha = 0;
             buttonNext.onClick.AddListener(OnClickNext);
 
             if (isForDebugging)
@@ -105,47 +109,45 @@ namespace Smarteye.VisualNovel.taufiq
             if (Input.GetMouseButtonDown(0) && m_VNState == State.PLAYING)
             {
                 SpeedupRunningText();
-                Debug.Log("Mouse kiri ditekan");
+                // Debug.Log("Mouse kiri ditekan");
             }
         }
+
+        #region Visual-Novel-Function
 
         public void ShowDialog()
         {
             dialogPanel.SetActive(true);
+            decisionPanel.SetActive(false);
+            backgroundBlur.alpha = 1;
 
-            UpdateDialog();
+            UpdateDialog(m_currentBlockScenario);
         }
 
-        private void UpdateDialog()
+        private void UpdateDialog(BlockScenarioDataMap _blockScenario)
         {
             if (m_VNState == State.PLAYING && m_myCoroutine != null) return;
 
             buttonNext.gameObject.SetActive(false);
-            List<BlockScenarioDataMap.PreNarationData> narations = GetNarationsList(currentBlockIndex);
-            speakerNameText.text = $"- {narations[dialogIndex].speakerName} -";
-            m_myCoroutine = StartCoroutine(RunningText(narations[dialogIndex].narationText, dialogText));
+            List<BlockScenarioDataMap.PreNarationData> narations = _blockScenario.preNarationDatas;
+            speakerNameText.text = $"- {narations[m_dialogIndex].speakerName} -";
+            m_myCoroutine = StartCoroutine(RunningText(narations[m_dialogIndex].narationText, dialogText));
         }
 
         private void OnClickNext()
         {
             if (m_VNState != State.COMPLETED) return;
 
-            if (dialogIndex < GetNarationsList(currentBlockIndex).Count - 1)
+            if (m_dialogIndex < m_currentBlockScenario.preNarationDatas.Count - 1)
             {
-                dialogIndex++;
-                UpdateDialog();
+                m_dialogIndex++;
+                UpdateDialog(m_currentBlockScenario);
             }
             else
             {
-                decisionPanel.SetActive(true);
-                dialogPanel.SetActive(false);
+                m_dialogIndex = 0;
+                ShowDecisionPanel();
             }
-        }
-
-        private List<BlockScenarioDataMap.PreNarationData> GetNarationsList(int blockIndex)
-        {
-            BlockScenarioDataMap datas = temp_BlockScenarioData[blockIndex];
-            return datas.preNarationDatas;
         }
 
         private IEnumerator RunningText(string text, TextMeshProUGUI target)
@@ -183,6 +185,58 @@ namespace Smarteye.VisualNovel.taufiq
         }
 
         private bool isPlayNormalSpeed() => m_speedFactor == 1f && m_VNState == State.PLAYING;
+
+        #endregion
+
+        #region Decision-Making-Function
+
+        private void ShowDecisionPanel()
+        {
+            decisionPanel.SetActive(true);
+            dialogPanel.SetActive(false);
+
+            SetQuestionAndOption();
+        }
+
+        private void SetQuestionAndOption()
+        {
+            BlockScenarioDataMap.DecisionData dec = m_currentBlockScenario.decisionData;
+
+            textQuestion.text = dec.question;
+
+            for (int b = 0; b < buttonOptions.Length; b++)
+            {
+                if (b < dec.options.Count)
+                {
+                    buttonOptions[b].gameObject.SetActive(true);
+                    buttonOptions[b].SetOptionText(dec.options[b].optionText);
+                    int nextIndex = dec.options[b].nextBlockIndex;
+                    buttonOptions[b].OnMouseDown.AddListener(() =>
+                    {
+                        OnClickChangeBlock(nextIndex);
+                        // Debug.Log($"target next block : {nextIndex}");
+                    });
+                }
+                else
+                {
+                    buttonOptions[b].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void OnClickChangeBlock(int _targetBlockIndex)
+        {
+            /* currentBlockScenario = new BlockScenarioDataMap(
+                temp_BlockScenarioData[_targetBlockIndex].sceneId,
+                temp_BlockScenarioData[_targetBlockIndex].preNarationDatas,
+                temp_BlockScenarioData[_targetBlockIndex].decisionData
+            ); */
+
+            m_currentBlockScenario = temp_BlockScenarioData[_targetBlockIndex];
+            ShowDialog();
+        }
+
+        #endregion
 
         #region   Old-System-Visual-Novel
         /* private void DisplayBlock(StoryBlock block)
