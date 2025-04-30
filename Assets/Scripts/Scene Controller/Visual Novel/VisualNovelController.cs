@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+
 using Smarteye.SceneController.taufiq;
 using Smarteye.Manager.taufiq;
 
 namespace Smarteye.VisualNovel.taufiq
 {
+    #region   Old-System-Visual-Novel
     public class StoryBlock
     {
         public string naration;
@@ -25,6 +28,7 @@ namespace Smarteye.VisualNovel.taufiq
             this.Option2Block = _option2Block;
         }
     }
+    #endregion
 
     public class VisualNovelController : SceneControllerAbstract
     {
@@ -51,11 +55,17 @@ namespace Smarteye.VisualNovel.taufiq
         [Space(5f)]
         [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
 
-        private State m_VNState = State.COMPLETED;
+        private int currentBlockIndex = 0;
+        private int dialogIndex = 0;
+
+        [SerializeField] private State m_VNState = State.COMPLETED;
         public enum State
         {
             PLAYING, SPEEDED_UP, COMPLETED
         }
+
+        public int successBlockIndex;
+        public int failBlockIndex;
 
         private float m_speedFactor = 1f;
         private Coroutine m_myCoroutine = null;
@@ -65,6 +75,7 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogText;
+        [SerializeField] private Button buttonNext;
 
         [Space(10f)]
         [SerializeField] private GameObject decisionPanel;
@@ -72,7 +83,10 @@ namespace Smarteye.VisualNovel.taufiq
 
         protected override void Init()
         {
-            // DisplayBlock(block1); this is old-system-visual-novel
+            // DisplayBlock(block1); -> this is old-system-visual-novel
+
+            currentBlockIndex = 0;
+            buttonNext.onClick.AddListener(OnClickNext);
 
             if (isForDebugging)
             {
@@ -86,11 +100,52 @@ namespace Smarteye.VisualNovel.taufiq
             }
         }
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0) && m_VNState == State.PLAYING)
+            {
+                SpeedupRunningText();
+                Debug.Log("Mouse kiri ditekan");
+            }
+        }
+
         public void ShowDialog()
         {
             dialogPanel.SetActive(true);
 
-            m_myCoroutine = StartCoroutine(RunningText("saya adalah taufiq dari smarteye", dialogText));
+            UpdateDialog();
+        }
+
+        private void UpdateDialog()
+        {
+            if (m_VNState == State.PLAYING && m_myCoroutine != null) return;
+
+            buttonNext.gameObject.SetActive(false);
+            List<BlockScenarioDataMap.PreNarationData> narations = GetNarationsList(currentBlockIndex);
+            speakerNameText.text = $"- {narations[dialogIndex].speakerName} -";
+            m_myCoroutine = StartCoroutine(RunningText(narations[dialogIndex].narationText, dialogText));
+        }
+
+        private void OnClickNext()
+        {
+            if (m_VNState != State.COMPLETED) return;
+
+            if (dialogIndex < GetNarationsList(currentBlockIndex).Count - 1)
+            {
+                dialogIndex++;
+                UpdateDialog();
+            }
+            else
+            {
+                decisionPanel.SetActive(true);
+                dialogPanel.SetActive(false);
+            }
+        }
+
+        private List<BlockScenarioDataMap.PreNarationData> GetNarationsList(int blockIndex)
+        {
+            BlockScenarioDataMap datas = temp_BlockScenarioData[blockIndex];
+            return datas.preNarationDatas;
         }
 
         private IEnumerator RunningText(string text, TextMeshProUGUI target)
@@ -106,7 +161,13 @@ namespace Smarteye.VisualNovel.taufiq
 
                 if (++wordIndex == text.Length)
                 {
+                    if (!isPlayNormalSpeed())
+                    {
+                        m_speedFactor = 1f;
+                    }
+
                     m_VNState = State.COMPLETED;
+                    buttonNext.gameObject.SetActive(true);
                     m_myCoroutine = null;
                     break;
                 }

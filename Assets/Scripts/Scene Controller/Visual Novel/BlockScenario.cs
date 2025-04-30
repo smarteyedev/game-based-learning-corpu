@@ -43,7 +43,7 @@ namespace Smarteye.VisualNovel.taufiq
                 public string optionText;
                 public int score;
                 public int nextBlockIndex;
-                public CharacterAnimType animationType;
+                // public CharacterAnimType animationType;
             }
         }
     }

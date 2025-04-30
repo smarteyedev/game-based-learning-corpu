@@ -306,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingMessages:
   - currentStage: 0
-    hintMessage: ...
+    hintMessage: buka tutorial dengan menekan tombol dengan icon i pada layar
   - currentStage: 1
     hintMessage: ini adalah loading untuk stage profiling
   - currentStage: 2
@@ -317,7 +317,7 @@ MonoBehaviour:
     hintMessage: ini adalah loading untuk stage solution
   - currentStage: 5
     hintMessage: ini adalah loading untuk stage closing
-  loadingTime: 3.94
+  loadingTime: 2
   screenPanel: {fileID: 885446971115821556}
   _MessageText: {fileID: 3907324000695775864}
   _loadingBar: {fileID: 3799214962660669073}
@@ -367,13 +367,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneArray:
   - _sceneAsset: {fileID: 102900000, guid: 5d6183494d832374da65914a23998768, type: 3}
-    _sceneName: 01-menu-scene
+    _sceneName: 01-menu
   - _sceneAsset: {fileID: 102900000, guid: e0d635bb70eff994288864f9b1e49e7d, type: 3}
-    _sceneName: 02-progres-scene
+    _sceneName: 02-stage-map
   - _sceneAsset: {fileID: 102900000, guid: 625c67cbb5be91147bd9d7598cc38b14, type: 3}
-    _sceneName: 03-computer-scene-profiling
+    _sceneName: 03-computer
   - _sceneAsset: {fileID: 102900000, guid: 1a74f9eae6874684784f765b884af660, type: 3}
-    _sceneName: 04-visual-novel-scene-rapport
+    _sceneName: 04-visual-novel
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1 &1601391484
 GameObject:
