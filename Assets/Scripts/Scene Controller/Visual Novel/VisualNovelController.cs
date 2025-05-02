@@ -53,9 +53,9 @@ namespace Smarteye.VisualNovel.taufiq
 
         [Header("Visual Novel Sytem")]
         [Space(5f)]
-        [SerializeField] private List<BlockScenarioDataMap> temp_BlockScenarioData;
+        [SerializeField] private List<SceneScenarioDataRoot> temp_BlockScenarioData;
 
-        private BlockScenarioDataMap m_currentBlockScenario;
+        private SceneScenarioDataRoot m_currentBlockScenario;
         private int m_dialogIndex = 0;
 
         private State m_VNState = State.COMPLETED;
@@ -124,12 +124,12 @@ namespace Smarteye.VisualNovel.taufiq
             UpdateDialog(m_currentBlockScenario);
         }
 
-        private void UpdateDialog(BlockScenarioDataMap _blockScenario)
+        private void UpdateDialog(SceneScenarioDataRoot _blockScenario)
         {
             if (m_VNState == State.PLAYING && m_myCoroutine != null) return;
 
             buttonNext.gameObject.SetActive(false);
-            List<BlockScenarioDataMap.PreNarationData> narations = _blockScenario.preNarationDatas;
+            List<SceneScenarioDataRoot.DialogueRoot> narations = _blockScenario.dialogueData;
             speakerNameText.text = $"- {narations[m_dialogIndex].speakerName} -";
             m_myCoroutine = StartCoroutine(RunningText(narations[m_dialogIndex].narationText, dialogText));
         }
@@ -138,7 +138,7 @@ namespace Smarteye.VisualNovel.taufiq
         {
             if (m_VNState != State.COMPLETED) return;
 
-            if (m_dialogIndex < m_currentBlockScenario.preNarationDatas.Count - 1)
+            if (m_dialogIndex < m_currentBlockScenario.dialogueData.Count - 1)
             {
                 m_dialogIndex++;
                 UpdateDialog(m_currentBlockScenario);
@@ -200,20 +200,20 @@ namespace Smarteye.VisualNovel.taufiq
 
         private void SetQuestionAndOption()
         {
-            BlockScenarioDataMap.DecisionData dec = m_currentBlockScenario.decisionData;
+            SceneScenarioDataRoot.DecisionRoot dec = m_currentBlockScenario.decisionData;
 
             textQuestion.text = dec.question;
 
             for (int b = 0; b < buttonOptions.Length; b++)
             {
-                if (b < dec.options.Count)
+                if (b < dec.optionDatas.Count)
                 {
                     buttonOptions[b].gameObject.SetActive(true);
-                    buttonOptions[b].SetOptionText(dec.options[b].optionText);
-                    int nextIndex = dec.options[b].nextBlockIndex;
+                    buttonOptions[b].SetOptionText(dec.optionDatas[b].optionText);
+                    //! int nextIndex = dec.optionDatas[b].nextBlockIndex;
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
-                        OnClickChangeBlock(nextIndex);
+                        //! OnClickChangeBlock(nextIndex);
                         // Debug.Log($"target next block : {nextIndex}");
                     });
                 }
@@ -233,9 +233,21 @@ namespace Smarteye.VisualNovel.taufiq
             ); */
 
             m_currentBlockScenario = temp_BlockScenarioData[_targetBlockIndex];
-            ShowDialog();
-        }
 
+            int _index = temp_BlockScenarioData.IndexOf(m_currentBlockScenario);
+            if (_index == successBlockIndex)
+            {
+                Debug.Log($"Your are sucess. congratt...");
+            }
+            else if (_index == failBlockIndex)
+            {
+                Debug.Log($"Oh noo.... you're fail");
+            }
+            else
+            {
+                ShowDialog();
+            }
+        }
         #endregion
 
         #region   Old-System-Visual-Novel

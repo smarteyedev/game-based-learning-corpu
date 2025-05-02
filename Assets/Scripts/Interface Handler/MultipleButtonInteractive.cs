@@ -25,6 +25,16 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
     public UnityEvent OnHoverEnter;
     public UnityEvent OnHoverExit;
 
+    private void OnEnable()
+    {
+        SetVisualImage(false);
+    }
+
+    private void OnDisable()
+    {
+        OnMouseDown.RemoveAllListeners();
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         OnMouseDown?.Invoke();

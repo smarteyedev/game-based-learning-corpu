@@ -1452,21 +1452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec5d2b390f67e64e86eff0dd94d1104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isForDebugging: 1
+  isForDebugging: 0
   debugObjectParent: {fileID: 1124621283}
   mycoonHandler: {fileID: 725231044}
   temp_BlockScenarioData:
-  - sceneId: 0
-    preNarationDatas:
-    - speakerName: Atasan
-      narationText: Hari ini coba approach Sucofindo. Ini BUMN bidang inspeksi, sertifikasi,
-        konsultasi. Berdiri 1956, kuat di industri, pertanian, kehutanan. Mereka
-        belum fully digital, banyak proses manual dan butuh modernisasi. Cari peluang
-        buat tawarkan solusi kita!
-    - speakerName: player
-      narationText: Oke Pak
-    - speakerName: player
-      narationText: Hmm, kira-kira enaknya ngapain dulu yaa...
+  - stage: 0
+    sceneId: 0
+    preCondition: 
+    dialogueData: []
     decisionData:
       question: "Apa yang anda lakukan \u201CNama Player\u201D ?"
       options:
@@ -1476,12 +1469,11 @@ MonoBehaviour:
       - optionText: Langsung saja saya datang ke kantor pusat Sucofindo di Jakarta.
         score: 0
         nextBlockIndex: 2
-  - sceneId: 1
-    preNarationDatas:
-    - speakerName: Narator
-      narationText: Bagaimana anda mencari tahu siapa yang bisa anda hubungi di sucofindo?
-    - speakerName: player
-      narationText: Hmm... gimana ya
+    knowledgeGain: 
+  - stage: 1
+    sceneId: 1
+    preCondition: 
+    dialogueData: []
     decisionData:
       question: "Apa yang anda lakukan \u201CNama Player\u201D ?"
       options:
@@ -1495,20 +1487,23 @@ MonoBehaviour:
       - optionText: Tanya rekan yang pernah kerja di Sucofindo.
         score: 5
         nextBlockIndex: 3
-  - sceneId: 1
-    preNarationDatas:
-    - speakerName: Narator
-      narationText: Anda ditolak oleh resepsionis dan tidak berhasil bertemu siapapun.
+    knowledgeGain: 
+  - stage: 1
+    sceneId: 1
+    preCondition: 
+    dialogueData: []
     decisionData:
       question: 
       options: []
-  - sceneId: 1
-    preNarationDatas:
-    - speakerName: Narator
-      narationText: Selamat anda berhasil melewati scene ini
+    knowledgeGain: 
+  - stage: 1
+    sceneId: 1
+    preCondition: 
+    dialogueData: []
     decisionData:
       question: 
       options: []
+    knowledgeGain: 
   successBlockIndex: 3
   failBlockIndex: 2
   dialogPanel: {fileID: 13055370}

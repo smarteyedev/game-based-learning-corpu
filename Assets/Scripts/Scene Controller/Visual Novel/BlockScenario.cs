@@ -5,50 +5,57 @@ using UnityEngine;
 
 namespace Smarteye.VisualNovel.taufiq
 {
-    public enum CharacterAnimType
+    [Serializable]
+    public class MasterData
     {
-        Happy, Talk, Mad
-    }
-
-    public enum SceneId
-    {
-        A, B, C, D, E, F, G
+        public List<SceneScenarioDataRoot> sceneScenarioDataRoots;
     }
 
     [Serializable]
-    public class BlockScenarioDataMap
+    public class SceneScenarioDataRoot
     {
-        public SceneId sceneId;
-        public List<PreNarationData> preNarationDatas;
-        public DecisionData decisionData;
+        public Stage stage;
+        public string sceneIdentity;
+        public SceneProgress sceneProgress;
+        public string introductionStory;
+        public List<DialogueRoot> dialogueData;
+        public DecisionRoot decisionData;
+        public string knowledgeGain;
 
-        public BlockScenarioDataMap(SceneId sceneId, List<PreNarationData> preNarationDatas, DecisionData decisionData)
+        public enum SceneProgress
         {
-            this.sceneId = sceneId;
-            this.preNarationDatas = preNarationDatas;
-            this.decisionData = decisionData;
+            DIALOGUE, SUCCESSRESULT, FAILRESULT
+        }
+
+        public enum Stage
+        {
+            NONE, PROLOG, PROSPECTINGANDPROFILING, RAPPORT, PROBING, SOLUTION, OBJECTIONANDCLOSING, EPILOG
+        }
+
+        public enum SpeakerRoot
+        {
+            PLAYER, NARATOR, CLIENT, ASISTENT
         }
 
         [Serializable]
-        public class PreNarationData
+        public class DialogueRoot
         {
-            public string speakerName;
+            public SpeakerRoot speakerName;
             public string narationText;
         }
 
         [Serializable]
-        public class DecisionData
+        public class DecisionRoot
         {
             public string question;
-            public List<OptionData> options;
+            public List<OptionRoot> optionDatas;
 
             [Serializable]
-            public class OptionData
+            public class OptionRoot
             {
                 public string optionText;
                 public int score;
-                public int nextBlockIndex;
-                // public CharacterAnimType animationType;
+                public string nextSceneIdentity;
             }
         }
     }
