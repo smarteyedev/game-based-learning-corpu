@@ -189,7 +189,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 6622497680553482440}
   - component: {fileID: 1045519746022070055}
   - component: {fileID: 1079658287100003634}
+  - component: {fileID: 1672899958607280984}
   m_Layer: 5
   m_Name: '#NPC-Mykoon-Controller'
   m_TagString: Untagged
@@ -398,7 +399,29 @@ MonoBehaviour:
   titleText: {fileID: 6826566246307550291}
   explanationText: {fileID: 3028819754945130523}
   buttonNext: {fileID: 5738004647080579624}
-  mycoonImage: {fileID: 4488489008577205398}
+  characterHandler: {fileID: 1672899958607280984}
+--- !u!114 &1672899958607280984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320533984086913630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f857be8ef04e94ba82b28b2ce24c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterIdentities:
+  - role: 1
+    characterActions:
+    - actionType: 0
+      actionSprite: {fileID: 21300000, guid: 735c2577a547079438bc4a56626bcce1, type: 3}
+    - actionType: 1
+      actionSprite: {fileID: 21300000, guid: 735c2577a547079438bc4a56626bcce1, type: 3}
+    - actionType: 2
+      actionSprite: {fileID: 21300000, guid: 735c2577a547079438bc4a56626bcce1, type: 3}
+  imageCharacter: {fileID: 4488489008577205398}
 --- !u!1 &2365007338268322505
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,8 +564,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Apa itu Consultative Selling ? '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: deda9ff4db6d10b44873d24931c05ffa, type: 2}
+  m_sharedMaterial: {fileID: 1861990746409547545, guid: deda9ff4db6d10b44873d24931c05ffa,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

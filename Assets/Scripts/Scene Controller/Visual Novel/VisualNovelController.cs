@@ -7,6 +7,7 @@ using System.Linq;
 
 using Smarteye.SceneController.taufiq;
 using Smarteye.Manager.taufiq;
+using System;
 
 namespace Smarteye.VisualNovel.taufiq
 {
@@ -53,6 +54,13 @@ namespace Smarteye.VisualNovel.taufiq
 
         [Header("Visual Novel Sytem")]
         [Space(5f)]
+        [SerializeField] private VisualNovelView currentView = VisualNovelView.NONE;
+        public enum VisualNovelView
+        {
+            NONE = 0, MYCOON = 1, INTRO = 2, DIALOG = 3, DECISION = 4, RESULT = 5
+        }
+
+        [Space(5f)]
         [SerializeField] private List<SceneScenarioDataRoot> temp_BlockScenarioData;
 
         private SceneScenarioDataRoot m_currentBlockScenario;
@@ -64,43 +72,54 @@ namespace Smarteye.VisualNovel.taufiq
             PLAYING, SPEEDED_UP, COMPLETED
         }
 
-        [SerializeField] private int successBlockIndex;
-        [SerializeField] private int failBlockIndex;
-
         private float m_speedFactor = 1f;
         private Coroutine m_myCoroutine = null;
 
         [Header("Component References for Visual Novel")]
+
+        [Space(5f)]
+        //? Main UI
+        [SerializeField] private CanvasGroup backgroundBlur;
+        [SerializeField] private GameObject plankStage;
+        [SerializeField] private TextMeshProUGUI textPlankStage;
+
+        //? Introduction Story References
+        [Space(5f)]
+        [SerializeField] private GameObject panelIntroduction;
+        [SerializeField] private TextMeshProUGUI textIntrodutionStory;
+
+        //? dialog references
         [Space(5f)]
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogText;
         [SerializeField] private Button buttonNext;
-        [SerializeField] private CanvasGroup backgroundBlur;
 
+        //? dialog references
         [Space(10f)]
         [SerializeField] private GameObject decisionPanel;
         [SerializeField] private TextMeshProUGUI textQuestion;
         [SerializeField] private MultipleButtonInteractive[] buttonOptions;
 
+        //? Result Panel references
+        [Space(10f)]
+        [SerializeField] private GameObject panelFail;
+        [SerializeField] private GameObject panelSuccess;
 
         protected override void Init()
         {
             //? DisplayBlock(block1); -> this is old-system-visual-novel
-            m_currentBlockScenario = temp_BlockScenarioData[0];
+            currentView = VisualNovelView.NONE;
+            MainUIActive(false);
 
-            backgroundBlur.alpha = 0;
+            m_currentBlockScenario = temp_BlockScenarioData[0];
             buttonNext.onClick.AddListener(OnClickNext);
 
             if (isForDebugging)
             {
-                ShowDialog();
+                // currentView = VisualNovelView.MYCOONMATERIALS;
+                ChangeVisualNovelView(VisualNovelView.NONE);
                 return;
-            }
-
-            if (gameManager.currentStage == Stage.Rapport)
-            {
-                mycoonHandler.ShowMycoonInfo(Stage.Rapport);
             }
         }
 
@@ -111,15 +130,111 @@ namespace Smarteye.VisualNovel.taufiq
                 SpeedupRunningText();
                 // Debug.Log("Mouse kiri ditekan");
             }
+            else if (Input.GetMouseButtonDown(0) && currentView == VisualNovelView.INTRO)
+            {
+                OnClickCloseIntroStory();
+            }
         }
 
-        #region Visual-Novel-Function
+        public void SetVisualNovelView(int _viewIndex) => currentView = (VisualNovelView)_viewIndex;
 
-        public void ShowDialog()
+        public void ChangeVisualNovelView(VisualNovelView _newView)
+        {
+            currentView = _newView;
+
+            switch (currentView)
+            {
+                case VisualNovelView.NONE:
+                    if (string.IsNullOrEmpty(m_currentBlockScenario.agentAIHint))
+                    {
+                        ChangeVisualNovelView(VisualNovelView.INTRO);
+                    }
+                    else
+                    {
+                        ChangeVisualNovelView(VisualNovelView.MYCOON);
+                    }
+                    break;
+                case VisualNovelView.MYCOON:
+                    MainUIActive(false);
+                    decisionPanel.SetActive(false);
+
+                    mycoonHandler.ShowMycoonInfo("", m_currentBlockScenario.agentAIHint, () =>
+                    {
+                        if (string.IsNullOrEmpty(m_currentBlockScenario.introductionStory))
+                            ChangeVisualNovelView(VisualNovelView.DIALOG);
+                        else
+                        {
+                            ChangeVisualNovelView(VisualNovelView.INTRO);
+                        }
+                    });
+                    break;
+                case VisualNovelView.INTRO:
+                    ShowIntroPanel();
+                    break;
+                case VisualNovelView.DIALOG:
+                    ShowDialogPanel();
+                    break;
+                case VisualNovelView.DECISION:
+                    ShowDecisionPanel();
+                    break;
+                case VisualNovelView.RESULT:
+                    ShowResultPanel();
+                    break;
+                default:
+                    Debug.Log($"it has not played");
+                    break;
+            }
+        }
+
+        private void MainUIActive(bool _isActive)
+        {
+            backgroundBlur.alpha = _isActive ? 1 : 0;
+            plankStage.gameObject.SetActive(_isActive);
+        }
+
+        #region Panel Introduction Story
+
+        private void ShowIntroPanel()
+        {
+            panelIntroduction.SetActive(true);
+            textIntrodutionStory.text = $"{m_currentBlockScenario.introductionStory}";
+        }
+
+        private void OnClickCloseIntroStory()
+        {
+            if (m_currentBlockScenario.dialogueData.Count == 0)
+            {
+                if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT
+                    || m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
+                {
+                    ChangeVisualNovelView(VisualNovelView.RESULT);
+                }
+                else if (m_currentBlockScenario.decisionData != null)
+                {
+                    ChangeVisualNovelView(VisualNovelView.DECISION);
+                }
+
+                panelIntroduction.SetActive(false);
+                textIntrodutionStory.text = "";
+            }
+            else
+            {
+                panelIntroduction.SetActive(false);
+                textIntrodutionStory.text = "";
+
+                ChangeVisualNovelView(VisualNovelView.DIALOG);
+            }
+        }
+
+        #endregion
+
+        #region Dialog-Visual-Novel-Function
+
+        private void ShowDialogPanel()
         {
             dialogPanel.SetActive(true);
             decisionPanel.SetActive(false);
-            backgroundBlur.alpha = 1;
+            MainUIActive(true);
 
             UpdateDialog(m_currentBlockScenario);
         }
@@ -146,7 +261,22 @@ namespace Smarteye.VisualNovel.taufiq
             else
             {
                 m_dialogIndex = 0;
-                ShowDecisionPanel();
+
+                if (m_currentBlockScenario.decisionData != null
+                    && m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.DIALOGUE
+                    && m_currentBlockScenario.stage != SceneScenarioDataRoot.Stage.EPILOG)
+                {
+                    ChangeVisualNovelView(VisualNovelView.DECISION);
+                }
+                else if (m_currentBlockScenario.decisionData != null
+                        && m_currentBlockScenario.stage == SceneScenarioDataRoot.Stage.EPILOG)
+                {
+                    Debug.LogWarning($"Panell akhirr game... player sukes menyelesaikan game");
+                }
+                else
+                {
+                    ChangeVisualNovelView(VisualNovelView.RESULT);
+                }
             }
         }
 
@@ -210,10 +340,10 @@ namespace Smarteye.VisualNovel.taufiq
                 {
                     buttonOptions[b].gameObject.SetActive(true);
                     buttonOptions[b].SetOptionText(dec.optionDatas[b].optionText);
-                    //! int nextIndex = dec.optionDatas[b].nextBlockIndex;
+                    string nextIdentity = dec.optionDatas[b].nextSceneIdentity;
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
-                        //! OnClickChangeBlock(nextIndex);
+                        OnClickChangeBlock(nextIdentity);
                         // Debug.Log($"target next block : {nextIndex}");
                     });
                 }
@@ -224,7 +354,12 @@ namespace Smarteye.VisualNovel.taufiq
             }
         }
 
-        public void OnClickChangeBlock(int _targetBlockIndex)
+        private void ButtonsAnimation()
+        {
+
+        }
+
+        private void OnClickChangeBlock(string _targetBlockIndex)
         {
             /* currentBlockScenario = new BlockScenarioDataMap(
                 temp_BlockScenarioData[_targetBlockIndex].sceneId,
@@ -232,22 +367,55 @@ namespace Smarteye.VisualNovel.taufiq
                 temp_BlockScenarioData[_targetBlockIndex].decisionData
             ); */
 
-            m_currentBlockScenario = temp_BlockScenarioData[_targetBlockIndex];
+            try
+            {
+                SceneScenarioDataRoot nextBlock = temp_BlockScenarioData.First((x) => x.sceneIdentity == _targetBlockIndex);
+                m_currentBlockScenario = nextBlock;
 
-            int _index = temp_BlockScenarioData.IndexOf(m_currentBlockScenario);
-            if (_index == successBlockIndex)
-            {
-                Debug.Log($"Your are sucess. congratt...");
+                ChangeVisualNovelView(VisualNovelView.NONE);
+
+                /* if (m_currentBlockScenario.sceneProgress != SceneScenarioDataRoot.SceneProgress.DIALOGUE)
+                {
+                    ChangeVisualNovelView(VisualNovelView.RESULT);
+                }
+                else
+                {
+                    ChangeVisualNovelView(VisualNovelView.NONE);
+                } */
             }
-            else if (_index == failBlockIndex)
+            catch (InvalidOperationException ex)
             {
-                Debug.Log($"Oh noo.... you're fail");
+                Debug.LogError($"An error occurred while querying data: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"An unexpected error occurred: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #region Result Panel
+
+        public void ShowResultPanel()
+        {
+            dialogPanel.SetActive(false);
+            MainUIActive(false);
+            decisionPanel.SetActive(false);
+
+            if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
+            {
+                panelSuccess.SetActive(true);
+            }
+            else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
+            {
+                panelFail.SetActive(true);
             }
             else
             {
-                ShowDialog();
+                Debug.Log($"faild show panel result, because it's dialog blok...");
             }
         }
+
         #endregion
 
         #region   Old-System-Visual-Novel

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Smarteye.Manager.taufiq;
 using System.Linq;
+using Smarteye.VisualNovel.Character;
 
 namespace Smarteye.MycoonController.taufiq
 {
@@ -56,6 +57,30 @@ namespace Smarteye.MycoonController.taufiq
             SetPanelReactTransformDefault(rectTransform);
 
             OnInfoOpened?.Invoke();
+
+            panelMycoon.SetupPanelInfo(datas, () =>
+            {
+                _onCompleted?.Invoke();
+                OnInfoClosed?.Invoke();
+            });
+        }
+
+        public void ShowMycoonInfo(string _title, string _message, Action _onCompleted = null)
+        {
+            // Menginstansiasi objek dan membuatnya menjadi anak dari canvas
+            MycoonController panelMycoon = Instantiate(mycoonPrefab, Vector3.zero, Quaternion.identity, targetCanvas.transform);
+
+            RectTransform rectTransform = panelMycoon.GetComponent<RectTransform>();
+            SetPanelReactTransformDefault(rectTransform);
+
+            OnInfoOpened?.Invoke();
+
+            List<MycoonController.ContentData> datas = new List<MycoonController.ContentData>();
+            MycoonController.ContentData data1 = new MycoonController.ContentData();
+            data1.title = _title;
+            data1.explanation = _message;
+
+            datas.Add(data1);
 
             panelMycoon.SetupPanelInfo(datas, () =>
             {

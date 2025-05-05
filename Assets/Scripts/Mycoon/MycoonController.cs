@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Smarteye.VisualNovel.Character;
 
 namespace Smarteye.MycoonController.taufiq
 {
@@ -29,7 +30,10 @@ namespace Smarteye.MycoonController.taufiq
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI explanationText;
         [SerializeField] private Button buttonNext;
-        [SerializeField] private Image mycoonImage;
+        // [SerializeField] private Image mycoonImage;
+
+        [Space]
+        [SerializeField] private CharacterHandler characterHandler;
 
         [Serializable]
         public class ContentData
@@ -37,7 +41,8 @@ namespace Smarteye.MycoonController.taufiq
             public string title;
             [TextArea(10, 10)]
             public string explanation;
-            public Sprite mycoonSprite;
+            public CharacterIdentity.CharacterRole role = CharacterIdentity.CharacterRole.NONE;
+            public CharacterIdentity.Action.ActionType actionType = CharacterIdentity.Action.ActionType.NONE;
         }
 
         private Sequence m_sequence;
@@ -78,9 +83,21 @@ namespace Smarteye.MycoonController.taufiq
 
         private void AssignContent(int _index)
         {
-            titleText.text = panelContentDatas[_index].title;
+            if (!string.IsNullOrEmpty(panelContentDatas[_index].title))
+                titleText.text = panelContentDatas[_index].title;
+            else titleText.gameObject.SetActive(false);
+
             explanationText.text = panelContentDatas[_index].explanation;
-            mycoonImage.sprite = panelContentDatas[_index].mycoonSprite;
+
+            if (panelContentDatas[_index].role != CharacterIdentity.CharacterRole.NONE
+                && panelContentDatas[_index].actionType != CharacterIdentity.Action.ActionType.NONE)
+            {
+                characterHandler.UpdateCharacter(panelContentDatas[_index].role, panelContentDatas[_index].actionType);
+            }
+            else
+            {
+                characterHandler.HideCharacter();
+            }
         }
 
         private void OnClickNext()
