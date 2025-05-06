@@ -15,7 +15,7 @@ namespace Smarteye.SceneController.taufiq
         {
             base.StartOnDebugging();
 
-            m_stageNumber = 1;
+            m_stageNumber = 4;
         }
 
         protected override void Init()

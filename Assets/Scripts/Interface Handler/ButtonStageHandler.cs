@@ -22,8 +22,9 @@ public class ButtonStageHandler : Selectable
     [SerializeField] private GameObject popupStageDetail;
     [SerializeField] private Button btnChangeScene;
 
-    [Space(2f)]
+    [Space(5f)]
     [SerializeField] private GameObject iconPlay;
+    [SerializeField] private GameObject iconInspect;
     [SerializeField] private GameObject plankPlay;
 
 
@@ -55,7 +56,9 @@ public class ButtonStageHandler : Selectable
 
         if (interactable)
         {
-            iconPlay.SetActive(true);
+            if (plankPlay.activeSelf)
+                iconPlay.SetActive(true);
+            else iconInspect.SetActive(true);
         }
     }
 
@@ -69,7 +72,9 @@ public class ButtonStageHandler : Selectable
 
         if (interactable)
         {
-            iconPlay.SetActive(false);
+            if (plankPlay.activeSelf)
+                iconPlay.SetActive(false);
+            else iconInspect.SetActive(false);
         }
     }
 
