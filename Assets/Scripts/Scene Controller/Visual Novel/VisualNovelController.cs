@@ -204,6 +204,25 @@ namespace Smarteye.VisualNovel.taufiq
         {
             backgroundBlur.alpha = _isActive ? 1 : 0;
             plankStage.gameObject.SetActive(_isActive);
+
+            if (_isActive == true)
+                textPlankStage.text = GenerateStageName(m_currentBlockScenario.stage);
+        }
+
+        private String GenerateStageName(SceneScenarioDataRoot.Stage _stage)
+        {
+            string result = _stage switch
+            {
+                SceneScenarioDataRoot.Stage.PROLOG => "PROLOG",
+                SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING => "PROSPECTING & PROFILING",
+                SceneScenarioDataRoot.Stage.RAPPORT => "RAPPORT",
+                SceneScenarioDataRoot.Stage.PROBING => "PROBING",
+                SceneScenarioDataRoot.Stage.SOLUTION => "SOLUTION",
+                SceneScenarioDataRoot.Stage.OBJECTIONANDCLOSING => "OBJECTION & CLOSING",
+                _ => "none"
+            };
+
+            return result;
         }
 
         #region Panel Introduction Story
@@ -418,6 +437,26 @@ namespace Smarteye.VisualNovel.taufiq
             else
             {
                 Debug.Log($"faild show panel result, because it's dialog blok...");
+            }
+        }
+
+        public void OnclickResetScene()
+        {
+            ChangeSceneTo(4);
+        }
+
+        public void OnclickBackToStageMap()
+        {
+            if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
+            {
+                int currentStgIndex = (int)gameManager.currentStage;
+                // Debug.Log($"currentStage number: {currentStgIndex}");
+                gameManager.currentStage = (Stage)currentStgIndex + 1;
+                ChangeSceneTo(2);
+            }
+            else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
+            {
+                ChangeSceneTo(2);
             }
         }
 

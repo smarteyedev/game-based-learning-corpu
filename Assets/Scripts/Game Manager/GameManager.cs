@@ -15,7 +15,7 @@ namespace Smarteye.Manager.taufiq
         public static GameManager instance;
 
         [Header("Progress")]
-        private Stage m_currentStage = Stage.None;
+        [SerializeField] private Stage m_currentStage = Stage.None;
         public Stage currentStage
         {
             get

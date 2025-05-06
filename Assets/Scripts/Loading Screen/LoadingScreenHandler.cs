@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Smarteye.Manager.taufiq
 {
@@ -46,7 +45,13 @@ namespace Smarteye.Manager.taufiq
             screenPanel.SetActive(true);
 
             LoadingHint msg = _loadingMessages.First((x) => x.currentStage == _currentStage);
-            _MessageText.text = msg.hintMessage;
+            if (!String.IsNullOrEmpty(msg.hintMessage))
+                _MessageText.text = msg.hintMessage;
+            else
+            {
+                _MessageText.text = $"nunggu yaa????";
+                Debug.LogWarning($"loading message is null");
+            }
 
             // Start loading scene and track the operation
             _currentSceneLoadOp = SceneManager.LoadSceneAsync(_targetNextScene, LoadSceneMode.Additive);
