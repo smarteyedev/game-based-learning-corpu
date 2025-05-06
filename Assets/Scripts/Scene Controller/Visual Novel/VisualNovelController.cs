@@ -128,6 +128,10 @@ namespace Smarteye.VisualNovel.taufiq
                 ChangeVisualNovelView(VisualNovelView.NONE);
                 return;
             }
+            else
+            {
+                ChangeVisualNovelView(VisualNovelView.NONE);
+            }
         }
 
         private void Update()
@@ -358,8 +362,6 @@ namespace Smarteye.VisualNovel.taufiq
                     MultipleButtonInteractive btnSelected = buttonOptions[b];
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
-                        //! OnClickChangeBlock(nextIdentity);
-
                         AnimationSelectButtonOption(btnSelected, () => OnClickChangeBlock(nextIdentity));
                         // Debug.Log($"target next block : {nextIndex}");
                     });
@@ -421,6 +423,7 @@ namespace Smarteye.VisualNovel.taufiq
 
         #endregion
 
+        #region UI-Animation
         private void UpdateCharacterSprite(string _speakerName)
         {
             if (currentView is VisualNovelView.DIALOG)
@@ -484,8 +487,6 @@ namespace Smarteye.VisualNovel.taufiq
                 }
             }
         }
-
-        #region UI-Animation
 
         #endregion
 

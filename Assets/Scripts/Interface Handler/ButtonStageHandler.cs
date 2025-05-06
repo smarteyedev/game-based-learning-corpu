@@ -115,7 +115,7 @@ public class ButtonStageHandler : Selectable
         if (isActive)
         {
             btnChangeScene.interactable = true;
-            btnChangeScene.GetComponentInChildren<TextMeshProUGUI>().text = $"Kerjakan";
+            // btnChangeScene.GetComponentInChildren<TextMeshProUGUI>().text = $"Kerjakan";
             if (changeSceneFunc != null)
                 btnChangeScene.onClick.AddListener(() => changeSceneFunc(targetNextScene));
 

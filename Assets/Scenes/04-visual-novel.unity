@@ -1962,7 +1962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec5d2b390f67e64e86eff0dd94d1104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isForDebugging: 1
+  isForDebugging: 0
   debugObjectParent: {fileID: 1124621283}
   mycoonHandler: {fileID: 725231044}
   currentView: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
         score: 20
         nextSceneIdentity: B001
     knowledgeGain: kamu dapat knowledge gain
-    agentAIHint: fsda3
+    agentAIHint: Ini hint dari prolog
   - stage: 2
     sceneIdentity: B001
     sceneProgress: 0
@@ -3800,7 +3800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124621284
 Transform:
   m_ObjectHideFlags: 0

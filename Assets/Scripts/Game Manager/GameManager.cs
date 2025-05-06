@@ -7,7 +7,7 @@ namespace Smarteye.Manager.taufiq
 {
     public enum Stage
     {
-        None = 0, Profiling = 1, Rapport = 2, Probing = 3, Solution = 4, Closing = 5
+        None = 0, IVCA = 1, Profiling = 2, Rapport = 3, Probing = 4, Solution = 5, Closing = 6
     }
 
     public class GameManager : MonoBehaviour
@@ -27,18 +27,21 @@ namespace Smarteye.Manager.taufiq
                 switch ((int)value)
                 {
                     case 1:
-                        m_currentStage = Stage.Profiling;
+                        m_currentStage = Stage.IVCA;
                         break;
                     case 2:
-                        m_currentStage = Stage.Rapport;
+                        m_currentStage = Stage.Profiling;
                         break;
                     case 3:
-                        m_currentStage = Stage.Probing;
+                        m_currentStage = Stage.Rapport;
                         break;
                     case 4:
-                        m_currentStage = Stage.Solution;
+                        m_currentStage = Stage.Probing;
                         break;
                     case 5:
+                        m_currentStage = Stage.Solution;
+                        break;
+                    case 6:
                         m_currentStage = Stage.Closing;
                         break;
                 }

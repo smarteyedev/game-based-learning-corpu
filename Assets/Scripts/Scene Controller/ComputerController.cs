@@ -38,14 +38,16 @@ namespace Smarteye.SceneController.taufiq
 
         protected override void Init()
         {
-            if (gameManager.currentStage == Stage.Profiling)
-            {
-                mycoonHandler.ShowMycoonInfo(Stage.Profiling);
-            }
-
             generateBtn.onClick.AddListener(OnClickSubmit);
-            previousButton.onClick.AddListener(PreviousItem);
-            nextButton.onClick.AddListener(NextItem);
+            //? previousButton.onClick.AddListener(PreviousItem);
+            //? nextButton.onClick.AddListener(NextItem);
+
+            if (isForDebugging) return;
+
+            if (gameManager.currentStage == Stage.IVCA)
+            {
+                mycoonHandler.ShowMycoonInfo(Stage.IVCA);
+            }
         }
 
         public void OnClickSubmit()
@@ -62,7 +64,7 @@ namespace Smarteye.SceneController.taufiq
                 resultIVCAPanel.SetActive(true);
                 m_currentIndex = 0;
 
-                UpdateCarousel();
+                //? UpdateCarousel();
             }
             else
             {
@@ -71,12 +73,13 @@ namespace Smarteye.SceneController.taufiq
             }
         }
 
-        public void OnClickCloseComputer()
+        public void OnClickNextStage()
         {
             ChangeSceneTo(2);
             gameManager.currentStage = (Stage)2;
         }
 
+        #region Carousel-Function
         public void UpdateCarousel()
         {
             if (carouselDatas.Count == 0) return;
@@ -111,5 +114,6 @@ namespace Smarteye.SceneController.taufiq
             carouselDatas.Add(new CarouselData { title = title, description = description });
             UpdateCarousel();
         }
+        #endregion
     }
 }
