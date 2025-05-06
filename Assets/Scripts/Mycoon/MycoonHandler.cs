@@ -65,7 +65,7 @@ namespace Smarteye.MycoonController.taufiq
             });
         }
 
-        public void ShowMycoonInfo(string _title, string _message, Action _onCompleted = null)
+        public void ShowMycoonInfo(string _title, string _message, CharacterIdentity.Action.ActionType _actionType, Action _onCompleted = null)
         {
             // Menginstansiasi objek dan membuatnya menjadi anak dari canvas
             MycoonController panelMycoon = Instantiate(mycoonPrefab, Vector3.zero, Quaternion.identity, targetCanvas.transform);
@@ -79,6 +79,8 @@ namespace Smarteye.MycoonController.taufiq
             MycoonController.ContentData data1 = new MycoonController.ContentData();
             data1.title = _title;
             data1.explanation = _message;
+            data1.role = CharacterIdentity.CharacterRole.NARATOR;
+            data1.actionType = _actionType;
 
             datas.Add(data1);
 

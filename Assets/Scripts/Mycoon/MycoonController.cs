@@ -9,16 +9,6 @@ using Smarteye.VisualNovel.Character;
 
 namespace Smarteye.MycoonController.taufiq
 {
-    [Serializable]
-    public class PanelAnimationConfig
-    {
-        public enum AnimationType
-        {
-
-        }
-        public string infoText;
-    }
-
     public class MycoonController : MonoBehaviour
     {
         [SerializeField] private List<ContentData> panelContentDatas;
@@ -30,10 +20,10 @@ namespace Smarteye.MycoonController.taufiq
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI explanationText;
         [SerializeField] private Button buttonNext;
-        // [SerializeField] private Image mycoonImage;
+        [SerializeField] private Image mycoonImage;
 
         [Space]
-        [SerializeField] private CharacterHandler characterHandler;
+        [SerializeField] private CharacterData characterData;
 
         [Serializable]
         public class ContentData
@@ -92,11 +82,11 @@ namespace Smarteye.MycoonController.taufiq
             if (panelContentDatas[_index].role != CharacterIdentity.CharacterRole.NONE
                 && panelContentDatas[_index].actionType != CharacterIdentity.Action.ActionType.NONE)
             {
-                characterHandler.UpdateCharacter(panelContentDatas[_index].role, panelContentDatas[_index].actionType);
+                mycoonImage.sprite = characterData.GetCharacter(panelContentDatas[_index].role, panelContentDatas[_index].actionType);
             }
             else
             {
-                characterHandler.HideCharacter();
+                mycoonImage.gameObject.SetActive(false);
             }
         }
 

@@ -18,10 +18,10 @@ namespace Smarteye.VisualNovel.taufiq
         public string sceneIdentity;
         public SceneProgress sceneProgress;
         public string introductionStory;
-        public string agentAIHint;
         public List<DialogueRoot> dialogueData;
         public DecisionRoot decisionData;
         public string knowledgeGain;
+        public string agentAIHint;
 
         public enum SceneProgress
         {

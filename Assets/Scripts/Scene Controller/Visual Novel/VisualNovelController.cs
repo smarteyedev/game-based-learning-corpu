@@ -8,6 +8,8 @@ using System.Linq;
 using Smarteye.SceneController.taufiq;
 using Smarteye.Manager.taufiq;
 using System;
+using Smarteye.VisualNovel.Character;
+using DG.Tweening;
 
 namespace Smarteye.VisualNovel.taufiq
 {
@@ -74,8 +76,11 @@ namespace Smarteye.VisualNovel.taufiq
 
         private float m_speedFactor = 1f;
         private Coroutine m_myCoroutine = null;
+        private Sequence m_sequence;
 
         [Header("Component References for Visual Novel")]
+        [Space(5f)]
+        [SerializeField] private CharacterData characterData;
 
         [Space(5f)]
         //? Main UI
@@ -94,11 +99,13 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogText;
         [SerializeField] private Button buttonNext;
+        [SerializeField] private Image imgCharacterDialog;
 
-        //? dialog references
+        //? Decision references
         [Space(10f)]
         [SerializeField] private GameObject decisionPanel;
         [SerializeField] private TextMeshProUGUI textQuestion;
+        [SerializeField] private Image imgCharacterDecision;
         [SerializeField] private MultipleButtonInteractive[] buttonOptions;
 
         //? Result Panel references
@@ -158,7 +165,10 @@ namespace Smarteye.VisualNovel.taufiq
                     MainUIActive(false);
                     decisionPanel.SetActive(false);
 
-                    mycoonHandler.ShowMycoonInfo("", m_currentBlockScenario.agentAIHint, () =>
+                    CharacterIdentity.Action.ActionType npcAction = m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT ?
+                                                                    CharacterIdentity.Action.ActionType.SAD : CharacterIdentity.Action.ActionType.HAPPY;
+
+                    mycoonHandler.ShowMycoonInfo("", m_currentBlockScenario.agentAIHint, npcAction, () =>
                     {
                         if (string.IsNullOrEmpty(m_currentBlockScenario.introductionStory))
                             ChangeVisualNovelView(VisualNovelView.DIALOG);
@@ -247,6 +257,8 @@ namespace Smarteye.VisualNovel.taufiq
             List<SceneScenarioDataRoot.DialogueRoot> narations = _blockScenario.dialogueData;
             speakerNameText.text = $"- {narations[m_dialogIndex].speakerName} -";
             m_myCoroutine = StartCoroutine(RunningText(narations[m_dialogIndex].narationText, dialogText));
+
+            UpdateCharacterSprite(narations[m_dialogIndex].speakerName.ToString());
         }
 
         private void OnClickNext()
@@ -325,6 +337,8 @@ namespace Smarteye.VisualNovel.taufiq
             decisionPanel.SetActive(true);
             dialogPanel.SetActive(false);
 
+            UpdateCharacterSprite("NARATOR");
+
             SetQuestionAndOption();
         }
 
@@ -341,9 +355,12 @@ namespace Smarteye.VisualNovel.taufiq
                     buttonOptions[b].gameObject.SetActive(true);
                     buttonOptions[b].SetOptionText(dec.optionDatas[b].optionText);
                     string nextIdentity = dec.optionDatas[b].nextSceneIdentity;
+                    MultipleButtonInteractive btnSelected = buttonOptions[b];
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
-                        OnClickChangeBlock(nextIdentity);
+                        //! OnClickChangeBlock(nextIdentity);
+
+                        AnimationSelectButtonOption(btnSelected, () => OnClickChangeBlock(nextIdentity));
                         // Debug.Log($"target next block : {nextIndex}");
                     });
                 }
@@ -352,11 +369,6 @@ namespace Smarteye.VisualNovel.taufiq
                     buttonOptions[b].gameObject.SetActive(false);
                 }
             }
-        }
-
-        private void ButtonsAnimation()
-        {
-
         }
 
         private void OnClickChangeBlock(string _targetBlockIndex)
@@ -373,15 +385,6 @@ namespace Smarteye.VisualNovel.taufiq
                 m_currentBlockScenario = nextBlock;
 
                 ChangeVisualNovelView(VisualNovelView.NONE);
-
-                /* if (m_currentBlockScenario.sceneProgress != SceneScenarioDataRoot.SceneProgress.DIALOGUE)
-                {
-                    ChangeVisualNovelView(VisualNovelView.RESULT);
-                }
-                else
-                {
-                    ChangeVisualNovelView(VisualNovelView.NONE);
-                } */
             }
             catch (InvalidOperationException ex)
             {
@@ -394,7 +397,7 @@ namespace Smarteye.VisualNovel.taufiq
         }
         #endregion
 
-        #region Result Panel
+        #region Result-Panel
 
         public void ShowResultPanel()
         {
@@ -415,6 +418,74 @@ namespace Smarteye.VisualNovel.taufiq
                 Debug.Log($"faild show panel result, because it's dialog blok...");
             }
         }
+
+        #endregion
+
+        private void UpdateCharacterSprite(string _speakerName)
+        {
+            if (currentView is VisualNovelView.DIALOG)
+            {
+                imgCharacterDialog.sprite = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.TALKING);
+            }
+
+            if (currentView is VisualNovelView.DECISION)
+            {
+                imgCharacterDecision.sprite = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.TALKING);
+            }
+        }
+
+        private CharacterIdentity.CharacterRole GetCurrentSpeaker(string _speakerName)
+        {
+            CharacterIdentity.CharacterRole result = _speakerName switch
+            {
+                "PLAYER" => CharacterIdentity.CharacterRole.PLAYER,
+                "NARATOR" => CharacterIdentity.CharacterRole.NARATOR,
+                "CLIENT" => CharacterIdentity.CharacterRole.CLIENT,
+                "ASISTEN" => CharacterIdentity.CharacterRole.ASISTEN,
+                "BOS" => CharacterIdentity.CharacterRole.BOS,
+                "SECURITY" => CharacterIdentity.CharacterRole.SECURITY,
+                _ => CharacterIdentity.CharacterRole.NONE
+            };
+
+            return result;
+        }
+
+        private void AnimationSelectButtonOption(MultipleButtonInteractive _btnSelected, Action _onClickAction)
+        {
+            float _blingDuration = 0.15f;
+
+            if (m_sequence != null)
+            {
+                Debug.Log("There is an existing canvas group animation, killing it.");
+                m_sequence.Kill();
+            }
+            m_sequence = DOTween.Sequence();
+
+            for (int i = 0; i < buttonOptions.Length; i++)
+            {
+                if (buttonOptions[i] == _btnSelected)
+                {
+                    CanvasGroup _cg = buttonOptions[i].GetComponent<CanvasGroup>();
+                    for (int j = 0; j < 3; j++) // Melakukan fade in dan out 3 kali
+                    {
+                        m_sequence.Append(_cg.DOFade(0f, _blingDuration).SetEase(Ease.InOutSine))
+                                    .Append(_cg.DOFade(1f, _blingDuration).SetEase(Ease.InOutSine));
+                    }
+
+                    m_sequence.AppendInterval(2f)
+                                .OnKill(() =>
+                                {
+                                    _onClickAction?.Invoke();
+                                });
+                }
+                else
+                {
+                    buttonOptions[i].SetAlpha(0);
+                }
+            }
+        }
+
+        #region UI-Animation
 
         #endregion
 
