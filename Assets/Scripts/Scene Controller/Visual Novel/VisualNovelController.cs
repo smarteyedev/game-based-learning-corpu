@@ -127,6 +127,27 @@ namespace Smarteye.VisualNovel.taufiq
             currentView = VisualNovelView.NONE;
             MainUIActive(false);
 
+            if (gameManager.currentGameStage == GameStage.PROSPECTINGANDPROFILING)
+            {
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.PROLOG, SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
+            }
+            else if (gameManager.currentGameStage == GameStage.OBJECTIONANDCLOSING)
+            {
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.OBJECTIONANDCLOSING, SceneScenarioDataRoot.Stage.EPILOG);
+            }
+            else if (gameManager.currentGameStage == GameStage.PROBING)
+            {
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.PROBING);
+            }
+            else if (gameManager.currentGameStage == GameStage.RAPPORT)
+            {
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.RAPPORT);
+            }
+            else if (gameManager.currentGameStage == GameStage.SOLUTION)
+            {
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.SOLUTION);
+            }
+
             m_currentBlockScenario = temp_BlockScenarioData[0];
             buttonNext.onClick.AddListener(OnClickNext);
 

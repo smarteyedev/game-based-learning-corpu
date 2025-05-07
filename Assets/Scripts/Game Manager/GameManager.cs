@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Smarteye.RestAPI.Sample;
 
 namespace Smarteye.Manager.taufiq
 {
     public enum GameStage
     {
-        None = 0, IVCA = 1, Profiling = 2, Rapport = 3, Probing = 4, Solution = 5, Closing = 6, Finish
+        None = 0, IVCA = 1, PROSPECTINGANDPROFILING = 2, RAPPORT = 3, PROBING = 4, SOLUTION = 5, OBJECTIONANDCLOSING = 6, FINISH
     }
 
     public class GameManager : MonoBehaviour
@@ -31,19 +31,19 @@ namespace Smarteye.Manager.taufiq
                         m_currentGameStage = GameStage.IVCA;
                         break;
                     case 2:
-                        m_currentGameStage = GameStage.Profiling;
+                        m_currentGameStage = GameStage.PROSPECTINGANDPROFILING;
                         break;
                     case 3:
-                        m_currentGameStage = GameStage.Rapport;
+                        m_currentGameStage = GameStage.RAPPORT;
                         break;
                     case 4:
-                        m_currentGameStage = GameStage.Probing;
+                        m_currentGameStage = GameStage.PROBING;
                         break;
                     case 5:
-                        m_currentGameStage = GameStage.Solution;
+                        m_currentGameStage = GameStage.SOLUTION;
                         break;
                     case 6:
-                        m_currentGameStage = GameStage.Closing;
+                        m_currentGameStage = GameStage.OBJECTIONANDCLOSING;
                         break;
                 }
             }
@@ -55,7 +55,7 @@ namespace Smarteye.Manager.taufiq
 
         [Header("Player Data")]
         public PlayerData playerData;
-
+        public ScenarioLoader scenarioLoader;
 
         [Header("Component References")]
         [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -88,11 +88,11 @@ namespace Smarteye.Manager.taufiq
             string result = _stage switch
             {
                 GameStage.IVCA => "GENERATE IVCA",
-                GameStage.Profiling => "PROSPECTING & PROFILING",
-                GameStage.Rapport => "RAPPORT",
-                GameStage.Probing => "PROBING",
-                GameStage.Solution => "SOLUTION",
-                GameStage.Closing => "OBJECTION & CLOSING",
+                GameStage.PROSPECTINGANDPROFILING => "PROSPECTING & PROFILING",
+                GameStage.RAPPORT => "RAPPORT",
+                GameStage.PROBING => "PROBING",
+                GameStage.SOLUTION => "SOLUTION",
+                GameStage.OBJECTIONANDCLOSING => "OBJECTION & CLOSING",
                 _ => "none"
             };
 

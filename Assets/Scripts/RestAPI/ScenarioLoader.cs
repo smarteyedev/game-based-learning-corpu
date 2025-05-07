@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Smarteye.VisualNovel.taufiq;
 using System.Linq;
 
-namespace Smarteye.Sample
+namespace Smarteye.RestAPI.Sample
 {
     public class ScenarioLoader : MonoBehaviour
     {
