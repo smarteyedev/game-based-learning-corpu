@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Smarteye.Manager.taufiq
 {
-    public enum Stage
+    public enum GameStage
     {
         None = 0, IVCA = 1, Profiling = 2, Rapport = 3, Probing = 4, Solution = 5, Closing = 6
     }
@@ -15,42 +15,46 @@ namespace Smarteye.Manager.taufiq
         public static GameManager instance;
 
         [Header("Progress")]
-        [SerializeField] private Stage m_currentStage = Stage.None;
-        public Stage currentStage
+        [SerializeField] private GameStage m_currentGameStage = GameStage.None;
+        public GameStage currentGameStage
         {
             get
             {
-                return m_currentStage;
+                return m_currentGameStage;
             }
             set
             {
                 switch ((int)value)
                 {
                     case 1:
-                        m_currentStage = Stage.IVCA;
+                        m_currentGameStage = GameStage.IVCA;
                         break;
                     case 2:
-                        m_currentStage = Stage.Profiling;
+                        m_currentGameStage = GameStage.Profiling;
                         break;
                     case 3:
-                        m_currentStage = Stage.Rapport;
+                        m_currentGameStage = GameStage.Rapport;
                         break;
                     case 4:
-                        m_currentStage = Stage.Probing;
+                        m_currentGameStage = GameStage.Probing;
                         break;
                     case 5:
-                        m_currentStage = Stage.Solution;
+                        m_currentGameStage = GameStage.Solution;
                         break;
                     case 6:
-                        m_currentStage = Stage.Closing;
+                        m_currentGameStage = GameStage.Closing;
                         break;
                 }
             }
         }
 
         [Header("Scenes")]
-        private SceneField m_currentActiveScene = null;
         [SerializeField] private SceneField[] sceneArray;
+        private SceneField m_currentActiveScene = null;
+
+        [Header("Player Data")]
+        public PlayerData playerData;
+
 
         [Header("Component References")]
         [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -78,6 +82,8 @@ namespace Smarteye.Manager.taufiq
             m_currentActiveScene = sceneArray[0];
         }
 
+        #region Load-Scene-Function
+
         /// <summary>
         /// Mengganti scene berdasarkan index element pada variable "Scene Array" di component Game Manager. 
         /// untuk melihat lebih detail silahkan lihat Game Manger di scene "00-main-scene"
@@ -85,7 +91,7 @@ namespace Smarteye.Manager.taufiq
         /// <param name="targetSceneArrayId">index element, scene pertama dimulai dari 0</param>
         public void LoadScene(int targetSceneArrayId)
         {
-            m_currentActiveScene = loadingScreenHandler.LoadSceneWithLoadingScreen(sceneArray[targetSceneArrayId], currentStage, m_currentActiveScene);
+            m_currentActiveScene = loadingScreenHandler.LoadSceneWithLoadingScreen(sceneArray[targetSceneArrayId], currentGameStage, m_currentActiveScene);
 
             // Debug.Log($"load scene {sceneArray[targetSceneArrayId].SceneName}");
         }
@@ -99,5 +105,7 @@ namespace Smarteye.Manager.taufiq
         {
             loadingScreenHandler.AddSceneAdditive(sceneArray[targetSceneArrayId]);
         }
+
+        #endregion
     }
 }

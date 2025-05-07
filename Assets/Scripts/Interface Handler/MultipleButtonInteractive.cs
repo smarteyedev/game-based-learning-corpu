@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
-using Unity.VisualScripting;
 using System.Linq;
 
 public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
@@ -37,7 +36,6 @@ public class MultipleButtonInteractive : MonoBehaviour, IPointerEnterHandler, IP
 
     private void OnDisable()
     {
-        OnMouseDown.RemoveAllListeners();
         m_isSelected = false;
         SetAlpha(1);
     }

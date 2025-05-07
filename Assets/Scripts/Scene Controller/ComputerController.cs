@@ -44,9 +44,9 @@ namespace Smarteye.SceneController.taufiq
 
             if (isForDebugging) return;
 
-            if (gameManager.currentStage == Stage.IVCA)
+            if (gameManager.currentGameStage == GameStage.IVCA)
             {
-                mycoonHandler.ShowMycoonInfo(Stage.IVCA);
+                mycoonHandler.ShowMycoonInfo(GameStage.IVCA);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Smarteye.SceneController.taufiq
         public void OnClickNextStage()
         {
             ChangeSceneTo(2);
-            gameManager.currentStage = (Stage)2;
+            gameManager.currentGameStage = (GameStage)2;
         }
 
         #region Carousel-Function

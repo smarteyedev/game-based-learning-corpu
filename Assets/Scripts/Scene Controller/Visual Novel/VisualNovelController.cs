@@ -108,10 +108,13 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private Image imgCharacterDecision;
         [SerializeField] private MultipleButtonInteractive[] buttonOptions;
 
-        //? Result Panel references
         [Space(10f)]
         [SerializeField] private GameObject panelFail;
         [SerializeField] private GameObject panelSuccess;
+
+        //? Journal Controller references
+        [Space(10f)]
+        [SerializeField] private JournalController journalController;
 
         protected override void Init()
         {
@@ -357,6 +360,9 @@ namespace Smarteye.VisualNovel.taufiq
 
         private void ShowDecisionPanel()
         {
+            /* save to journal for new notes */
+            journalController.AddJurnalNote(gameManager.currentGameStage.ToString(), m_currentBlockScenario.agentAIHint);
+
             decisionPanel.SetActive(true);
             dialogPanel.SetActive(false);
 
@@ -406,6 +412,11 @@ namespace Smarteye.VisualNovel.taufiq
                 m_currentBlockScenario = nextBlock;
 
                 ChangeVisualNovelView(VisualNovelView.NONE);
+
+                foreach (var btn in buttonOptions)
+                {
+                    btn.OnMouseDown.RemoveAllListeners();
+                }
             }
             catch (InvalidOperationException ex)
             {
@@ -449,9 +460,9 @@ namespace Smarteye.VisualNovel.taufiq
         {
             if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
             {
-                int currentStgIndex = (int)gameManager.currentStage;
+                int currentStgIndex = (int)gameManager.currentGameStage;
                 // Debug.Log($"currentStage number: {currentStgIndex}");
-                gameManager.currentStage = (Stage)currentStgIndex + 1;
+                gameManager.currentGameStage = (GameStage)currentStgIndex + 1;
                 ChangeSceneTo(2);
             }
             else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)

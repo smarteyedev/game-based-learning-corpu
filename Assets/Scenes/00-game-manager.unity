@@ -377,6 +377,7 @@ MonoBehaviour:
     _sceneName: 03-computer
   - _sceneAsset: {fileID: 102900000, guid: 1a74f9eae6874684784f765b884af660, type: 3}
     _sceneName: 04-visual-novel
+  playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1 &1601391484
 GameObject:

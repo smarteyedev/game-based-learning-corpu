@@ -18,7 +18,7 @@ namespace Smarteye.Manager.taufiq
         [Serializable]
         public class LoadingHint
         {
-            public Stage currentStage;
+            public GameStage currentStage;
             public string hintMessage;
         }
 
@@ -38,7 +38,7 @@ namespace Smarteye.Manager.taufiq
             _currentSceneLoadOp = SceneManager.LoadSceneAsync(_targetNextScene, LoadSceneMode.Additive);
         }
 
-        public SceneField LoadSceneWithLoadingScreen(SceneField _targetNextScene, Stage _currentStage, SceneField _targetUnloadScene = null)
+        public SceneField LoadSceneWithLoadingScreen(SceneField _targetNextScene, GameStage _currentStage, SceneField _targetUnloadScene = null)
         {
             SceneManager.UnloadSceneAsync(_targetUnloadScene);
 

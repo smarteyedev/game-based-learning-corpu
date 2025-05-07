@@ -22,7 +22,7 @@ namespace Smarteye.SceneController.taufiq
         {
             if (!isForDebugging)
             {
-                m_stageNumber = (int)gameManager.currentStage;
+                m_stageNumber = (int)gameManager.currentGameStage;
 
                 // Debug.Log($"current stage: {m_stageNumber}");
             }

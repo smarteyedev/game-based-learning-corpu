@@ -17,7 +17,7 @@ namespace Smarteye.MycoonController.taufiq
         [Serializable]
         public class HandlerContentDatas
         {
-            public Stage contentStage;
+            public GameStage contentStage;
             public List<MycoonController.ContentData> contentItem;
         }
 
@@ -37,7 +37,7 @@ namespace Smarteye.MycoonController.taufiq
             }); */
         }
 
-        public void ShowMycoonInfo(Stage targetStage, Action _onCompleted = null)
+        public void ShowMycoonInfo(GameStage targetStage, Action _onCompleted = null)
         {
             List<MycoonController.ContentData> datas = handlerContentDatas
                 .Where((x) => x.contentStage == targetStage)
