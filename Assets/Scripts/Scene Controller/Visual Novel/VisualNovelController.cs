@@ -117,6 +117,10 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private JournalController journalController;
         [SerializeField] private GameObject btnOpenJurnal;
 
+        //? Timer references
+        [Space(10f)]
+        [SerializeField] private TimeManager timeManager;
+
         protected override void Init()
         {
             //? DisplayBlock(block1); -> this is old-system-visual-novel
@@ -169,8 +173,11 @@ namespace Smarteye.VisualNovel.taufiq
                         ChangeVisualNovelView(VisualNovelView.MYCOON);
                     }
 
-                    /* save to journal for new notes */
-                    journalController.AddJurnalNote(gameManager.currentGameStage, m_currentBlockScenario.agentAIHint);
+                    if (!isForDebugging)
+                    {
+                        /* save to journal for new notes */
+                        journalController.AddJurnalNote(gameManager.currentGameStage, m_currentBlockScenario.agentAIHint);
+                    }
 
                     break;
                 case VisualNovelView.MYCOON:
@@ -214,7 +221,15 @@ namespace Smarteye.VisualNovel.taufiq
             plankStage.gameObject.SetActive(_isActive);
 
             if (_isActive == true)
+            {
                 textPlankStage.text = GenerateStageName(m_currentBlockScenario.stage);
+
+                if (m_currentBlockScenario == temp_BlockScenarioData[0])
+                {
+                    timeManager.RestartTimer(300f);
+                }
+            }
+
         }
 
         private String GenerateStageName(SceneScenarioDataRoot.Stage _stage)
