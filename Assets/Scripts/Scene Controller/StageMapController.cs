@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Smarteye.Manager.taufiq;
 using UnityEngine;
 
 namespace Smarteye.SceneController.taufiq
@@ -25,7 +26,7 @@ namespace Smarteye.SceneController.taufiq
             {
                 m_stageNumber = (int)gameManager.currentGameStage;
 
-                // Debug.Log($"current stage: {m_stageNumber}");
+                Debug.Log($"current stage: {m_stageNumber}");
             }
 
             for (int i = 0; i < _itemStageBtns.Count; i++)
@@ -57,22 +58,8 @@ namespace Smarteye.SceneController.taufiq
 
         public void OpenPopup(int _btnIndex)
         {
-            // for (int i = 0; i < _itemStageBtns.Count; i++)
-            // {
-            //     if (go == _itemStageBtns[i].gameObject)
-            //     {
-            //         _itemStageBtns[i].OpenPopupDetail(true);
-            //     }
-            //     else
-            //     {
-            //         _itemStageBtns[i].OpenPopupDetail(false);
-            //     }
-            // }
-
             ResetPopup();
             _itemStageBtns[_btnIndex].OpenPopupDetail(true);
-
-            // Debug.Log($"try to open button {_itemStageBtns[_btnIndex]}");
         }
 
         public void ResetPopup()

@@ -25,7 +25,7 @@ public class JournalController : MonoBehaviour
         m_oldNotesCount = m_gameManager.playerData.GetAllJurnalNotes().Count;
     }
 
-    public void AddJurnalNote(GameStage _gameStage, string content)
+    public void AddJurnalNote(GameStage _gameStage, string _content)
     {
         if (m_gameManager.playerData == null)
         {
@@ -33,8 +33,13 @@ public class JournalController : MonoBehaviour
             return;
         }
 
-        var note = new JournalNote(_gameStage, content);
-        temp_notes.Add(note);
+        var notesSaved = m_gameManager.playerData.GetAllJurnalNotes();
+
+        if (notesSaved.Any((x) => x.gameStage == _gameStage && x.content == _content) == false)
+        {
+            var note = new JournalNote(_gameStage, _content);
+            temp_notes.Add(note);
+        }
     }
 
     public void SaveCurrentJurnalNote()

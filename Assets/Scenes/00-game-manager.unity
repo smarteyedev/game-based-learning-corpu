@@ -319,6 +319,8 @@ MonoBehaviour:
     hintMessage: ini adalah loading untuk stage solution
   - currentStage: 6
     hintMessage: ini adalah loading untuk stage closing
+  - currentStage: 7
+    hintMessage: selamat anda telah menyelesaikan semua stage
   loadingTime: 2
   screenPanel: {fileID: 885446971115821556}
   _MessageText: {fileID: 3907324000695775864}

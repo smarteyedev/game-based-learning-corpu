@@ -567,7 +567,7 @@ namespace Smarteye.VisualNovel.taufiq
                                     .Append(_cg.DOFade(1f, _blingDuration).SetEase(Ease.InOutSine));
                     }
 
-                    m_sequence.AppendInterval(2f)
+                    m_sequence.AppendInterval(1.5f)
                                 .OnKill(() =>
                                 {
                                     _onClickAction?.Invoke();

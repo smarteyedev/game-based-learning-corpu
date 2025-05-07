@@ -63,12 +63,12 @@
           {
             "optionText": "Coba cari informasi terkait keputusan modernisasi proses mereka.",
             "score": 5,
-            "nextSceneIdentity": "scene_006"
+            "nextSceneIdentity": "scene_008"
           },
           {
             "optionText": "Cari informasi siapa yang berwenang di bidang digitalisasi.",
             "score": 3,
-            "nextSceneIdentity": "scene_007"
+            "nextSceneIdentity": "scene_008"
           }
         ]
       },
@@ -153,17 +153,17 @@
           {
             "optionText": "Menghubungi teman yang pernah bekerja di Sucofindo.",
             "score": 5,
-            "nextSceneIdentity": "scene_014"
+            "nextSceneIdentity": "scene_017"
           },
           {
             "optionText": "Mencari informasi organisasi di website resmi Sucofindo.",
             "score": 3,
-            "nextSceneIdentity": "scene_015"
+            "nextSceneIdentity": "scene_017"
           },
           {
             "optionText": "Mengirim email ke kontak generik yang tersedia di website Sucofindo.",
             "score": 0,
-            "nextSceneIdentity": "scene_016"
+            "nextSceneIdentity": "scene_017"
           }
         ]
       },
@@ -219,22 +219,22 @@
           {
             "optionText": "Pertanyaan: Apa tantangan utama Sucofindo dalam mewujudkan transformasi digital saat ini?",
             "score": 5,
-            "nextSceneIdentity": "scene_020"
+            "nextSceneIdentity": "scene_024"
           },
           {
             "optionText": "Informasi: Tahukah Bapak bahwa 70% perusahaan inspeksi kini mengadopsi IoT untuk efisiensi proses?",
             "score": 3,
-            "nextSceneIdentity": "scene_021"
+            "nextSceneIdentity": "scene_024"
           },
           {
             "optionText": "Referral: Saya direkomendasikan oleh Pak Budi dari Kementerian Perdagangan untuk menjelaskan layanan kami.",
             "score": 5,
-            "nextSceneIdentity": "scene_022"
+            "nextSceneIdentity": "scene_024"
           },
           {
             "optionText": "Langsung ke inti: Sebagai Head of Digital Transformation, apa solusi paling mendesak yang Sucofindo butuhkan?",
             "score": 0,
-            "nextSceneIdentity": "scene_023"
+            "nextSceneIdentity": "scene_025"
           }
         ]
       },
@@ -267,7 +267,7 @@
     {
       "stage": "RAPPORT",
       "sceneIdentity": "scene_025",
-      "sceneProgress": "DIALOGUE",
+      "sceneProgress": "FAILRESULT",
       "introductionStory": "Anda memasuki bagian akhir dari sesi perkenalan untuk lebih mendalami hubungan dengan Pak Arief.",
       "dialogueData": [
         {
@@ -287,31 +287,7 @@
           "narationText": "Silakan, kita bisa mulai dari gambaran kondisi saat ini."
         }
       ],
-      "decisionData": {
-        "question": "Bagaimana cara Anda menanyakan kondisi operasional saat ini?",
-        "optionDatas": [
-          {
-            "optionText": "Pak Arief, bolehkah saya memahami detail alur kerja operasional Anda saat ini?",
-            "score": 5,
-            "nextSceneIdentity": "scene_030"
-          },
-          {
-            "optionText": "Apakah semua proses sudah berjalan otomatis dan efisien?",
-            "score": 3,
-            "nextSceneIdentity": "scene_027"
-          },
-          {
-            "optionText": "Terkait transformasi digital, apa kendala terbesar yang Bapak hadapi sekarang?",
-            "score": 0,
-            "nextSceneIdentity": "scene_028"
-          },
-          {
-            "optionText": "Operasional sekarang pasti sangat menantang, kan? Bisa kami bantu langsung dengan solusi segera.",
-            "score": -5,
-            "nextSceneIdentity": "scene_029"
-          }
-        ]
-      },
+      "decisionData": null,
       "knowledgeGain": "Pendekatan yang terbuka untuk menggali kondisi operasional dapat memberikan gambaran lebih baik tentang As-Is process.",
       "agentAIHint": "Ajukan pertanyaan yang eksploratif dan tidak mengarah langsung ke solusi. Pertanyaan terbuka membantu klien merasa nyaman berbicara tentang tantangan mereka."
     },
@@ -336,7 +312,7 @@
           {
             "optionText": "Apakah ada sistem yang sudah terintegrasi, atau semuanya masih berdiri sendiri?",
             "score": 3,
-            "nextSceneIdentity": "scene_031"
+            "nextSceneIdentity": "scene_035"
           },
           {
             "optionText": "Bagaimana tantangan ini memengaruhi efisiensi operasional atau kualitas layanan Sucofindo?",
@@ -346,12 +322,12 @@
           {
             "optionText": "Jika kendala ini terus berlangsung, apa dampaknya bagi bisnis Sucofindo?",
             "score": 3,
-            "nextSceneIdentity": "scene_033"
+            "nextSceneIdentity": "scene_036"
           },
           {
             "optionText": "Kenapa transformasi digital ini belum terwujud sampai sekarang, Pak?",
             "score": 0,
-            "nextSceneIdentity": "scene_034"
+            "nextSceneIdentity": "scene_035"
           }
         ]
       },
@@ -406,22 +382,22 @@
           {
             "optionText": "Apa ide utama Bapak dalam mentransformasi sistem saat ini?",
             "score": 5,
-            "nextSceneIdentity": "scene_041"
+            "nextSceneIdentity": "scene_035"
           },
           {
             "optionText": "Bapak ingin meningkatkan efisiensi dengan integrasi data, kan?",
             "score": 3,
-            "nextSceneIdentity": "scene_038"
+            "nextSceneIdentity": "scene_035"
           },
           {
             "optionText": "Solusi apa saja yang sudah Bapak pikirkan sebelumnya?",
             "score": 0,
-            "nextSceneIdentity": "scene_039"
+            "nextSceneIdentity": "scene_041"
           },
           {
             "optionText": "Saya rasa transformasi besar-besaran diperlukan di sini.",
             "score": -5,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_041"
           }
         ]
       },
@@ -431,7 +407,7 @@
     {
       "stage": "PROBING",
       "sceneIdentity": "scene_041",
-      "sceneProgress": "DIALOGUE",
+      "sceneProgress": "FAILRESULT",
       "introductionStory": "Player menggali lebih banyak tentang visi ideal dari Ir. Arief Prasetyo.",
       "dialogueData": [
         {
@@ -443,26 +419,7 @@
           "narationText": "Kami ingin sistem digital yang mampu mengintegrasikan data dari berbagai cabang secara real-time, mendukung proses pengujian, inspeksi, dan sertifikasi."
         }
       ],
-      "decisionData": {
-        "question": "Bagaimana langkah Anda untuk menguatkan relevansi solusi?",
-        "optionDatas": [
-          {
-            "optionText": "Kami akan membangun solusi yang sepenuhnya berbasis cloud dan mendukung integrasi IoT.",
-            "score": 5,
-            "nextSceneIdentity": "scene_045"
-          },
-          {
-            "optionText": "Kami akan mengembangkan platform digital untuk mendukung efisiensi operasional Sucofindo.",
-            "score": 3,
-            "nextSceneIdentity": "scene_043"
-          },
-          {
-            "optionText": "Kami bisa menyediakan sistem integrasi data yang lebih sederhana.",
-            "score": 0,
-            "nextSceneIdentity": "scene_044"
-          }
-        ]
-      },
+      "decisionData": null,
       "knowledgeGain": "Relevansi solusi: Sesuaikan pendekatan solusi dengan tujuan utama klien, mengintegrasikan data secara real-time dan meningkatkan efisiensi.",
       "agentAIHint": "Pastikan solusi yang Anda tawarkan relevan dengan harapan klien. Solusi berbasis teknologi yang mendukung integrasi dan efisiensi akan lebih efektif."
     },
@@ -492,12 +449,12 @@
           {
             "optionText": "Bapak tidak perlu khawatir, keamanan adalah prioritas kami.",
             "score": 3,
-            "nextSceneIdentity": "scene_047"
+            "nextSceneIdentity": "scene_049"
           },
           {
             "optionText": "Tenang saja, kami sudah berpengalaman menangani hal semacam ini.",
             "score": 0,
-            "nextSceneIdentity": "scene_048"
+            "nextSceneIdentity": "scene_049"
           }
         ]
       },
@@ -525,17 +482,17 @@
           {
             "optionText": "Kami akan melakukan workshop bersama tim Sucofindo untuk tahap awal implementasi.",
             "score": 5,
-            "nextSceneIdentity": "scene_050"
+            "nextSceneIdentity": "scene_053"
           },
           {
             "optionText": "Implementasi bisa langsung dimulai tanpa persiapan panjang.",
             "score": 0,
-            "nextSceneIdentity": "scene_051"
+            "nextSceneIdentity": "scene_053"
           },
           {
             "optionText": "Kami akan mendukung dengan manual dan panduan teknis.",
             "score": 3,
-            "nextSceneIdentity": "scene_052"
+            "nextSceneIdentity": "scene_053"
           }
         ]
       },
@@ -588,12 +545,12 @@
           {
             "optionText": "Menyampaikan brosur teknis tanpa diskusi mendalam.",
             "score": 0,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_057"
           },
           {
             "optionText": "Meyakinkan klien bahwa kami adalah BUMN terpercaya, tanpa menjelaskan lebih jauh teknisnya.",
             "score": -5,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_057"
           }
         ]
       },
@@ -603,7 +560,7 @@
     {
       "stage": "SOLUTION",
       "sceneIdentity": "scene_057",
-      "sceneProgress": "DIALOGUE",
+      "sceneProgress": "SUCCESSRESULT",
       "introductionStory": "Player mengusulkan workshop sebagai langkah awal implementasi solusi IoT dan Big Data.",
       "dialogueData": [
         {
@@ -623,26 +580,7 @@
           "narationText": "Oke, saya pikir ini bisa jadi langkah awal yang baik untuk eksplorasi solusi lebih jauh."
         }
       ],
-      "decisionData": {
-        "question": "Apa langkah selanjutnya setelah workshop disetujui?",
-        "optionDatas": [
-          {
-            "optionText": "Menetapkan daftar peserta dan jadwal untuk workshop.",
-            "score": 5,
-            "nextSceneIdentity": "scene_059"
-          },
-          {
-            "optionText": "Mengirimkan jadwal workshop saja tanpa konfirmasi.",
-            "score": 3,
-            "nextSceneIdentity": "scene_059"
-          },
-          {
-            "optionText": "Menunda waktu workshop hingga permintaan klien yang lebih jelas.",
-            "score": 0,
-            "nextSceneIdentity": "scene_075"
-          }
-        ]
-      },
+      "decisionData": null,
       "knowledgeGain": "Workshop sebagai langkah praktis awal dapat meningkatkan minat dan pemahaman klien terhadap solusi.",
       "agentAIHint": "Langkah berikutnya harus terstruktur, seperti menyepakati jadwal dan daftar peserta. Menunda solusi awal bisa menurunkan momentum dan risiko kehilangan kepercayaan klien."
     },
@@ -681,7 +619,7 @@
           {
             "optionText": "Mengatakan bahwa harga sudah standar pasar dan tidak bisa dinegosiasi.",
             "score": -3,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_077"
           }
         ]
       },
@@ -713,17 +651,17 @@
           {
             "optionText": "Menawarkan pembayaran bertahap sesuai milestone implementasi.",
             "score": 5,
-            "nextSceneIdentity": "scene_067"
+            "nextSceneIdentity": "scene_069"
           },
           {
             "optionText": "Mengurangi langsung 10% biaya untuk meringankan pembayaran awal.",
             "score": 3,
-            "nextSceneIdentity": "scene_067"
+            "nextSceneIdentity": "scene_069"
           },
           {
             "optionText": "Meminta klien untuk membayar penuh di awal tanpa negosiasi.",
             "score": -5,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_077"
           }
         ]
       },
@@ -760,12 +698,12 @@
           {
             "optionText": "Kami bisa memberikan diskon besar untuk pembayaran awal.",
             "score": -5,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_073"
           },
           {
             "optionText": "Kami bisa menunda implementasi hingga anggaran Bapak siap.",
             "score": 0,
-            "nextSceneIdentity": "scene_072"
+            "nextSceneIdentity": "scene_077"
           }
         ]
       },
@@ -797,12 +735,12 @@
           {
             "optionText": "Menurut laporan sebelumnya, perusahaan seperti Bapak bisa meningkatkan efisiensi hingga 30% dalam satu tahun setelah implementasi.",
             "score": 5,
-            "nextSceneIdentity": "scene_077"
+            "nextSceneIdentity": "scene_078"
           },
           {
             "optionText": "Biasanya banyak klien kami puas, Bapak tidak perlu khawatir akan ROI-nya.",
             "score": -3,
-            "nextSceneIdentity": "scene_075"
+            "nextSceneIdentity": "scene_077"
           },
           {
             "optionText": "Kami dapat mengatur simulasi finansial agar Bapak bisa menilai sendiri dampaknya.",
@@ -817,7 +755,7 @@
     {
       "stage": "EPILOG",
       "sceneIdentity": "scene_077",
-      "sceneProgress": "DIALOGUE",
+      "sceneProgress": "FAILRESULT",
       "introductionStory": "Klien setuju untuk melanjutkan implementasi setelah mendapatkan penjelasan data ROI.",
       "dialogueData": [
         {
@@ -840,7 +778,7 @@
     {
       "stage": "EPILOG",
       "sceneIdentity": "scene_078",
-      "sceneProgress": "DIALOGUE",
+      "sceneProgress": "SUCCESSRESULT",
       "introductionStory": "Klien memilih untuk melihat simulasi finansial terlebih dahulu sebelum melanjutkan.",
       "dialogueData": [
         {

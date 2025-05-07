@@ -9,8 +9,8 @@ namespace Smarteye.RestAPI.Sample
     public class ScenarioLoader : MonoBehaviour
     {
         public TextAsset jsonFile; // Masukkan file JSON dari Inspector
-        public List<SceneScenarioDataRoot> sampleScenarios; // Diisi setelah parsing
-        public List<SceneScenarioDataRoot> sceneProbing;
+        [SerializeField] private List<SceneScenarioDataRoot> sampleScenarios; // Diisi setelah parsing
+        // public List<SceneScenarioDataRoot> sceneProbing;
 
         void Start()
         {
