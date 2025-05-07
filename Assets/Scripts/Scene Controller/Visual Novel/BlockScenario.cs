@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Smarteye.VisualNovel.taufiq
 {
@@ -23,16 +25,19 @@ namespace Smarteye.VisualNovel.taufiq
         public string knowledgeGain;
         public string agentAIHint;
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum SceneProgress
         {
             DIALOGUE, SUCCESSRESULT, FAILRESULT
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum Stage
         {
             NONE, PROLOG, PROSPECTINGANDPROFILING, RAPPORT, PROBING, SOLUTION, OBJECTIONANDCLOSING, EPILOG
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum SpeakerRoot
         {
             PLAYER, NARATOR, CLIENT, ASISTEN, BOS, SECURITY
