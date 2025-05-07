@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Smarteye.Manager.taufiq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Smarteye.SceneController.taufiq
@@ -12,15 +11,17 @@ namespace Smarteye.SceneController.taufiq
     public class ComputerController : SceneControllerAbstract
     {
         [Header("Generate IVCA Panel")]
-        public GameObject generateIVCAPanel;
-        public GameObject rowInputIVCA;
-        public GameObject rowOutputIVCA;
-        public InputField companyInput;
-        public Button generateBtn;
+        [SerializeField] private GameObject generateIVCAPanel;
+        [SerializeField] private GameObject rowInputIVCA;
+        [SerializeField] private GameObject rowOutputIVCA;
+        [SerializeField] private InputField companyInput;
+        [SerializeField] private Button generateBtn;
 
         [Header("Result IVCA Panel")]
-        public GameObject resultIVCAPanel;
-        public List<CarouselData> carouselDatas;
+        [SerializeField] private GameObject resultIVCAPanel;
+
+        #region Old-System
+        [SerializeField] private List<CarouselData> carouselDatas;
 
         [Serializable]
         public class CarouselData
@@ -29,12 +30,13 @@ namespace Smarteye.SceneController.taufiq
             [TextArea(8, 8)]
             public string description;
         }
-        public TextMeshProUGUI titleText;
-        public TextMeshProUGUI descriptionText;
-        public Button nextButton;
-        public Button previousButton;
-
+        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private Button nextButton;
+        [SerializeField] private Button previousButton;
         private int m_currentIndex = 0;
+
+        #endregion
 
         protected override void Init()
         {

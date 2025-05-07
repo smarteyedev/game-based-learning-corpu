@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using TMPro;
+using Smarteye.Manager.taufiq;
+using System.Runtime.CompilerServices;
 
 public class ButtonStageHandler : Selectable
 {
@@ -15,17 +16,20 @@ public class ButtonStageHandler : Selectable
 
     [Header("Tooltip Handler")]
     [SerializeField] private bool isTooltipActive;
-    [SerializeField] private string tooltipMessage;
+    [SerializeField] private GameStage isButtonForStage;
 
     [Header("Component References")]
     [SerializeField] private Image btnImage;
     [SerializeField] private GameObject popupStageDetail;
+    [SerializeField] private GameObject popupHasStageData;
     [SerializeField] private Button btnChangeScene;
 
     [Space(5f)]
     [SerializeField] private GameObject iconPlay;
     [SerializeField] private GameObject iconInspect;
     [SerializeField] private GameObject plankPlay;
+
+    private GameManager m_gameManager;
 
 
     [Space(5f)]
@@ -41,6 +45,8 @@ public class ButtonStageHandler : Selectable
     private new void Start()
     {
         if (btnImage == null) GetComponent<Image>();
+
+        m_gameManager = GameManager.instance;
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -51,7 +57,7 @@ public class ButtonStageHandler : Selectable
 
         if (!isPopupOpen)
         {
-            if (isTooltipActive) { TooltipController.instance.SetAndShowTooltip(tooltipMessage); }
+            if (isTooltipActive) { TooltipController.instance.SetAndShowTooltip(m_gameManager.GenerateGameStageName(isButtonForStage)); }
         }
 
         if (interactable)
@@ -109,9 +115,25 @@ public class ButtonStageHandler : Selectable
     {
         if (interactable)
         {
-            // iconPlay.SetActive(true);
-            isPopupOpen = isActive;
-            popupStageDetail.SetActive(isActive);
+            if ((int)m_gameManager.currentGameStage > (int)isButtonForStage)
+            {
+                if (m_gameManager.currentGameStage == GameStage.IVCA && isButtonForStage == GameStage.IVCA)
+                {
+                    isPopupOpen = isActive;
+                    popupStageDetail.SetActive(isActive);
+                }
+                else
+                {
+                    isPopupOpen = isActive;
+                    popupHasStageData.SetActive(isActive);
+                }
+            }
+            else
+            {
+                // iconPlay.SetActive(true);
+                isPopupOpen = isActive;
+                popupStageDetail.SetActive(isActive);
+            }
         }
     }
 

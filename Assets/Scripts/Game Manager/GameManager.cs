@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,6 +81,22 @@ namespace Smarteye.Manager.taufiq
         {
             AddScene(0);
             m_currentActiveScene = sceneArray[0];
+        }
+
+        public String GenerateGameStageName(GameStage _stage)
+        {
+            string result = _stage switch
+            {
+                GameStage.IVCA => "GENERATE IVCA",
+                GameStage.Profiling => "PROSPECTING & PROFILING",
+                GameStage.Rapport => "RAPPORT",
+                GameStage.Probing => "PROBING",
+                GameStage.Solution => "SOLUTION",
+                GameStage.Closing => "OBJECTION & CLOSING",
+                _ => "none"
+            };
+
+            return result;
         }
 
         #region Load-Scene-Function

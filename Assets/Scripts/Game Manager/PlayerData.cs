@@ -30,6 +30,8 @@ public class FormatPlayerData
 {
     public string playerName;
     public GameStage gameStageProgress;
+    public string targetCompany;
+    public string IVCAResult;
     public int profilingScore = 0;
     public int rapportScore = 0;
     public int probingScore = 0;
