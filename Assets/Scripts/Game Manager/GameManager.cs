@@ -8,7 +8,7 @@ namespace Smarteye.Manager.taufiq
 {
     public enum GameStage
     {
-        None = 0, IVCA = 1, Profiling = 2, Rapport = 3, Probing = 4, Solution = 5, Closing = 6
+        None = 0, IVCA = 1, Profiling = 2, Rapport = 3, Probing = 4, Solution = 5, Closing = 6, Finish
     }
 
     public class GameManager : MonoBehaviour

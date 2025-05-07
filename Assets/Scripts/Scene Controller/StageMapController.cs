@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Smarteye.SceneController.taufiq
         private int m_stageNumber = 0;
 
         [Header("Component References")]
-        public ButtonStageHandler[] _itemStageBtns;
+        public List<ButtonStageHandler> _itemStageBtns;
 
         protected override void StartOnDebugging()
         {
@@ -27,19 +28,18 @@ namespace Smarteye.SceneController.taufiq
                 // Debug.Log($"current stage: {m_stageNumber}");
             }
 
-            for (int i = 0; i < _itemStageBtns.Length; i++)
+            for (int i = 0; i < _itemStageBtns.Count; i++)
             {
+                int indexTarget = i;
+                _itemStageBtns[i].onClickCustom.AddListener(() => OpenPopup(indexTarget));
+
                 if (i < m_stageNumber)
                 {
                     _itemStageBtns[i].SetActiveButton(true);
-                    GameObject go = _itemStageBtns[i].gameObject;
-                    _itemStageBtns[i].onClickCustom.AddListener(() => CheckPopupActivation(go));
                 }
                 else
                 {
                     _itemStageBtns[i].SetActiveButton(false);
-                    GameObject go = _itemStageBtns[i].gameObject;
-                    _itemStageBtns[i].onClickCustom.AddListener(() => CheckPopupActivation(go));
                 }
 
                 if (i == m_stageNumber - 1)
@@ -55,29 +55,35 @@ namespace Smarteye.SceneController.taufiq
             }
         }
 
-        public void CheckPopupActivation(GameObject go)
+        public void OpenPopup(int _btnIndex)
         {
-            for (int i = 0; i < _itemStageBtns.Length; i++)
-            {
-                if (go == _itemStageBtns[i].gameObject)
-                {
-                    _itemStageBtns[i].OpenPopupDetail(true);
-                }
-                else
-                {
-                    _itemStageBtns[i].OpenPopupDetail(false);
-                }
-            }
+            // for (int i = 0; i < _itemStageBtns.Count; i++)
+            // {
+            //     if (go == _itemStageBtns[i].gameObject)
+            //     {
+            //         _itemStageBtns[i].OpenPopupDetail(true);
+            //     }
+            //     else
+            //     {
+            //         _itemStageBtns[i].OpenPopupDetail(false);
+            //     }
+            // }
+
+            ResetPopup();
+            _itemStageBtns[_btnIndex].OpenPopupDetail(true);
+
+            // Debug.Log($"try to open button {_itemStageBtns[_btnIndex]}");
         }
 
         public void ResetPopup()
         {
-            bool hasPopupActive = _itemStageBtns.Any((x) => x.isPopupOpen);
-            if (hasPopupActive)
+            var hasPopupActive = _itemStageBtns.FindAll((x) => x.isPopupOpen == true).ToList();
+
+            if (hasPopupActive.Count > 0)
             {
                 foreach (var item in _itemStageBtns)
                 {
-                    if (item.isPopupOpen) item.OpenPopupDetail(false);
+                    item.OpenPopupDetail(false);
                 }
             }
         }

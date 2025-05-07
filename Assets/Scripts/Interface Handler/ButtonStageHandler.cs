@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using Smarteye.Manager.taufiq;
 using System.Runtime.CompilerServices;
+using TMPro;
+using System.Linq;
 
 public class ButtonStageHandler : Selectable
 {
@@ -20,9 +22,16 @@ public class ButtonStageHandler : Selectable
 
     [Header("Component References")]
     [SerializeField] private Image btnImage;
-    [SerializeField] private GameObject popupStageDetail;
-    [SerializeField] private GameObject popupHasStageData;
     [SerializeField] private Button btnChangeScene;
+    [SerializeField] private GameObject popupStageDetail;
+
+    [Space(15f)]
+    [SerializeField] private GameObject popupIVCAData;
+    [SerializeField] private TextMeshProUGUI textIVCATitle;
+    [SerializeField] private TextMeshProUGUI textIVCAResult;
+
+    [Space(5f)]
+    [SerializeField] private JournalController journalController;
 
     [Space(5f)]
     [SerializeField] private GameObject iconPlay;
@@ -113,26 +122,64 @@ public class ButtonStageHandler : Selectable
 
     public void OpenPopupDetail(bool isActive)
     {
-        if (interactable)
+        if (isActive)
         {
-            if ((int)m_gameManager.currentGameStage > (int)isButtonForStage)
+            isPopupOpen = true;
+
+            if ((int)isButtonForStage < (int)m_gameManager.currentGameStage)
             {
-                if (m_gameManager.currentGameStage == GameStage.IVCA && isButtonForStage == GameStage.IVCA)
+                string[] ivcaData = m_gameManager.playerData.GetIVCAData();
+                if (isButtonForStage == GameStage.IVCA)
                 {
-                    isPopupOpen = isActive;
-                    popupStageDetail.SetActive(isActive);
+                    if (ivcaData == null)
+                    {
+                        popupStageDetail.SetActive(true);
+                    }
+                    else
+                    {
+                        popupIVCAData.SetActive(isActive);
+                        textIVCATitle.text = ivcaData[0];
+                        textIVCAResult.text = ivcaData[1];
+                    }
                 }
                 else
                 {
-                    isPopupOpen = isActive;
-                    popupHasStageData.SetActive(isActive);
+                    journalController.ShowSceneJournalPanelByStage(isButtonForStage);
                 }
             }
             else
             {
-                // iconPlay.SetActive(true);
-                isPopupOpen = isActive;
-                popupStageDetail.SetActive(isActive);
+                popupStageDetail.SetActive(true);
+            }
+        }
+        else
+        {
+            isPopupOpen = false;
+
+            if ((int)isButtonForStage < (int)m_gameManager.currentGameStage)
+            {
+                string[] ivcaData = m_gameManager.playerData.GetIVCAData();
+                if (isButtonForStage == GameStage.IVCA)
+                {
+                    if (ivcaData == null)
+                    {
+                        popupStageDetail.SetActive(false);
+                    }
+                    else
+                    {
+                        popupIVCAData.SetActive(false);
+                        textIVCATitle.text = ivcaData[0];
+                        textIVCAResult.text = ivcaData[1];
+                    }
+                }
+                else
+                {
+                    journalController.OnClickCloseJournalPanel();
+                }
+            }
+            else
+            {
+                popupStageDetail.SetActive(false);
             }
         }
     }

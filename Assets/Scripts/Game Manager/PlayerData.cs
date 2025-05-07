@@ -9,9 +9,29 @@ public class PlayerData : ScriptableObject
 {
     public FormatPlayerData Datas;
 
-    public void SaveJurnalNotes(JournalNote note)
+    public void SaveIVCAResult(string _company, string _ivcaResult)
     {
-        Datas.journalDatas.Add(note);
+        Datas.targetCompany = _company;
+        Datas.IVCAResult = _ivcaResult;
+    }
+
+    public string[] GetIVCAData()
+    {
+        string[] newData = new string[2];
+
+        if (!String.IsNullOrEmpty(Datas.targetCompany) && !String.IsNullOrEmpty(Datas.targetCompany))
+        {
+            newData[0] = Datas.targetCompany;
+            newData[1] = Datas.IVCAResult;
+            return newData;
+        }
+
+        return null;
+    }
+
+    public void SaveJurnalNotes(List<JournalNote> _newNotes)
+    {
+        Datas.journalDatas.AddRange(_newNotes);
     }
 
     public void Clear()

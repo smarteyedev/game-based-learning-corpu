@@ -115,6 +115,7 @@ namespace Smarteye.VisualNovel.taufiq
         //? Journal Controller references
         [Space(10f)]
         [SerializeField] private JournalController journalController;
+        [SerializeField] private GameObject btnOpenJurnal;
 
         protected override void Init()
         {
@@ -167,6 +168,10 @@ namespace Smarteye.VisualNovel.taufiq
                     {
                         ChangeVisualNovelView(VisualNovelView.MYCOON);
                     }
+
+                    /* save to journal for new notes */
+                    journalController.AddJurnalNote(gameManager.currentGameStage, m_currentBlockScenario.agentAIHint);
+
                     break;
                 case VisualNovelView.MYCOON:
                     MainUIActive(false);
@@ -360,11 +365,9 @@ namespace Smarteye.VisualNovel.taufiq
 
         private void ShowDecisionPanel()
         {
-            /* save to journal for new notes */
-            journalController.AddJurnalNote(gameManager.currentGameStage.ToString(), m_currentBlockScenario.agentAIHint);
-
             decisionPanel.SetActive(true);
             dialogPanel.SetActive(false);
+            btnOpenJurnal.SetActive(true);
 
             UpdateCharacterSprite("NARATOR");
 
@@ -388,7 +391,8 @@ namespace Smarteye.VisualNovel.taufiq
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
                         AnimationSelectButtonOption(btnSelected, () => OnClickChangeBlock(nextIdentity));
-                        // Debug.Log($"target next block : {nextIndex}");
+
+                        btnOpenJurnal.SetActive(false);
                     });
                 }
                 else
@@ -440,6 +444,8 @@ namespace Smarteye.VisualNovel.taufiq
             if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
             {
                 panelSuccess.SetActive(true);
+
+                journalController.SaveCurrentJurnalNote();
             }
             else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
             {

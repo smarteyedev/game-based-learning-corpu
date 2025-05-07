@@ -57,43 +57,43 @@ public class JournalManager : MonoBehaviour
     // Misalnya di DialogueManager.cs atau AIResponseHandler.cs
     // TAMBAHKAN kode ini di fungsi yang menangani dialog di vs nya
     // (JournalManager.Instance.AddNoteFromAI(judulScene, responAI);) 
-    public void AddNoteFromAI(string sceneTitle, string content)
-    {
-        if (noteDatabase == null)
-        {
-            Debug.LogError("Database belum diset di Inspector!");
-            return;
-        }
+    // public void AddNoteFromAI(string sceneTitle, string content)
+    // {
+    //     if (noteDatabase == null)
+    //     {
+    //         Debug.LogError("Database belum diset di Inspector!");
+    //         return;
+    //     }
 
-        var note = new JournalNote(sceneTitle, content);
-        noteDatabase.Save(note);
-        UpdateJournalDisplay();
-        Debug.Log($"Menambahkan catatan: {sceneTitle} - {content}");
-    }
+    //     var note = new JournalNote(sceneTitle, content);
+    //     noteDatabase.Save(note);
+    //     UpdateJournalDisplay();
+    //     Debug.Log($"Menambahkan catatan: {sceneTitle} - {content}");
+    // }
 
     // Menampilkan jurnal untuk scene tertentu //
-    public void ShowSceneJournal(string sceneName)
-    {
-        if (journalPanel != null)
-            journalPanel.SetActive(true);
+    // public void ShowSceneJournal(string sceneName)
+    // {
+    //     if (journalPanel != null)
+    //         journalPanel.SetActive(true);
 
-        var filteredNotes = noteDatabase.GetAll()
-            .Where(note => note.sceneTitle == sceneName)
-            .Select(note => $"--------- {note.sceneTitle} ----------\n{note.content}")
-            .ToList();
+    //     var filteredNotes = noteDatabase.GetAll()
+    //         .Where(note => note.gameStage == sceneName)
+    //         .Select(note => $"--------- {note.sceneTitle} ----------\n{note.content}")
+    //         .ToList();
 
-        if (filteredNotes.Count == 0)
-            filteredNotes.Add($"Tidak ada catatan untuk {sceneName}");
+    //     if (filteredNotes.Count == 0)
+    //         filteredNotes.Add($"Tidak ada catatan untuk {sceneName}");
 
-        ShowNotes(filteredNotes);
-        Debug.Log($"Menampilkan {filteredNotes.Count} catatan untuk scene: {sceneName}");
-    }
+    //     ShowNotes(filteredNotes);
+    //     Debug.Log($"Menampilkan {filteredNotes.Count} catatan untuk scene: {sceneName}");
+    // }
 
     // Update tampilan jurnal dengan semua catatan //
     public void UpdateJournalDisplay()
     {
         var allNotes = noteDatabase.GetAll()
-            .Select(note => $"--------- {note.sceneTitle} ----------\n{note.content}")
+            .Select(note => $"--------- {note.gameStage} ----------\n{note.content}")
             .ToList();
 
         ShowNotes(allNotes);
@@ -130,10 +130,10 @@ public class JournalManager : MonoBehaviour
     }
 
     // Cek apakah ada catatan untuk scene tertentu //
-    public bool HasNoteForScene(string sceneTitle)
+    /* public bool HasNoteForScene(string sceneTitle)
     {
-        return noteDatabase.GetAll().Any(note => note.sceneTitle == sceneTitle);
-    }
+        return noteDatabase.GetAll().Any(note => note.gameStage == sceneTitle);
+    } */
 
     // Mengatur visibilitas panel jurnal //
     public void ToggleJournalPanel(bool show)
@@ -161,12 +161,12 @@ public class JournalManager : MonoBehaviour
     // =============================
 
     // Simulasi penambahan catatan untuk testing //
-    public void SimulateAddNotes()
-    {
-        AddNoteFromAI("Scene 1", "kamu memilih menyelamatkan desa.");
-        AddNoteFromAI("Scene 2", "kamu menolak tawaran dari kerajaan.");
-        Debug.Log("SimulateAddNotes dipanggil");
-    }
+    // public void SimulateAddNotes()
+    // {
+    //     AddNoteFromAI("Scene 1", "kamu memilih menyelamatkan desa.");
+    //     AddNoteFromAI("Scene 2", "kamu menolak tawaran dari kerajaan.");
+    //     Debug.Log("SimulateAddNotes dipanggil");
+    // }
 
     // Hapus semua catatan dari database //
     public void ClearJournal()
