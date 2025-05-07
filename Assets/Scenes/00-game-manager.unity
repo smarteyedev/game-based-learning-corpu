@@ -378,7 +378,88 @@ MonoBehaviour:
   - _sceneAsset: {fileID: 102900000, guid: 1a74f9eae6874684784f765b884af660, type: 3}
     _sceneName: 04-visual-novel
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
+  scenarioLoader: {fileID: 1457097626}
   loadingScreenHandler: {fileID: 815615335}
+--- !u!1001 &1457097625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576344006227511474, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6647491475340463517, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      propertyPath: m_Name
+      value: '#Scenario Loader'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 692159682aaddf5449e3f47a1d12bb52, type: 3}
+--- !u!114 &1457097626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7897641339139297599, guid: 692159682aaddf5449e3f47a1d12bb52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457097625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547fac38b6b599f47bde858844395de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1601391484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,5 +1136,6 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 1259759153}
   - {fileID: 815615334}
+  - {fileID: 1457097625}
   - {fileID: 1040245906097334188}
   - {fileID: 1601391487}

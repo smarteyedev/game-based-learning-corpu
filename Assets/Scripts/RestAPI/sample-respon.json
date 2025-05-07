@@ -21,7 +21,7 @@
       ],
       "decisionData": {
         "question": "Langkah pertama Anda?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Pelajari detail perusahaan dan identifikasi kebutuhan mereka.",
             "score": 5,
@@ -59,7 +59,7 @@
       ],
       "decisionData": {
         "question": "Langkah selanjutnya?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Coba cari informasi terkait keputusan modernisasi proses mereka.",
             "score": 5,
@@ -92,7 +92,7 @@
       ],
       "decisionData": {
         "question": "Apa langkah selanjutnya?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Kembali dan pelajari profil perusahaan lebih dulu.",
             "score": 3,
@@ -144,7 +144,7 @@
       ],
       "decisionData": {
         "question": "Pilihan metode pencarian Anda:",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Mencari informasi melalui LinkedIn Sucofindo.",
             "score": 5,
@@ -210,7 +210,7 @@
       ],
       "decisionData": {
         "question": "Pilih teknik pembukaan Anda:",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Pujian: Saya terkesan dengan strategi transformasi digital Sucofindo yang Bapak pimpin.",
             "score": 5,
@@ -289,7 +289,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana cara Anda menanyakan kondisi operasional saat ini?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Pak Arief, bolehkah saya memahami detail alur kerja operasional Anda saat ini?",
             "score": 5,
@@ -332,7 +332,7 @@
       ],
       "decisionData": {
         "question": "Apa pertanyaan berikutnya untuk menggali tantangan As-Is dengan lebih detail?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Apakah ada sistem yang sudah terintegrasi, atau semuanya masih berdiri sendiri?",
             "score": 3,
@@ -402,7 +402,7 @@
       ],
       "decisionData": {
         "question": "Apa pendekatan terbaik untuk menggali kebutuhan ideal (Should-Be)?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Apa ide utama Bapak dalam mentransformasi sistem saat ini?",
             "score": 5,
@@ -445,7 +445,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana langkah Anda untuk menguatkan relevansi solusi?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Kami akan membangun solusi yang sepenuhnya berbasis cloud dan mendukung integrasi IoT.",
             "score": 5,
@@ -483,7 +483,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda menjelaskan keamanan data yang ditawarkan?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Sistem kami dilengkapi dengan enkripsi canggih dan firewall untuk menjaga keamanan data secara maksimal.",
             "score": 5,
@@ -521,7 +521,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda mendeskripsikan langkah implementasi?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Kami akan melakukan workshop bersama tim Sucofindo untuk tahap awal implementasi.",
             "score": 5,
@@ -579,7 +579,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda ingin melibatkan klien lebih jauh untuk mendalami solusi ini?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Mengusulkan workshop implementasi awal untuk menjelaskan lebih detail cara kerja teknologi.",
             "score": 5,
@@ -625,7 +625,7 @@
       ],
       "decisionData": {
         "question": "Apa langkah selanjutnya setelah workshop disetujui?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Menetapkan daftar peserta dan jadwal untuk workshop.",
             "score": 5,
@@ -667,7 +667,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda menjelaskan ROI kepada klien?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Memberikan contoh spesifik klien lain yang telah berhasil meningkatkan efisiensi hingga 30%.",
             "score": 5,
@@ -709,7 +709,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda merancang skema pembayaran untuk klien?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Menawarkan pembayaran bertahap sesuai milestone implementasi.",
             "score": 5,
@@ -751,7 +751,7 @@
       ],
       "decisionData": {
         "question": "Menyikapi keberatan klien soal biaya awal, bagaimana pendekatan Anda?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Kami bisa menawarkan skema pembayaran bertahap untuk membantu mengurangi beban finansial di awal.",
             "score": 5,
@@ -793,7 +793,7 @@
       ],
       "decisionData": {
         "question": "Bagaimana Anda menjelaskan potensi ROI (Return on Investment) dari solusi?",
-        "options": [
+        "optionDatas": [
           {
             "optionText": "Menurut laporan sebelumnya, perusahaan seperti Bapak bisa meningkatkan efisiensi hingga 30% dalam satu tahun setelah implementasi.",
             "score": 5,

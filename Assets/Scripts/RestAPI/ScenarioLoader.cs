@@ -31,7 +31,7 @@ namespace Smarteye.RestAPI.Sample
             }
 
             // sceneProbing = sceneProbing.Concat(GetScenesByStage(SceneScenarioDataRoot.Stage.RAPPORT)).ToList();
-            sceneProbing = GetScenesByStages(SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
+            // sceneProbing = GetScenesByStages(SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
         }
 
         public List<SceneScenarioDataRoot> GetScenesByStages(params SceneScenarioDataRoot.Stage[] targetStages)
