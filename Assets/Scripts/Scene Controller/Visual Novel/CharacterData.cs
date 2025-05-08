@@ -36,7 +36,7 @@ namespace Smarteye.VisualNovel.Character
             public ActionType actionType;
             public enum ActionType
             {
-                NONE, TALKING, HAPPY, SAD
+                NONE, TALKING, HAPPY, CONFUSED
             }
 
             public Sprite actionSprite;

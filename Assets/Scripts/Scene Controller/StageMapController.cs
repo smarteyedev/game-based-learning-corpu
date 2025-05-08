@@ -26,7 +26,7 @@ namespace Smarteye.SceneController.taufiq
             {
                 m_stageNumber = (int)gameManager.currentGameStage;
 
-                Debug.Log($"current stage: {m_stageNumber}");
+                Debug.Log($"Opening Stage-Map Scene | current stage-progress number: {m_stageNumber}");
             }
 
             for (int i = 0; i < _itemStageBtns.Count; i++)

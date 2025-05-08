@@ -62,7 +62,7 @@ public class TimeManager : MonoBehaviour
 
         currentTime = timerDuration;
         isRunning = true;
-        Debug.Log("Timer restarted with duration: " + timerDuration);
+        // Debug.Log("Timer restarted with duration: " + timerDuration);
         OnTimerStart.Invoke();
         timerCoroutine = StartCoroutine(TimerRoutine());
     }

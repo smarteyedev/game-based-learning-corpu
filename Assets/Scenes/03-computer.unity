@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89758fbbae6fa664fb99442e98ae1097, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 086f8821ff9f6fb46ba02d56612b14c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1391,7 +1391,31 @@ MonoBehaviour:
   outputIVCAData:
     companyName: PT Superintending Company of Indonesia
     summary: Ini summary
-    IVCAResult: Ini harusnya diisi sama result ivcanya
+    IVCAResult: '<b>Ini harusnya diisi sama result ivcanya, tapi karena belum bisa
+      digenerate jadi aku pake data dummy dulu ya</b> \n \n \n Sucofindo (PT Superintending
+      Company of Indonesia) adalah perusahaan inspeksi pertama di Indonesia yang
+      didirikan pada tanggal 22 Oktober 1956. Perusahaan ini memiliki kantor pusat
+      di Jakarta dan merupakan perusahaan milik negara (BUMN) yang bergerak di bidang
+      inspeksi, pengujian, sertifikasi, pelatihan, dan konsultasi. Awalnya, Sucofindo
+      didirikan untuk mendukung perdagangan domestik dan internasional melalui kegiatan
+      inspeksi dan pengawasan. Seiring waktu, Sucofindo memperluas layanan dan bidang
+      usahanya untuk mendukung berbagai sektor, termasuk industri, pertanian, kehutanan,
+      kelautan, pertambangan, energi, dan lingkungan. Beberapa layanan utama Sucofindo
+      meliputi: Inspeksi: Pemeriksaan dan pengawasan terhadap barang atau proses
+      tertentu untuk memastikan kualitas, kuantitas, dan kepatuhan terhadap standar
+      atau regulasi yang berlaku. Pengujian: Penyelenggaraan laboratorium untuk menguji
+      produk atau bahan tertentu, seperti makanan, bahan kimia, dan material industri.
+      Sertifikasi: Penyediaan sertifikasi untuk menunjukkan bahwa suatu produk, sistem,
+      atau proses memenuhi standar tertentu, seperti ISO, HACCP, atau sertifikasi
+      produk halal. Konsultasi: Memberikan layanan konsultasi untuk membantu perusahaan
+      atau organisasi dalam meningkatkan kualitas, efisiensi, dan kepatuhan. Pelatihan:
+      Menyediakan pelatihan untuk individu atau organisasi dalam berbagai bidang,
+      termasuk manajemen mutu, lingkungan, dan keselamatan kerja. Sebagai salah satu
+      BUMN, Sucofindo juga memainkan peran penting dalam mendukung kebijakan pemerintah,
+      seperti pengawasan impor-ekspor, sertifikasi produk dalam negeri, dan pengelolaan
+      lingkungan. Perusahaan ini memiliki jaringan luas dengan berbagai kantor cabang
+      dan laboratorium di seluruh Indonesia, sehingga dapat memberikan layanan yang
+      cepat dan efektif kepada pelanggan.'
   resultIVCAPanel: {fileID: 4500286462125265954}
   resultTitleText: {fileID: 8977880860242828493}
   resultText: {fileID: 5835424588654138681}
@@ -4195,34 +4219,31 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet consectetur. Faucibus dui suspendisse enim
-    imperdiet felis. Mi id sit tincidunt mattis elementum in id consequat neque.
-    Eleifend purus dictum sem sed quam vivamus molestie aenean risus. Vel commodo
-    consequat a at. Ultricies mi id cras in vitae. Amet leo vivamus ut lacus nunc
-    faucibus id. Aliquam sodales arcu lectus mi adipiscing nulla. Purus sagittis
-    eu integer neque nunc id. Ornare nunc molestie amet a turpis. Placerat tortor
-    consequat ornare massa. Ut accumsan id morbi bibendum ut nulla cursus est nec.
-    In ut facilisis sed cras ornare nunc massa aliquet accumsan. Augue vitae lorem
-    augue odio.
-
-
-    Sed ut in vulputate sed lectus euismod vestibulum nec fringilla.
-    Risus lorem ultricies nibh suspendisse et. Risus nunc elit massa sed adipiscing.
-    Convallis id sit blandit curabitur dictum lacinia vulputate nulla erat. Turpis
-    porta quis faucibus ultrices morbi accumsan sagittis elit donec. Vitae pharetra
-    et neque lorem ultrices fermentum leo. Ipsum id volutpat fringilla vitae et.
-    Tortor eleifend porttitor ornare at lorem id. Leo ante donec ut velit aenean
-    eget netus. Nec sit enim eget arcu. Ultrices in nam ut sed eget nulla pretium
-    pretium nunc. Lectus vitae pulvinar condimentum nunc tincidunt arcu pulvinar
-    et. In nunc egestas lacus tortor cras sagittis ac at. Dictumst cras convallis
-    nisl varius erat.
-
-
-    Senectus enim nullam senectus id venenatis. Id vestibulum
-    consequat venenatis at. Tincidunt lorem tortor at praesent in dictumst. Aliquam
-    elementum enim viverra sed in mus est fringilla. Praesent molestie eu elementum
-    dignissim tellus ornare nulla. Urna vitae commodo placerat diam eget tempor sed
-    id.'
+  m_text: '<b>Ini harusnya diisi sama result ivcanya, tapi karena belum bisa digenerate
+    jadi aku pake data dummy dulu ya</b>  \n \n Sucofindo (PT Superintending Company
+    of Indonesia) adalah perusahaan inspeksi pertama di Indonesia yang didirikan
+    pada tanggal 22 Oktober 1956. Perusahaan ini memiliki kantor pusat di Jakarta
+    dan merupakan perusahaan milik negara (BUMN) yang bergerak di bidang inspeksi,
+    pengujian, sertifikasi, pelatihan, dan konsultasi. Awalnya, Sucofindo didirikan
+    untuk mendukung perdagangan domestik dan internasional melalui kegiatan inspeksi
+    dan pengawasan. Seiring waktu, Sucofindo memperluas layanan dan bidang usahanya
+    untuk mendukung berbagai sektor, termasuk industri, pertanian, kehutanan, kelautan,
+    pertambangan, energi, dan lingkungan. Beberapa layanan utama Sucofindo meliputi:
+    Inspeksi: Pemeriksaan dan pengawasan terhadap barang atau proses tertentu untuk
+    memastikan kualitas, kuantitas, dan kepatuhan terhadap standar atau regulasi
+    yang berlaku. Pengujian: Penyelenggaraan laboratorium untuk menguji produk atau
+    bahan tertentu, seperti makanan, bahan kimia, dan material industri. Sertifikasi:
+    Penyediaan sertifikasi untuk menunjukkan bahwa suatu produk, sistem, atau proses
+    memenuhi standar tertentu, seperti ISO, HACCP, atau sertifikasi produk halal.
+    Konsultasi: Memberikan layanan konsultasi untuk membantu perusahaan atau organisasi
+    dalam meningkatkan kualitas, efisiensi, dan kepatuhan. Pelatihan: Menyediakan
+    pelatihan untuk individu atau organisasi dalam berbagai bidang, termasuk manajemen
+    mutu, lingkungan, dan keselamatan kerja. Sebagai salah satu BUMN, Sucofindo juga
+    memainkan peran penting dalam mendukung kebijakan pemerintah, seperti pengawasan
+    impor-ekspor, sertifikasi produk dalam negeri, dan pengelolaan lingkungan. Perusahaan
+    ini memiliki jaringan luas dengan berbagai kantor cabang dan laboratorium di
+    seluruh Indonesia, sehingga dapat memberikan layanan yang cepat dan efektif kepada
+    pelanggan.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2b1978450d84e54ebffbb34bb661c6e, type: 2}
   m_sharedMaterial: {fileID: -8182650824263559565, guid: e2b1978450d84e54ebffbb34bb661c6e,
@@ -4246,18 +4267,18 @@ MonoBehaviour:
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
+  m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.15
+  m_fontSize: 24
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 26
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

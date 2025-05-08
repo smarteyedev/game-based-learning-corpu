@@ -15,11 +15,47 @@ MonoBehaviour:
   Datas:
     playerName: 
     gameStageProgress: 0
-    targetCompany: 
-    IVCAResult: 
+    targetCompany: PT Superintending Company of Indonesia
+    IVCAResult: '<b>Ini harusnya diisi sama result ivcanya, tapi karena belum bisa
+      digenerate jadi aku pake data dummy dulu ya</b> \n \n Sucofindo (PT Superintending
+      Company of Indonesia) adalah perusahaan inspeksi pertama di Indonesia yang
+      didirikan pada tanggal 22 Oktober 1956. Perusahaan ini memiliki kantor pusat
+      di Jakarta dan merupakan perusahaan milik negara (BUMN) yang bergerak di bidang
+      inspeksi, pengujian, sertifikasi, pelatihan, dan konsultasi. Awalnya, Sucofindo
+      didirikan untuk mendukung perdagangan domestik dan internasional melalui kegiatan
+      inspeksi dan pengawasan. Seiring waktu, Sucofindo memperluas layanan dan bidang
+      usahanya untuk mendukung berbagai sektor, termasuk industri, pertanian, kehutanan,
+      kelautan, pertambangan, energi, dan lingkungan. Beberapa layanan utama Sucofindo
+      meliputi: Inspeksi: Pemeriksaan dan pengawasan terhadap barang atau proses
+      tertentu untuk memastikan kualitas, kuantitas, dan kepatuhan terhadap standar
+      atau regulasi yang berlaku. Pengujian: Penyelenggaraan laboratorium untuk menguji
+      produk atau bahan tertentu, seperti makanan, bahan kimia, dan material industri.
+      Sertifikasi: Penyediaan sertifikasi untuk menunjukkan bahwa suatu produk, sistem,
+      atau proses memenuhi standar tertentu, seperti ISO, HACCP, atau sertifikasi
+      produk halal. Konsultasi: Memberikan layanan konsultasi untuk membantu perusahaan
+      atau organisasi dalam meningkatkan kualitas, efisiensi, dan kepatuhan. Pelatihan:
+      Menyediakan pelatihan untuk individu atau organisasi dalam berbagai bidang,
+      termasuk manajemen mutu, lingkungan, dan keselamatan kerja. Sebagai salah satu
+      BUMN, Sucofindo juga memainkan peran penting dalam mendukung kebijakan pemerintah,
+      seperti pengawasan impor-ekspor, sertifikasi produk dalam negeri, dan pengelolaan
+      lingkungan. Perusahaan ini memiliki jaringan luas dengan berbagai kantor cabang
+      dan laboratorium di seluruh Indonesia, sehingga dapat memberikan layanan yang
+      cepat dan efektif kepada pelanggan.'
     profilingScore: 0
     rapportScore: 0
     probingScore: 0
     solutionScore: 0
     closingScore: 0
-    journalDatas: []
+    journalDatas:
+    - gameStage: 2
+      content: Sebelum melangkah lebih jauh, belajar profil perusahaan bisa memberikan
+        wawasan yang diperlukan untuk pendekatan yang lebih baik.
+    - gameStage: 2
+      content: Langkah ini memberikan pemahaman lebih baik tentang perusahaan sebelum
+        melibatkan pihak yang berwenang.
+    - gameStage: 3
+      content: Pujian tentang pencapaian klien adalah teknik awal yang sangat baik
+        untuk membangun kepercayaan.
+    - gameStage: 3
+      content: Gunakan interaksi positif untuk memulai diskusi lebih dalam tentang
+        kebutuhan klien.

@@ -82,7 +82,11 @@ namespace Smarteye.MycoonController.taufiq
             if (panelContentDatas[_index].role != CharacterIdentity.CharacterRole.NONE
                 && panelContentDatas[_index].actionType != CharacterIdentity.Action.ActionType.NONE)
             {
-                mycoonImage.sprite = characterData.GetCharacter(panelContentDatas[_index].role, panelContentDatas[_index].actionType);
+                Sprite img = characterData.GetCharacter(panelContentDatas[_index].role, panelContentDatas[_index].actionType);
+                if (img != null && panelContentDatas[_index].role != CharacterIdentity.CharacterRole.PLAYER)
+                {
+                    mycoonImage.sprite = img;
+                }
             }
             else
             {

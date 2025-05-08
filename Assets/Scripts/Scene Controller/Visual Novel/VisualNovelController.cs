@@ -206,7 +206,7 @@ namespace Smarteye.VisualNovel.taufiq
                     decisionPanel.SetActive(false);
 
                     CharacterIdentity.Action.ActionType npcAction = m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT ?
-                                                                    CharacterIdentity.Action.ActionType.SAD : CharacterIdentity.Action.ActionType.HAPPY;
+                                                                    CharacterIdentity.Action.ActionType.CONFUSED : CharacterIdentity.Action.ActionType.HAPPY;
 
                     mycoonHandler.ShowMycoonInfo("", m_currentBlockScenario.agentAIHint, npcAction, () =>
                     {
@@ -520,12 +520,17 @@ namespace Smarteye.VisualNovel.taufiq
         {
             if (currentView is VisualNovelView.DIALOG)
             {
-                imgCharacterDialog.sprite = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.TALKING);
+                Sprite img = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.TALKING);
+                if (img != null && GetCurrentSpeaker(_speakerName) != CharacterIdentity.CharacterRole.PLAYER)
+                {
+                    imgCharacterDialog.sprite = img;
+                }
             }
 
             if (currentView is VisualNovelView.DECISION)
             {
-                imgCharacterDecision.sprite = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.TALKING);
+                Sprite img = characterData.GetCharacter(GetCurrentSpeaker(_speakerName), CharacterIdentity.Action.ActionType.CONFUSED);
+                imgCharacterDecision.sprite = img;
             }
         }
 
