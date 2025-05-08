@@ -7,7 +7,20 @@ using UnityEngine;
 // [CreateAssetMenu(menuName = "Player/Player Data")]
 public class PlayerData : ScriptableObject
 {
-    public FormatPlayerData Datas;
+    [SerializeField] private string _playerToken;
+    public string PlayerToken
+    {
+        get => _playerToken;
+        set
+        {
+            if (_playerToken != value)
+            {
+                _playerToken = value;
+            }
+        }
+    }
+
+    public PlayerDataRoot Datas;
 
     public void SaveIVCAResult(string _company, string _ivcaResult)
     {
@@ -46,7 +59,7 @@ public class PlayerData : ScriptableObject
 }
 
 [Serializable]
-public class FormatPlayerData
+public class PlayerDataRoot
 {
     public string playerName;
     public GameStage gameStageProgress;
