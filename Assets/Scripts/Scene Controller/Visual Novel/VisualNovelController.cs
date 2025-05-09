@@ -129,7 +129,7 @@ namespace Smarteye.VisualNovel.taufiq
 
             if (gameManager.currentGameStage == GameStage.PROSPECTINGANDPROFILING)
             {
-                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.PROLOG, SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
+                temp_BlockScenarioData = gameManager.scenarioLoader.GetScenesByStages(SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
             }
             else if (gameManager.currentGameStage == GameStage.OBJECTIONANDCLOSING)
             {

@@ -20,7 +20,12 @@ public class PlayerData : ScriptableObject
         }
     }
 
-    public PlayerDataRoot Datas;
+    [SerializeField] private PlayerDataRoot Datas;
+
+    public string GetPlayerName()
+    {
+        return Datas.playerName;
+    }
 
     public void SaveIVCAResult(string _company, string _ivcaResult)
     {

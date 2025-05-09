@@ -1,0 +1,557 @@
+{
+  "sceneScenarioDataRoots": [
+    {
+      "stage": "PROSPECTINGANDPROFILING",
+      "sceneIdentity": "scene_001",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Anda mulai mencari tahu siapa yang bisa dihubungi di Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Bagaimana saya bisa tahu siapa yang bisa saya hubungi di Sucofindo?"
+        },
+        {
+          "speakerName": "NARATOR",
+          "narationText": "Sucofindo adalah perusahaan besar dengan banyak divisi. Anda perlu menemukan orang yang relevan dengan kebutuhan Anda."
+        }
+      ],
+      "decisionData": {
+        "question": "Pilih metode pencarian Anda:",
+        "optionDatas": [
+          {
+            "optionText": "Cek LinkedIn Sucofindo dan cari Head of IT / Head of Digital Transformation.",
+            "score": 5,
+            "nextSceneIdentity": "scene_002"
+          },
+          {
+            "optionText": "Cari informasi organisasi Sucofindo di website resmi.",
+            "score": 3,
+            "nextSceneIdentity": "scene_003"
+          },
+          {
+            "optionText": "Tanya rekan yang pernah kerja di Sucofindo.",
+            "score": 5,
+            "nextSceneIdentity": "scene_004"
+          }
+        ]
+      },
+      "knowledgeGain": "Gunakan semua channel yang bisa membuka akses ke decision maker!",
+      "agentAIHint": "LinkedIn adalah platform yang sangat berguna untuk menemukan decision maker, terutama yang terlibat dalam digital transformation. Ini pilihan yang tepat untuk menemukan orang yang relevan."
+    },
+    {
+      "stage": "PROSPECTINGANDPROFILING",
+      "sceneIdentity": "scene_002",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Anda menemukan nama dan jabatan yang relevan melalui LinkedIn.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Saya menemukan Head of Digital Transformation di LinkedIn yang relevan."
+        },
+        {
+          "speakerName": "NARATOR",
+          "narationText": "Terima kasih atas koneksi Anda."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Nama Kontak: Bapak Arief Prasetyo; Jabatan: Head of Digital Transformation; Topik Minat: IoT dan Big Data untuk optimasi inspeksi dan sertifikasi.",
+      "agentAIHint": "Menemukan kontak yang tepat adalah langkah pertama yang sukses! Pastikan untuk memanfaatkan koneksi ini untuk menawarkan solusi yang relevan."
+    },
+    {
+      "stage": "PROSPECTINGANDPROFILING",
+      "sceneIdentity": "scene_003",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Anda menemukan struktur organisasi Sucofindo di website resmi.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Saya menemukan struktur organisasi Sucofindo di website resmi mereka."
+        },
+        {
+          "speakerName": "NARATOR",
+          "narationText": "Informasi ini bisa membantu Anda untuk menentukan siapa yang harus dihubungi."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Struktur organisasi Sucofindo menunjukkan beberapa divisi utama, termasuk IT dan Digital Transformation.",
+      "agentAIHint": "Website resmi adalah sumber informasi yang terpercaya. Pastikan untuk memanfaatkan data ini untuk langkah berikutnya."
+    },
+    {
+      "stage": "PROSPECTINGANDPROFILING",
+      "sceneIdentity": "scene_004",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Rekan Anda memberikan informasi tentang kontak yang relevan di Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Rekan saya memberikan informasi tentang kontak yang relevan di Sucofindo."
+        },
+        {
+          "speakerName": "NARATOR",
+          "narationText": "Informasi dari rekan Anda sangat berharga untuk langkah berikutnya."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Nama Kontak: Bapak Arief Prasetyo; Jabatan: Head of Digital Transformation; Topik Minat: IoT dan Big Data untuk optimasi inspeksi dan sertifikasi.",
+      "agentAIHint": "Memanfaatkan jaringan profesional Anda adalah langkah yang cerdas. Pastikan untuk menggunakan informasi ini dengan bijak."
+    },
+    {
+      "stage": "RAPPORT",
+      "sceneIdentity": "scene_005",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Anda memutuskan untuk menghubungi Bapak Arief Prasetyo untuk membangun hubungan awal.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Selamat pagi, Pak Arief. Saya ingin berbicara tentang peluang kerja sama terkait IoT dan Big Data untuk optimasi inspeksi dan sertifikasi."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Selamat pagi. Terima kasih telah menghubungi saya. Bisa Anda jelaskan lebih lanjut tentang tujuan Anda?"
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Tentu, Pak. Saya ingin memahami kebutuhan Sucofindo dan bagaimana kami bisa mendukung transformasi digital Anda."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Baik, saya tertarik mendengar lebih lanjut. Namun, saya perlu tahu apakah Anda sudah memahami tantangan utama kami."
+        }
+      ],
+      "decisionData": {
+        "question": "Bagaimana Anda merespons pertanyaan Pak Arief?",
+        "optionDatas": [
+          {
+            "optionText": "Saya sudah mempelajari beberapa tantangan utama Sucofindo, termasuk kebutuhan optimasi proses inspeksi dan sertifikasi.",
+            "score": 5,
+            "nextSceneIdentity": "scene_006"
+          },
+          {
+            "optionText": "Saya ingin mendengar langsung dari Anda tentang tantangan utama yang dihadapi Sucofindo.",
+            "score": 3,
+            "nextSceneIdentity": "scene_007"
+          },
+          {
+            "optionText": "Saya belum memiliki informasi lengkap, tetapi saya yakin kami bisa membantu.",
+            "score": 0,
+            "nextSceneIdentity": "scene_008"
+          }
+        ]
+      },
+      "knowledgeGain": "Membangun hubungan awal dengan klien adalah langkah penting untuk memahami kebutuhan mereka.",
+      "agentAIHint": "Menunjukkan bahwa Anda sudah mempelajari tantangan klien akan meningkatkan kredibilitas Anda. Namun, mendengar langsung dari klien juga bisa menjadi strategi yang baik."
+    },
+    {
+      "stage": "RAPPORT",
+      "sceneIdentity": "scene_006",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief merasa Anda sudah memahami tantangan utama Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya senang Anda sudah mempelajari tantangan kami. Ini menunjukkan keseriusan Anda."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Terima kasih, Pak. Saya ingin memastikan solusi kami relevan dengan kebutuhan Anda."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Memahami tantangan utama klien adalah kunci untuk membangun hubungan yang kuat.",
+      "agentAIHint": "Menunjukkan pemahaman awal tentang tantangan klien adalah langkah yang sangat baik untuk membangun kepercayaan."
+    },
+    {
+      "stage": "RAPPORT",
+      "sceneIdentity": "scene_007",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief menghargai pendekatan Anda yang ingin mendengar langsung tantangan dari pihaknya.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Baik, saya akan menjelaskan beberapa tantangan utama kami. Kami perlu optimasi proses inspeksi dan sertifikasi untuk meningkatkan efisiensi."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Terima kasih, Pak. Informasi ini sangat membantu untuk memahami kebutuhan Anda."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Mendengar langsung dari klien tentang tantangan mereka memberikan wawasan yang lebih mendalam.",
+      "agentAIHint": "Mendengar langsung dari klien adalah cara yang baik untuk menunjukkan empati dan membangun hubungan."
+    },
+    {
+      "stage": "RAPPORT",
+      "sceneIdentity": "scene_008",
+      "sceneProgress": "FAILRESULT",
+      "introductionStory": "Pak Arief merasa Anda belum cukup memahami tantangan utama Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya rasa Anda perlu mempelajari lebih lanjut tentang tantangan kami sebelum kita melanjutkan diskusi."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Baik, Pak. Saya akan mempelajari lebih lanjut dan kembali menghubungi Anda."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Kurangnya pemahaman awal tentang tantangan klien dapat menghambat proses membangun hubungan.",
+      "agentAIHint": "Memiliki informasi yang cukup sebelum berbicara dengan klien adalah hal yang penting untuk menunjukkan kredibilitas."
+    },
+    {
+      "stage": "PROBING",
+      "sceneIdentity": "scene_009",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Anda melanjutkan diskusi dengan Pak Arief untuk menggali lebih dalam tentang tantangan yang dihadapi Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Pak Arief, saya ingin memahami lebih dalam tentang tantangan yang Anda hadapi terkait optimasi proses inspeksi dan sertifikasi."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Baik, salah satu tantangan utama kami adalah bagaimana mengintegrasikan data dari berbagai divisi untuk mendapatkan analisis yang lebih akurat dan cepat."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Apakah ada kendala teknis atau operasional yang saat ini menjadi hambatan utama dalam proses tersebut?"
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Ya, kami menghadapi kendala dalam interoperabilitas sistem dan kurangnya pelatihan untuk staf kami dalam menggunakan teknologi baru."
+        }
+      ],
+      "decisionData": {
+        "question": "Bagaimana Anda merespons informasi yang diberikan oleh Pak Arief?",
+        "optionDatas": [
+          {
+            "optionText": "Saya akan menyarankan solusi berbasis IoT dan Big Data untuk mengatasi kendala interoperabilitas dan meningkatkan efisiensi.",
+            "score": 5,
+            "nextSceneIdentity": "scene_010"
+          },
+          {
+            "optionText": "Saya akan menawarkan pelatihan khusus untuk staf Sucofindo agar lebih siap menghadapi transformasi digital.",
+            "score": 3,
+            "nextSceneIdentity": "scene_011"
+          },
+          {
+            "optionText": "Saya akan meminta waktu untuk mempelajari lebih lanjut tentang kendala teknis yang dihadapi.",
+            "score": 0,
+            "nextSceneIdentity": "scene_012"
+          }
+        ]
+      },
+      "knowledgeGain": "Memahami kendala teknis dan operasional klien adalah langkah penting dalam proses probing.",
+      "agentAIHint": "Menawarkan solusi yang relevan dengan tantangan klien menunjukkan bahwa Anda memahami kebutuhan mereka. Namun, mendalami lebih lanjut juga bisa menjadi strategi yang baik."
+    },
+    {
+      "stage": "PROBING",
+      "sceneIdentity": "scene_010",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief merasa solusi berbasis IoT dan Big Data yang Anda tawarkan relevan dengan kebutuhan Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Solusi berbasis IoT dan Big Data terdengar sangat menarik. Saya ingin tahu lebih lanjut tentang bagaimana ini bisa diterapkan di Sucofindo."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami dapat membantu mengintegrasikan data dari berbagai divisi menggunakan teknologi IoT dan Big Data untuk menghasilkan analisis yang lebih akurat dan cepat."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menawarkan solusi yang relevan dengan tantangan klien adalah langkah penting dalam proses probing.",
+      "agentAIHint": "Menunjukkan pemahaman mendalam tentang kebutuhan klien akan meningkatkan kredibilitas Anda."
+    },
+    {
+      "stage": "PROBING",
+      "sceneIdentity": "scene_011",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief menghargai tawaran Anda untuk memberikan pelatihan kepada staf Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Pelatihan untuk staf kami adalah sesuatu yang sangat kami butuhkan. Ini akan membantu mereka lebih siap menghadapi transformasi digital."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami dapat menyediakan pelatihan yang dirancang khusus untuk kebutuhan Sucofindo, termasuk penggunaan teknologi IoT dan Big Data."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menawarkan pelatihan kepada klien menunjukkan empati terhadap kebutuhan mereka.",
+      "agentAIHint": "Menyediakan pelatihan adalah cara yang baik untuk membangun hubungan jangka panjang dengan klien."
+    },
+    {
+      "stage": "PROBING",
+      "sceneIdentity": "scene_012",
+      "sceneProgress": "FAILRESULT",
+      "introductionStory": "Pak Arief merasa Anda belum cukup siap untuk memberikan solusi yang relevan.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya rasa Anda perlu mempelajari lebih lanjut tentang kendala teknis kami sebelum memberikan solusi."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Baik, Pak. Saya akan mempelajari lebih lanjut dan kembali dengan solusi yang lebih spesifik."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Kurangnya persiapan dalam memahami kendala teknis klien dapat menghambat proses probing.",
+      "agentAIHint": "Memiliki informasi yang cukup sebelum menawarkan solusi adalah hal yang penting untuk menunjukkan kredibilitas."
+    },
+    {
+      "stage": "SOLUTION",
+      "sceneIdentity": "scene_013",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Anda mulai menjelaskan solusi berbasis IoT dan Big Data kepada Pak Arief untuk mengatasi tantangan interoperabilitas dan efisiensi.",
+      "dialogueData": [
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Pak Arief, solusi yang kami tawarkan adalah integrasi teknologi IoT dan Big Data untuk mengoptimalkan proses inspeksi dan sertifikasi."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Bagaimana teknologi ini dapat membantu kami mengatasi kendala interoperabilitas sistem?"
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Dengan IoT, kami dapat menghubungkan perangkat dan sistem yang berbeda, sementara Big Data memungkinkan analisis data secara real-time untuk mendukung pengambilan keputusan yang lebih cepat."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Itu terdengar menarik. Apakah ada contoh implementasi yang serupa di industri lain?"
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Ya, kami telah membantu beberapa perusahaan di sektor energi dan pertambangan dengan solusi serupa, yang meningkatkan efisiensi operasional mereka hingga 30%."
+        }
+      ],
+      "decisionData": {
+        "question": "Bagaimana Anda ingin melanjutkan diskusi ini?",
+        "optionDatas": [
+          {
+            "optionText": "Menawarkan demo teknologi IoT dan Big Data untuk menunjukkan manfaatnya secara langsung.",
+            "score": 5,
+            "nextSceneIdentity": "scene_014"
+          },
+          {
+            "optionText": "Mengusulkan pertemuan lanjutan untuk membahas implementasi lebih detail.",
+            "score": 3,
+            "nextSceneIdentity": "scene_015"
+          },
+          {
+            "optionText": "Meminta waktu untuk mempersiapkan dokumen proposal lengkap.",
+            "score": 0,
+            "nextSceneIdentity": "scene_016"
+          }
+        ]
+      },
+      "knowledgeGain": "Menawarkan solusi yang relevan dengan tantangan klien adalah langkah penting dalam proses solusi.",
+      "agentAIHint": "Menunjukkan manfaat langsung melalui demo atau diskusi mendalam dapat meningkatkan kepercayaan klien."
+    },
+    {
+      "stage": "SOLUTION",
+      "sceneIdentity": "scene_014",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief sangat tertarik dengan demo teknologi IoT dan Big Data yang Anda tawarkan.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Demo ini sangat membantu saya memahami bagaimana teknologi ini dapat diterapkan di Sucofindo."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami senang demo ini memberikan gambaran yang jelas. Kami siap membantu implementasi teknologi ini di Sucofindo."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menawarkan demo teknologi menunjukkan komitmen Anda untuk memberikan solusi yang relevan.",
+      "agentAIHint": "Memberikan demo adalah cara efektif untuk membangun kepercayaan dan menunjukkan manfaat solusi Anda."
+    },
+    {
+      "stage": "SOLUTION",
+      "sceneIdentity": "scene_015",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief setuju untuk mengadakan pertemuan lanjutan untuk membahas implementasi solusi secara lebih mendalam.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Pertemuan lanjutan akan membantu kami memahami detail implementasi teknologi ini."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Baik, kami akan mempersiapkan materi yang lebih lengkap untuk pertemuan tersebut."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Mengusulkan pertemuan lanjutan menunjukkan keseriusan Anda dalam membantu klien.",
+      "agentAIHint": "Pertemuan lanjutan adalah langkah yang baik untuk memastikan solusi Anda sesuai dengan kebutuhan klien."
+    },
+    {
+      "stage": "SOLUTION",
+      "sceneIdentity": "scene_016",
+      "sceneProgress": "FAILRESULT",
+      "introductionStory": "Pak Arief merasa Anda belum cukup siap untuk memberikan solusi yang konkret.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya rasa kami membutuhkan solusi yang lebih konkret daripada sekadar dokumen proposal."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Baik, Pak. Saya akan mempersiapkan solusi yang lebih spesifik untuk diskusi berikutnya."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Kurangnya persiapan dapat menghambat proses solusi.",
+      "agentAIHint": "Memiliki solusi konkret sebelum diskusi adalah hal yang penting untuk menunjukkan kredibilitas."
+    },
+    {
+      "stage": "OBJECTIONANDCLOSING",
+      "sceneIdentity": "scene_017",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Pak Arief mulai mengajukan beberapa keberatan terkait implementasi teknologi IoT dan Big Data di Sucofindo.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya khawatir implementasi teknologi ini akan memerlukan biaya yang sangat besar. Bagaimana kami bisa memastikan ROI yang memadai?"
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami memahami kekhawatiran Anda, Pak Arief. Berdasarkan pengalaman kami, efisiensi operasional yang dihasilkan dapat mengurangi biaya hingga 30%, yang secara langsung meningkatkan ROI."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Selain itu, apakah tim kami akan membutuhkan pelatihan khusus untuk menggunakan teknologi ini?"
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Betul, kami juga menyediakan pelatihan khusus untuk memastikan tim Anda dapat memanfaatkan teknologi ini secara maksimal."
+        }
+      ],
+      "decisionData": {
+        "question": "Bagaimana Anda ingin menangani keberatan ini?",
+        "optionDatas": [
+          {
+            "optionText": "Menawarkan studi kasus dari klien lain untuk menunjukkan keberhasilan implementasi.",
+            "score": 5,
+            "nextSceneIdentity": "scene_018"
+          },
+          {
+            "optionText": "Menawarkan diskon awal untuk mengurangi kekhawatiran biaya.",
+            "score": 3,
+            "nextSceneIdentity": "scene_019"
+          },
+          {
+            "optionText": "Menghindari diskusi tentang biaya dan fokus pada manfaat teknologi.",
+            "score": 0,
+            "nextSceneIdentity": "scene_020"
+          }
+        ]
+      },
+      "knowledgeGain": "Menangani keberatan klien dengan data konkret atau solusi yang relevan dapat meningkatkan kepercayaan mereka.",
+      "agentAIHint": "Menunjukkan bukti keberhasilan atau memberikan insentif dapat membantu mengatasi keberatan klien."
+    },
+    {
+      "stage": "OBJECTIONANDCLOSING",
+      "sceneIdentity": "scene_018",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief merasa lebih yakin setelah Anda menunjukkan studi kasus dari klien lain yang berhasil mengimplementasikan teknologi serupa.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Studi kasus ini sangat membantu saya memahami potensi teknologi ini di Sucofindo."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami senang studi kasus ini memberikan gambaran yang jelas. Kami siap mendukung implementasi teknologi ini di Sucofindo."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menawarkan studi kasus menunjukkan kredibilitas dan pengalaman Anda dalam memberikan solusi.",
+      "agentAIHint": "Studi kasus adalah alat yang kuat untuk membangun kepercayaan dan mengatasi keberatan klien."
+    },
+    {
+      "stage": "OBJECTIONANDCLOSING",
+      "sceneIdentity": "scene_019",
+      "sceneProgress": "SUCCESSRESULT",
+      "introductionStory": "Pak Arief merasa lebih nyaman dengan tawaran diskon awal yang Anda berikan.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Diskon ini membantu kami mempertimbangkan implementasi teknologi ini dengan lebih serius."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami senang tawaran ini dapat membantu. Kami yakin teknologi ini akan memberikan manfaat besar bagi Sucofindo."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menawarkan insentif awal dapat membantu mengatasi keberatan terkait biaya.",
+      "agentAIHint": "Diskon awal adalah strategi yang baik untuk mengurangi kekhawatiran klien terkait biaya."
+    },
+    {
+      "stage": "OBJECTIONANDCLOSING",
+      "sceneIdentity": "scene_020",
+      "sceneProgress": "FAILRESULT",
+      "introductionStory": "Pak Arief merasa Anda menghindari diskusi tentang biaya, sehingga kepercayaan terhadap solusi Anda menurun.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya rasa kami perlu diskusi lebih lanjut tentang biaya sebelum melanjutkan."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Baik, Pak. Kami akan mempersiapkan rincian biaya untuk diskusi berikutnya."
+        }
+      ],
+      "decisionData": null,
+      "knowledgeGain": "Menghindari diskusi tentang keberatan klien dapat menghambat proses closing.",
+      "agentAIHint": "Menghadapi keberatan klien secara langsung adalah langkah penting untuk membangun kepercayaan."
+    },
+    {
+      "stage": "OBJECTIONANDCLOSING",
+      "sceneIdentity": "scene_021",
+      "sceneProgress": "DIALOGUE",
+      "introductionStory": "Pak Arief mulai mempertimbangkan untuk membuat keputusan akhir terkait implementasi teknologi IoT dan Big Data.",
+      "dialogueData": [
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Saya melihat potensi teknologi ini, tetapi saya ingin memastikan bahwa implementasi ini tidak mengganggu operasional kami yang sedang berjalan."
+        },
+        {
+          "speakerName": "PLAYER",
+          "narationText": "Kami memahami kekhawatiran Anda, Pak Arief. Kami akan memastikan implementasi dilakukan secara bertahap untuk meminimalkan gangguan operasional."
+        },
+        {
+          "speakerName": "CLIENT",
+          "narationText": "Baiklah, saya rasa kami bisa mempertimbangkan untuk melanjutkan."
+        }
+      ],
+      "decisionData": {
+        "question": "Bagaimana Anda ingin menutup diskusi ini?",
+        "optionDatas": [
+          {
+            "optionText": "Menawarkan kontrak awal dengan fleksibilitas implementasi bertahap.",
+            "score": 5,
+            "nextSceneIdentity": "scene_022"
+          },
+          {
+            "optionText": "Mengusulkan pertemuan dengan tim operasional untuk membahas implementasi lebih detail.",
+            "score": 3,
+            "nextSceneIdentity": "scene_023"
+          },
+          {
+            "optionText": "Meminta waktu untuk mempersiapkan rencana implementasi lengkap.",
+            "score": 0,
+            "nextSceneIdentity": "scene_024"
+          }
+        ]
+      },
+      "knowledgeGain": "Menutup diskusi dengan solusi yang fleksibel dapat meningkatkan peluang closing.",
+      "agentAIHint": "Menawarkan fleksibilitas atau melibatkan tim operasional dapat membantu mempercepat keputusan klien."
+    }
+  ]
+}
