@@ -78,6 +78,11 @@ namespace Smarteye.VisualNovel.taufiq
         private Coroutine m_myCoroutine = null;
         private Sequence m_sequence;
 
+        [Header("Scoring System")]
+        [Space(2f)]
+        [SerializeField] private int passingGrage;
+        private int m_currentVNScore = 0;
+
         [Header("Component References for Visual Novel")]
         [Space(5f)]
         [SerializeField] private CharacterData characterData;
@@ -98,7 +103,8 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogText;
-        [SerializeField] private Button buttonNext;
+        [SerializeField] private GameObject nextInstruction;
+        private bool m_isCanNextVisualNovel = false;
         [SerializeField] private Image imgCharacterDialog;
 
         //? Decision references
@@ -121,11 +127,17 @@ namespace Smarteye.VisualNovel.taufiq
         [Space(10f)]
         [SerializeField] private TimeManager timeManager;
 
+        //? Scoring references
+        [Space(10f)]
+        [SerializeField] private GameObject panelScore;
+        [SerializeField] private TextMeshProUGUI textScore;
+
         protected override void Init()
         {
             //? DisplayBlock(block1); -> this is old-system-visual-novel
             currentView = VisualNovelView.NONE;
             MainUIActive(false);
+            m_currentVNScore = 0;
 
             if (gameManager.currentGameStage == GameStage.PROSPECTINGANDPROFILING)
             {
@@ -149,7 +161,8 @@ namespace Smarteye.VisualNovel.taufiq
             }
 
             m_currentBlockScenario = temp_BlockScenarioData[0];
-            buttonNext.onClick.AddListener(OnClickNext);
+            m_isCanNextVisualNovel = false;
+            nextInstruction.SetActive(false);
 
             if (isForDebugging)
             {
@@ -170,6 +183,12 @@ namespace Smarteye.VisualNovel.taufiq
                 SpeedupRunningText();
                 // Debug.Log("Mouse kiri ditekan");
             }
+            else if (Input.GetMouseButtonDown(0) && m_VNState == State.COMPLETED && m_isCanNextVisualNovel)
+            {
+                OnClickNext();
+                m_isCanNextVisualNovel = false;
+            }
+
             else if (Input.GetMouseButtonDown(0) && currentView == VisualNovelView.INTRO)
             {
                 OnClickCloseIntroStory();
@@ -312,6 +331,7 @@ namespace Smarteye.VisualNovel.taufiq
             dialogPanel.SetActive(true);
             decisionPanel.SetActive(false);
             MainUIActive(true);
+            m_isCanNextVisualNovel = false;
 
             UpdateDialog(m_currentBlockScenario);
         }
@@ -320,9 +340,11 @@ namespace Smarteye.VisualNovel.taufiq
         {
             if (m_VNState == State.PLAYING && m_myCoroutine != null) return;
 
-            buttonNext.gameObject.SetActive(false);
+            nextInstruction.gameObject.SetActive(false);
             List<SceneScenarioDataRoot.DialogueRoot> narations = _blockScenario.dialogueData;
-            speakerNameText.text = $"- {narations[m_dialogIndex].speakerName} -";
+
+            string _speakerName = narations[m_dialogIndex].speakerName == SceneScenarioDataRoot.SpeakerRoot.PLAYER ? $"{gameManager.playerData.GetPlayerName()}" : $"{narations[m_dialogIndex].speakerName}";
+            speakerNameText.text = $"- {_speakerName} -";
             m_myCoroutine = StartCoroutine(RunningText(narations[m_dialogIndex].narationText, dialogText));
 
             UpdateCharacterSprite(narations[m_dialogIndex].speakerName.ToString());
@@ -378,7 +400,8 @@ namespace Smarteye.VisualNovel.taufiq
                     }
 
                     m_VNState = State.COMPLETED;
-                    buttonNext.gameObject.SetActive(true);
+                    nextInstruction.SetActive(true);
+                    m_isCanNextVisualNovel = true;
                     m_myCoroutine = null;
                     break;
                 }
@@ -424,11 +447,14 @@ namespace Smarteye.VisualNovel.taufiq
                     buttonOptions[b].SetOptionText(dec.optionDatas[b].optionText);
                     string nextIdentity = dec.optionDatas[b].nextSceneIdentity;
                     MultipleButtonInteractive btnSelected = buttonOptions[b];
+                    int optionScore = dec.optionDatas[b].score;
                     buttonOptions[b].OnMouseDown.AddListener(() =>
                     {
                         AnimationSelectButtonOption(btnSelected, () => OnClickChangeBlock(nextIdentity));
-
+                        m_currentVNScore += optionScore;
                         btnOpenJurnal.SetActive(false);
+
+                        Debug.Log($"Score was added about {optionScore} | current Score is {m_currentVNScore}");
                     });
                 }
                 else
@@ -477,15 +503,25 @@ namespace Smarteye.VisualNovel.taufiq
             MainUIActive(false);
             decisionPanel.SetActive(false);
 
+            if (m_currentVNScore < passingGrage)
+            {
+                panelFail.SetActive(true);
+
+                return;
+            }
+            else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
+            {
+                panelFail.SetActive(true);
+
+                return;
+            }
+
             if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
             {
                 panelSuccess.SetActive(true);
 
                 journalController.SaveCurrentJurnalNote();
-            }
-            else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)
-            {
-                panelFail.SetActive(true);
+                gameManager.playerData.UpdatePlayerScore(gameManager.currentGameStage, m_currentVNScore);
             }
             else
             {
@@ -585,6 +621,15 @@ namespace Smarteye.VisualNovel.taufiq
             }
         }
 
+        #endregion
+
+        #region Scoring System
+
+        public void OpenPanelScore()
+        {
+            panelScore.SetActive(true);
+            textScore.text = m_currentVNScore.ToString();
+        }
         #endregion
 
         #region   Old-System-Visual-Novel

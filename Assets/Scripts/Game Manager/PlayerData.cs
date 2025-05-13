@@ -61,6 +61,30 @@ public class PlayerData : ScriptableObject
     {
         return Datas.journalDatas;
     }
+
+    public void UpdatePlayerScore(GameStage _stage, int _newScore)
+    {
+        switch (_stage)
+        {
+            case GameStage.None:
+                break;
+            case GameStage.PROSPECTINGANDPROFILING:
+                Datas.profilingScore = _newScore;
+                break;
+            case GameStage.RAPPORT:
+                Datas.rapportScore = _newScore;
+                break;
+            case GameStage.PROBING:
+                Datas.probingScore = _newScore;
+                break;
+            case GameStage.SOLUTION:
+                Datas.solutionScore = _newScore;
+                break;
+            case GameStage.OBJECTIONANDCLOSING:
+                Datas.closingScore = _newScore;
+                break;
+        }
+    }
 }
 
 [Serializable]
@@ -75,6 +99,7 @@ public class PlayerDataRoot
     public int probingScore = 0;
     public int solutionScore = 0;
     public int closingScore = 0;
+    public int totalScore = 0;
 
     public List<JournalNote> journalDatas;
 }

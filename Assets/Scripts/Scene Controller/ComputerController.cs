@@ -1,16 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Smarteye.Manager.taufiq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace Smarteye.SceneController.taufiq
 {
+
+    using Smarteye.AnimationHelper;
+
     public class ComputerController : SceneControllerAbstract
     {
         [Header("Generate IVCA Panel")]
+        [SerializeField] private GameObject introIVCAPanel;
         [SerializeField] private GameObject generateIVCAPanel;
         [SerializeField] private GameObject rowInputIVCA;
         [SerializeField] private GameObject rowOutputIVCA;
@@ -65,10 +69,8 @@ namespace Smarteye.SceneController.taufiq
 
             if (isForDebugging) return;
 
-            if (gameManager.currentGameStage == GameStage.IVCA)
-            {
-                mycoonHandler.ShowMycoonInfo(GameStage.IVCA);
-            }
+            introIVCAPanel.SetActive(true);
+            AnimationHelper.FadeInCanvasGroup(introIVCAPanel.GetComponent<CanvasGroup>(), 1.5f);
         }
 
         public void OpenPanelRowInput()
