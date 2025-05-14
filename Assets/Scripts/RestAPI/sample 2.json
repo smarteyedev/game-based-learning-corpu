@@ -20,17 +20,17 @@
         "optionDatas": [
           {
             "optionText": "Cek LinkedIn Sucofindo dan cari Head of IT / Head of Digital Transformation.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_002"
           },
           {
             "optionText": "Cari informasi organisasi Sucofindo di website resmi.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_003"
           },
           {
             "optionText": "Tanya rekan yang pernah kerja di Sucofindo.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_004"
           }
         ]
@@ -123,12 +123,12 @@
         "optionDatas": [
           {
             "optionText": "Saya sudah mempelajari beberapa tantangan utama Sucofindo, termasuk kebutuhan optimasi proses inspeksi dan sertifikasi.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_006"
           },
           {
             "optionText": "Saya ingin mendengar langsung dari Anda tentang tantangan utama yang dihadapi Sucofindo.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_007"
           },
           {
@@ -226,12 +226,12 @@
         "optionDatas": [
           {
             "optionText": "Saya akan menyarankan solusi berbasis IoT dan Big Data untuk mengatasi kendala interoperabilitas dan meningkatkan efisiensi.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_010"
           },
           {
             "optionText": "Saya akan menawarkan pelatihan khusus untuk staf Sucofindo agar lebih siap menghadapi transformasi digital.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_011"
           },
           {
@@ -333,12 +333,12 @@
         "optionDatas": [
           {
             "optionText": "Menawarkan demo teknologi IoT dan Big Data untuk menunjukkan manfaatnya secara langsung.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_014"
           },
           {
             "optionText": "Mengusulkan pertemuan lanjutan untuk membahas implementasi lebih detail.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_015"
           },
           {
@@ -436,12 +436,12 @@
         "optionDatas": [
           {
             "optionText": "Menawarkan studi kasus dari klien lain untuk menunjukkan keberhasilan implementasi.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_018"
           },
           {
             "optionText": "Menawarkan diskon awal untuk mengurangi kekhawatiran biaya.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_019"
           },
           {
@@ -535,12 +535,12 @@
         "optionDatas": [
           {
             "optionText": "Menawarkan kontrak awal dengan fleksibilitas implementasi bertahap.",
-            "score": 5,
+            "score": 10,
             "nextSceneIdentity": "scene_022"
           },
           {
             "optionText": "Mengusulkan pertemuan dengan tim operasional untuk membahas implementasi lebih detail.",
-            "score": 3,
+            "score": 5,
             "nextSceneIdentity": "scene_023"
           },
           {

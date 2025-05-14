@@ -240,27 +240,27 @@ namespace Smarteye.SceneController.taufiq
 
             if (goldCount == 5)
             {
-                SetActiveSprites(0, playerTitles.Length - 1); // Consultative Master
+                SetActiveSprites(0, playerTitles.Length - 1); //? Consultative Master
             }
-            else if (goldCount == 4)
+            else if (goldCount == 3 || goldCount == 4)
             {
-                SetActiveSprites(1, 3); // Strategic Challenger
+                SetActiveSprites(1, 3); //? Strategic Challenger
             }
             else if (goldCount > 0)
             {
-                SetActiveSprites(2, 3); // Engaged Collaborator
+                SetActiveSprites(2, 3); //? Engaged Collaborator
             }
             else if (silverCount >= 3)
             {
-                SetActiveSprites(2, 3); // Engaged Collaborator
+                SetActiveSprites(2, 3); //? Engaged Collaborator
             }
-            else if (bronzeCount < 3)
+            else if (bronzeCount >= 3)
             {
-                SetActiveSprites(3, 3); // Learning Advocate
+                SetActiveSprites(3, 3); //? Learning Advocate
             }
             else
             {
-                SetActiveSprites(3, 3); // Learning Advocate
+                SetActiveSprites(3, 3); //? Learning Advocate
             }
         }
 

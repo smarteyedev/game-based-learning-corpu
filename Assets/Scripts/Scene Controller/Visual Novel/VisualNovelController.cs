@@ -129,8 +129,7 @@ namespace Smarteye.VisualNovel.taufiq
 
         //? Scoring references
         [Space(10f)]
-        [SerializeField] private GameObject panelScore;
-        [SerializeField] private TextMeshProUGUI textScore;
+        [SerializeField] private BadgeAnimationManager badgeAnimationManager;
 
         protected override void Init()
         {
@@ -626,10 +625,9 @@ namespace Smarteye.VisualNovel.taufiq
 
         #region Scoring System
 
-        public void OpenPanelScore()
+        public void OnClickOpenPanelScore()
         {
-            panelScore.SetActive(true);
-            textScore.text = m_currentVNScore.ToString();
+            badgeAnimationManager.ShowBadge(m_currentVNScore);
         }
         #endregion
 

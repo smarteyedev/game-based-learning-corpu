@@ -1952,6 +1952,7 @@ RectTransform:
   - {fileID: 1060633603}
   - {fileID: 1356083732}
   - {fileID: 407498741}
+  - {fileID: 1628601027}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2313,8 +2314,7 @@ MonoBehaviour:
   journalController: {fileID: 707563686}
   btnOpenJurnal: {fileID: 31099599}
   timeManager: {fileID: 1211905127}
-  panelScore: {fileID: 407498740}
-  textScore: {fileID: 419500627}
+  badgeAnimationManager: {fileID: 1628601028}
 --- !u!114 &767378275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4647,7 +4647,7 @@ MonoBehaviour:
       - m_Target: {fileID: 767378274}
         m_TargetAssemblyTypeName: Smarteye.VisualNovel.taufiq.VisualNovelController,
           Assembly-CSharp
-        m_MethodName: OpenPanelScore
+        m_MethodName: OnClickOpenPanelScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6147,6 +6147,252 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1001 &1628601026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 584176967}
+    m_Modifications:
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1316607805}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 767378274}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnclickBackToStageMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Smarteye.VisualNovel.taufiq.VisualNovelController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907719201090473203, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406890626527971022, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520012123984258146, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4281512245911182452, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026907901089987266, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097794975406117511, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Name
+      value: '#BadgeAnimationManager'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994868511795801819, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824756232160568, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1316607805}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 767378274}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnclickBackToStageMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Smarteye.VisualNovel.taufiq.VisualNovelController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995845086675374529, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1316607805}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 767378274}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnclickBackToStageMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Smarteye.VisualNovel.taufiq.VisualNovelController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972033917865687777, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211450637863459469, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580186964416636495, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_Name
+      value: BadgeAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.441746
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 26.56545
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.738317
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e630b77dab65ee64b8406a3440f92460, type: 3}
+--- !u!4 &1628601027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9193490019897976096, guid: e630b77dab65ee64b8406a3440f92460,
+    type: 3}
+  m_PrefabInstance: {fileID: 1628601026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1628601028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1849509531292328134, guid: e630b77dab65ee64b8406a3440f92460,
+    type: 3}
+  m_PrefabInstance: {fileID: 1628601026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef20269b6e36242b1cb2a035091fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632757792
 GameObject:
   m_ObjectHideFlags: 0
