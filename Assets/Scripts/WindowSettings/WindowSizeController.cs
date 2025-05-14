@@ -71,10 +71,10 @@ public class WindowSizeController : MonoBehaviour
         if (toggleFullscreenButton != null && toggleFullscreenButton.image != null && imageTypes != null)
         {
             toggleFullscreenButton.interactable = false;
-            /* DOTween.(toggleFullscreenButton.image.rectTransform, 0f, fadeDuration).setOnComplete(() =>
+            toggleFullscreenButton.GetComponent<CanvasGroup>().DOFade(0f, fadeDuration).OnComplete(() =>
             {
-            }); */
-            UpdateButtonImage();
+                UpdateButtonImage();
+            });
         }
     }
 
@@ -101,9 +101,10 @@ public class WindowSizeController : MonoBehaviour
                 }
             }
 
-            /* LeanTween.alpha(toggleFullscreenButton.image.rectTransform, 1f, fadeDuration).setOnComplete(() =>
-            {  }); */
-            toggleFullscreenButton.interactable = true;
+            toggleFullscreenButton.GetComponent<CanvasGroup>().DOFade(1f, fadeDuration).OnComplete(() =>
+            {
+                toggleFullscreenButton.interactable = true;
+            });
         }
     }
 
