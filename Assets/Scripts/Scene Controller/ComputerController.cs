@@ -101,6 +101,10 @@ namespace Smarteye.SceneController.taufiq
 
             outputTitle.text = outputIVCAData.companyName;
             outputSummary.text = outputIVCAData.summary;
+
+            gameManager.currentGameStage = (GameStage)gameManager.currentGameStage + 1;
+            gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
+            gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
         }
 
         public void OnClickOpenIVCAResult(bool _isActive)
@@ -112,8 +116,6 @@ namespace Smarteye.SceneController.taufiq
 
                 resultTitleText.text = outputIVCAData.companyName;
                 resultText.text = outputIVCAData.IVCAResult;
-
-                gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
 
                 //? m_currentIndex = 0;
                 //? UpdateCarousel();

@@ -85,6 +85,21 @@ public class PlayerData : ScriptableObject
                 break;
         }
     }
+
+    public int GetTotalScore()
+    {
+        return Datas.profilingScore + Datas.rapportScore + Datas.probingScore + Datas.solutionScore + Datas.closingScore;
+    }
+
+    public GameStage GetPlayerGameStageProgress()
+    {
+        return Datas.gameStageProgress;
+    }
+
+    public void SetPlayerGameStageProgress(GameStage _newProgress)
+    {
+        Datas.gameStageProgress = _newProgress;
+    }
 }
 
 [Serializable]
@@ -99,7 +114,6 @@ public class PlayerDataRoot
     public int probingScore = 0;
     public int solutionScore = 0;
     public int closingScore = 0;
-    public int totalScore = 0;
 
     public List<JournalNote> journalDatas;
 }

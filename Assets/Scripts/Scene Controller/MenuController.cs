@@ -23,6 +23,23 @@ namespace Smarteye.SceneController.taufiq
             m_panelIndex = 0;
         }
 
+        public void OnClickPlayNow()
+        {
+            if (gameManager.playerData.GetPlayerGameStageProgress() > GameStage.None)
+            {
+                gameManager.currentGameStage = gameManager.playerData.GetPlayerGameStageProgress();
+                HasFinishedOpening();
+                return;
+            }
+            else
+            {
+                gameManager.currentGameStage = (GameStage)1;
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
+
+                UpdateOpeningPanel();
+            }
+        }
+
         public void UpdateOpeningPanel()
         {
             foreach (var item in panelWelcoming)
@@ -61,7 +78,6 @@ namespace Smarteye.SceneController.taufiq
             // mycoonHandler.ShowMycoonInfo(GameStage.None, () => { });
 
             ChangeSceneTo(2);
-            gameManager.currentGameStage = (GameStage)1;
 
             OnWelcomingComplate?.Invoke();
         }

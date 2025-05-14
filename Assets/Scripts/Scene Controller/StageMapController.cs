@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Smarteye.Manager.taufiq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Smarteye.SceneController.taufiq
 {
@@ -11,7 +12,13 @@ namespace Smarteye.SceneController.taufiq
         private int m_stageNumber = 0;
 
         [Header("Component References")]
-        public List<ButtonStageHandler> _itemStageBtns;
+        [SerializeField] private GameObject btnStageParent;
+        [SerializeField] private List<ButtonStageHandler> _itemStageBtns;
+
+        [Header("Scoring System")]
+        [SerializeField] private GameObject panelScoring;
+        [SerializeField] private TextMeshProUGUI textScore;
+        [SerializeField] private Image[] badges;
 
         protected override void StartOnDebugging()
         {
@@ -52,7 +59,12 @@ namespace Smarteye.SceneController.taufiq
                 {
                     _itemStageBtns[i].SetupBtnChangeScene(false);
                 }
+            }
 
+            if (m_stageNumber == 7)
+            {
+                Debug.Log($"Current stage number: {m_stageNumber} | Game is finish and open popup score title");
+                OpenScoringPanel();
             }
         }
 
@@ -74,5 +86,31 @@ namespace Smarteye.SceneController.taufiq
                 }
             }
         }
+
+
+        #region Score-Title
+
+        private void OpenScoringPanel()
+        {
+            OnScoringPanelView(true);
+
+            textScore.text = $"{gameManager.playerData.GetTotalScore()} / 100";
+        }
+
+        public void OnScoringPanelView(bool _isActive)
+        {
+            if (_isActive)
+            {
+                panelScoring.SetActive(true);
+                btnStageParent.SetActive(false);
+            }
+            else
+            {
+                panelScoring.SetActive(false);
+                btnStageParent.SetActive(true);
+            }
+        }
+
+        #endregion 
     }
 }

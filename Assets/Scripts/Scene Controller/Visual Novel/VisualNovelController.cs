@@ -522,6 +522,7 @@ namespace Smarteye.VisualNovel.taufiq
 
                 journalController.SaveCurrentJurnalNote();
                 gameManager.playerData.UpdatePlayerScore(gameManager.currentGameStage, m_currentVNScore);
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
             }
             else
             {

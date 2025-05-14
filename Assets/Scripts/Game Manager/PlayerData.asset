@@ -23,5 +23,4 @@ MonoBehaviour:
     probingScore: 0
     solutionScore: 0
     closingScore: 0
-    totalScore: 0
     journalDatas: []

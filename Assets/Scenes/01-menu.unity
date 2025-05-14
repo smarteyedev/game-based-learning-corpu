@@ -2707,7 +2707,7 @@ MonoBehaviour:
       - m_Target: {fileID: 767378274}
         m_TargetAssemblyTypeName: Smarteye.SceneController.taufiq.MenuController,
           Assembly-CSharp
-        m_MethodName: UpdateOpeningPanel
+        m_MethodName: OnClickPlayNow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
