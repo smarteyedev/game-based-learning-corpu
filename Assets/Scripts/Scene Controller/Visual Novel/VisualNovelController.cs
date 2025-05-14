@@ -522,7 +522,6 @@ namespace Smarteye.VisualNovel.taufiq
 
                 journalController.SaveCurrentJurnalNote();
                 gameManager.playerData.UpdatePlayerScore(gameManager.currentGameStage, m_currentVNScore);
-                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
             }
             else
             {
@@ -542,6 +541,7 @@ namespace Smarteye.VisualNovel.taufiq
                 int currentStgIndex = (int)gameManager.currentGameStage;
                 // Debug.Log($"currentStage number: {currentStgIndex}");
                 gameManager.currentGameStage = (GameStage)currentStgIndex + 1;
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
                 ChangeSceneTo(2);
             }
             else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)

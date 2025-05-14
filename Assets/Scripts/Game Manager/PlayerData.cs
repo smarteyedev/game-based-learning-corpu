@@ -91,6 +91,21 @@ public class PlayerData : ScriptableObject
         return Datas.profilingScore + Datas.rapportScore + Datas.probingScore + Datas.solutionScore + Datas.closingScore;
     }
 
+    public int GetScoreByGameStage(GameStage _stage)
+    {
+        int result = _stage switch
+        {
+            GameStage.PROSPECTINGANDPROFILING => Datas.profilingScore,
+            GameStage.RAPPORT => Datas.rapportScore,
+            GameStage.PROBING => Datas.probingScore,
+            GameStage.SOLUTION => Datas.solutionScore,
+            GameStage.OBJECTIONANDCLOSING => Datas.closingScore,
+            _ => 0
+        };
+
+        return result;
+    }
+
     public GameStage GetPlayerGameStageProgress()
     {
         return Datas.gameStageProgress;

@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1524,12 +1524,12 @@ GameObject:
   - component: {fileID: 254929235}
   - component: {fileID: 254929234}
   m_Layer: 5
-  m_Name: Button-Next
+  m_Name: Button-Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &254929233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1593,20 +1593,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 254929235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1529041185}
-        m_TargetAssemblyTypeName: Smarteye.SceneController.taufiq.StageMapController,
-          Assembly-CSharp
-        m_MethodName: OnScoringPanelView
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &254929235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,7 +1607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3619,6 +3606,58 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 544814681}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &572017765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572017766}
+  - component: {fileID: 572017767}
+  m_Layer: 5
+  m_Name: Content-Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &572017766
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572017765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1863805660}
+  - {fileID: 1174573800}
+  - {fileID: 749559624}
+  - {fileID: 1103463136}
+  m_Father: {fileID: 1114736880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 560, y: 123.15611}
+  m_SizeDelta: {x: 800, y: 549.68774}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &572017767
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572017765}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &577219834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,7 +3708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4941,7 +4980,7 @@ GameObject:
   - component: {fileID: 749559624}
   - component: {fileID: 749559625}
   m_Layer: 5
-  m_Name: Badges
+  m_Name: Image Badges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4954,7 +4993,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749559623}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4964,11 +5003,11 @@ RectTransform:
   - {fileID: 103143597}
   - {fileID: 2145268563}
   - {fileID: 1808056208}
-  m_Father: {fileID: 1114736880}
+  m_Father: {fileID: 572017766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 393.75, y: 95.53314}
+  m_AnchoredPosition: {x: 233.75, y: -27.622986}
   m_SizeDelta: {x: 467.5, y: 91.9337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749559625
@@ -7527,16 +7566,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103463135}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1114736880}
+  m_Father: {fileID: 572017766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 560, y: -75.84267}
+  m_AnchoredPosition: {x: 400, y: -198.9988}
   m_SizeDelta: {x: 800, y: 151.6902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103463137
@@ -7805,10 +7844,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1404043338}
-  - {fileID: 1863805660}
-  - {fileID: 1174573800}
-  - {fileID: 749559624}
-  - {fileID: 1103463136}
+  - {fileID: 572017766}
   - {fileID: 254929233}
   - {fileID: 1154759766}
   m_Father: {fileID: 584176967}
@@ -7895,7 +7931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -476, y: 0}
+  m_AnchoredPosition: {x: 428, y: 0}
   m_SizeDelta: {x: 779, y: 869}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154759767
@@ -7987,16 +8023,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174573799}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1114736880}
+  m_Father: {fileID: 572017766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 421.86, y: 264}
+  m_AnchoredPosition: {x: 261.86, y: 140.84387}
   m_SizeDelta: {x: 523.72, y: 130.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174573801
@@ -8019,7 +8055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 98 / 100
+  m_text: 0 / 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7c86bcf67c88ec41ab2acbf5b2c39ce, type: 2}
   m_sharedMaterial: {fileID: -7290472068542288457, guid: e7c86bcf67c88ec41ab2acbf5b2c39ce,
@@ -9875,7 +9911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1404043338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10517,14 +10553,53 @@ MonoBehaviour:
   - {fileID: 696700240}
   - {fileID: 1258083652}
   - {fileID: 784237447}
-  panelScoring: {fileID: 1114736879}
-  textScore: {fileID: 1174573801}
   badges:
+  - badgeName: Gold
+    minScore: 17
+    maxScore: 20
+    badgeSprite: {fileID: 21300000, guid: 0400c7fc8fd564e48b154b253c8a8f89, type: 3}
+  - badgeName: Silver
+    minScore: 13
+    maxScore: 16
+    badgeSprite: {fileID: 21300000, guid: ea41a5b64139b1c458547ac333cb21f1, type: 3}
+  - badgeName: Bronze
+    minScore: 9
+    maxScore: 12
+    badgeSprite: {fileID: 21300000, guid: cc9f88618697a4446815256a322a5f8b, type: 3}
+  - badgeName: None
+    minScore: 0
+    maxScore: 8
+    badgeSprite: {fileID: 21300000, guid: cc9f88618697a4446815256a322a5f8b, type: 3}
+  playerTitles:
+  - titleName: 5 Gold
+    targetImage: {fileID: 596958261}
+    activeSprite: {fileID: 21300000, guid: 63a1660f8967fa84fa3a55cf12254f62, type: 3}
+    nonactiveSprite: {fileID: 21300000, guid: e71be25ff94ed2c4d82963ef0181d9b1, type: 3}
+  - titleName: 4 Gold
+    targetImage: {fileID: 1533374087}
+    activeSprite: {fileID: 21300000, guid: a9994f2e3c9e58545a05190b3e89606b, type: 3}
+    nonactiveSprite: {fileID: 21300000, guid: f3a31d8c1adf7d643925cbb2767b202f, type: 3}
+  - titleName: 3 Silver
+    targetImage: {fileID: 1639555567}
+    activeSprite: {fileID: 21300000, guid: 15ffda45a410f9248884880d3a5293bb, type: 3}
+    nonactiveSprite: {fileID: 21300000, guid: 3a13c4e7cfbff7c46a4e58412e4acf0e, type: 3}
+  - titleName: 3 Bronze
+    targetImage: {fileID: 1489891910}
+    activeSprite: {fileID: 21300000, guid: d7d57b0d99819a64893bb5f237d8de5d, type: 3}
+    nonactiveSprite: {fileID: 21300000, guid: e1981551ba389b84482a36b670962601, type: 3}
+  panelScoring: {fileID: 1114736879}
+  objectA: {fileID: 572017767}
+  objectB: {fileID: 1154759766}
+  objectC: {fileID: 1404043338}
+  textScore: {fileID: 1174573801}
+  imgBadges:
   - {fileID: 577219836}
   - {fileID: 1821466146}
   - {fileID: 103143598}
   - {fileID: 2145268564}
   - {fileID: 1808056209}
+  btnCloseScorePanel: {fileID: 254929234}
+  BadgeCollected: []
 --- !u!1 &1533374085
 GameObject:
   m_ObjectHideFlags: 0
@@ -11941,7 +12016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12016,7 +12091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12469,16 +12544,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863805659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1114736880}
+  m_Father: {fileID: 572017766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 260, y: 373}
+  m_AnchoredPosition: {x: 100, y: 249.84387}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863805661
@@ -14303,7 +14378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
