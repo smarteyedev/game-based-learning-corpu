@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Smarteye.RestAPI.Sample;
+using Smarteye.GBL.Corpu;
+using System.Runtime.InteropServices;
 
 namespace Smarteye.Manager.taufiq
 {
@@ -57,6 +59,7 @@ namespace Smarteye.Manager.taufiq
         private SceneField m_currentActiveScene = null;
 
         [Header("Player Data")]
+        public HandlerPlayerData handlerPlayerData;
         public PlayerData playerData;
         public ScenarioLoader scenarioLoader;
 
@@ -73,11 +76,15 @@ namespace Smarteye.Manager.taufiq
             {
                 instance = this;
             }
+
+            GetPlayerToken();
         }
 
         private void Start()
         {
             StartGame();
+
+            handlerPlayerData.GetPlayerData();
         }
 
         private void StartGame()
@@ -101,6 +108,54 @@ namespace Smarteye.Manager.taufiq
 
             return result;
         }
+
+        #region Web-Request
+
+        public void StorePlayerDataToDatabase()
+        {
+            handlerPlayerData.PostPlayerData(playerData.GetPlayerData);
+        }
+
+        public GameStage GenerateStringToGameStage(string _str)
+        {
+            GameStage result = _str switch
+            {
+                "None" => GameStage.None,
+                "IVCA" => GameStage.IVCA,
+                "PROSPECTINGANDPROFILING" => GameStage.PROSPECTINGANDPROFILING,
+                "RAPPORT" => GameStage.RAPPORT,
+                "PROBING" => GameStage.PROBING,
+                "SOLUTION" => GameStage.SOLUTION,
+                "OBJECTIONANDCLOSING" => GameStage.OBJECTIONANDCLOSING,
+                "FINISH" => GameStage.FINISH,
+                _ => GameStage.None
+            };
+
+            return result;
+        }
+
+        private void GetPlayerToken()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+
+            string currentTokenFromWeb = PlayerTokenFromLocalStorage();
+            if (!string.IsNullOrEmpty(currentTokenFromWeb))
+            {
+                playerData.PlayerToken = currentTokenFromWeb;
+            }
+#endif
+
+#if UNITY_EDITOR 
+            playerData.PlayerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDcyNjQxNDcsImV4cCI6MTc0NzUyMzM0N30.W0fSbQpuENobhnU8w1LPPGVfqdrVXNU_QyUehxfVUw4";
+#endif
+        }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("__Internal")]
+        private static extern string PlayerTokenFromUrl();
+#endif
+
+        #endregion
 
         #region Load-Scene-Function
 

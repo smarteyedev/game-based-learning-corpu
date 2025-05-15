@@ -306,25 +306,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingMessages:
   - currentStage: 0
-    hintMessage: buka tutorial dengan menekan tombol dengan icon i pada layar
+    hintMessage: Buka tutorial dengan menekan tombol dengan icon i pada layar
   - currentStage: 1
-    hintMessage: ini adalah loading untuk generate IVCA
+    hintMessage: Lakukan pemilihan customer yang tepat sebelum Anda melakukan penjualan
   - currentStage: 2
-    hintMessage: ini adalah loading untuk stage profiling
+    hintMessage: Lakukan pendekatan customer secara tulus berdasarkan pada profil
+      customer
   - currentStage: 3
-    hintMessage: ini adalah loading untuk stage rapport
+    hintMessage: Bangun hubungan baik dengan bicara secara singkat sesuatu yang diminati
+      lawan bicara
   - currentStage: 4
-    hintMessage: ini adalah loading untuk stage probing
+    hintMessage: Ciptakan minat dengan menemukan manfaat yang dihasilkan solusi Anda
+      bagi customer
   - currentStage: 5
-    hintMessage: ini adalah loading untuk stage solution
+    hintMessage: 'Beri customer informasi secukupnya, tidak berlebihan, tentang Solusi
+      Anda dan manfaatnya bagi mereka, sehingga mereka yakin untuk membeli '
   - currentStage: 6
-    hintMessage: ini adalah loading untuk stage closing
+    hintMessage: Dapatkan komitmen sepanjang proses dengan mendapatkan kesepakatan
+      menuju Keputusan yang bermanfaat bagi kedua belah pihak
   - currentStage: 7
-    hintMessage: selamat anda telah menyelesaikan semua stage
+    hintMessage: Selamat anda telah menyelesaikan semua stage
   loadingTime: 2
   screenPanel: {fileID: 885446971115821556}
   _MessageText: {fileID: 3907324000695775864}
   _loadingBar: {fileID: 3799214962660669073}
+--- !u!1 &824295779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824295780}
+  - component: {fileID: 824295781}
+  - component: {fileID: 824295782}
+  m_Layer: 0
+  m_Name: '#RESTApi-Handler Player Data'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &824295780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824295779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824295781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824295779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dce058c17540e0408dc77348ea21d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restAPI: {fileID: 824295782}
+  currentPlayerData:
+    user:
+      id: 0
+      name: 
+      division: 
+      witel: 
+    players: []
+  gameManager: {fileID: 1259759154}
+--- !u!114 &824295782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824295779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47563a031cc04241af18100873db7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAPIConfig: {fileID: 11400000, guid: 82b3918005c8a5f48bcb11efb3dc740c, type: 2}
 --- !u!1 &832195301
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +488,7 @@ MonoBehaviour:
     _sceneName: 03-computer
   - _sceneAsset: {fileID: 102900000, guid: 1a74f9eae6874684784f765b884af660, type: 3}
     _sceneName: 04-visual-novel
+  handlerPlayerData: {fileID: 824295781}
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   scenarioLoader: {fileID: 1457097626}
   loadingScreenHandler: {fileID: 815615335}
@@ -1202,5 +1275,6 @@ SceneRoots:
   - {fileID: 815615334}
   - {fileID: 1457097625}
   - {fileID: 2072775673}
+  - {fileID: 824295780}
   - {fileID: 1040245906097334188}
   - {fileID: 1601391487}

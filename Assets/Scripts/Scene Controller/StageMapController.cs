@@ -126,7 +126,11 @@ namespace Smarteye.SceneController.taufiq
         private void OpenScoringPanel()
         {
             AnimatePanelScoring();
-            btnCloseScorePanel.onClick.AddListener(() => { OnScoringPanelView(false); });
+            btnCloseScorePanel.onClick.AddListener(() =>
+            {
+                OnScoringPanelView(false);
+                gameManager.StorePlayerDataToDatabase();
+            });
         }
 
         private void OnScoringPanelView(bool _isActive)
