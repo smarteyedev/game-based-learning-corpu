@@ -100,6 +100,8 @@ namespace Smarteye.SceneController.taufiq
                 Debug.Log($"Current stage number: {m_stageNumber} | Game is finish and open popup score title");
                 OpenScoringPanel();
             }
+
+            gameManager.CheckAndLoadScenario();
         }
 
         public void OpenPopup(int _btnIndex)

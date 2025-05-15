@@ -1943,11 +1943,11 @@ RectTransform:
   m_Children:
   - {fileID: 453878082}
   - {fileID: 1939590466}
-  - {fileID: 4524921171370500359}
+  - {fileID: 515454712}
   - {fileID: 13055371}
   - {fileID: 1316525926}
+  - {fileID: 4524921171370500359}
   - {fileID: 1180305580}
-  - {fileID: 515454712}
   - {fileID: 1418141895}
   - {fileID: 1060633603}
   - {fileID: 1356083732}
@@ -2294,6 +2294,7 @@ MonoBehaviour:
   backgroundBlur: {fileID: 1939590469}
   plankStage: {fileID: 515454711}
   textPlankStage: {fileID: 2080158797}
+  buttonSettings: {fileID: 9146838697966205596}
   panelIntroduction: {fileID: 1180305579}
   textIntrodutionStory: {fileID: 1712386862}
   dialogPanel: {fileID: 13055370}
@@ -9471,7 +9472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4524921171370500359}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: Button-Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

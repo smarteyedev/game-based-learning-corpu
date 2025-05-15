@@ -492,6 +492,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   scenarioLoader: {fileID: 1457097626}
   handlerScenarioData: {fileID: 1925724581}
+  unityEditorToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZG1pbnVuaXR5QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ3MzE2OTczLCJleHAiOjE3NDc1NzYxNzN9.iB9YP8Iv9DZxsX1QwDaiwE9lTykXZ6TCTav09dnenLE
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1001 &1457097625
 PrefabInstance:
@@ -839,8 +840,10 @@ MonoBehaviour:
   restAPI: {fileID: 1925724580}
   companyList: []
   selectedScenarioList: []
+  scenarioJson: 
   authToken: aW1tZXJzaXZlOlhzV3dvb3d4YlFCRUNIV1BwNFNHQkxEbXlXTFFoQ0FrSTFFS0tFM21BRVpVTmdwcHN6
   scenarioLoader: {fileID: 1457097626}
+  gameManager: {fileID: 1259759154}
 --- !u!1 &2072775672
 GameObject:
   m_ObjectHideFlags: 0

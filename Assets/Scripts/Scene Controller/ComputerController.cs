@@ -128,6 +128,8 @@ namespace Smarteye.SceneController.taufiq
             gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
             // gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
             gameManager.playerData.SaveIVCAResult(_companyName, _longResume);
+
+            gameManager.StorePlayerDataToDatabase();
         }
 
         public void OnClickOpenIVCAResult(bool _isActive)

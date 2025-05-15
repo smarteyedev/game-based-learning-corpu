@@ -39,6 +39,41 @@ namespace Smarteye.RestAPI.Sample
             // sceneProbing = GetScenesByStages(SceneScenarioDataRoot.Stage.PROSPECTINGANDPROFILING);
         }
 
+        public void LoadJsonString(string _str)
+        {
+            if (!string.IsNullOrEmpty(_str))
+            {
+                try
+                {
+                    MasterData masterData = JsonConvert.DeserializeObject<MasterData>(_str);
+
+                    if (masterData != null && masterData.sceneScenarioDataRoots != null)
+                    {
+                        sampleScenarios.Clear();
+
+                        sampleScenarios = masterData.sceneScenarioDataRoots;
+                        Debug.Log($"Sukses parsing {masterData.sceneScenarioDataRoots.Count} skenario!");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Parsing berhasil, tapi data kosong.");
+                    }
+                }
+                catch (JsonSerializationException ex)
+                {
+                    Debug.LogError($"JSON Serialization Error: {ex.Message}");
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError($"General Error: {ex.Message}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Scenario JSON masih kosong.");
+            }
+        }
+
         public List<SceneScenarioDataRoot> GetScenesByStages(params SceneScenarioDataRoot.Stage[] targetStages)
         {
             return sampleScenarios

@@ -33,6 +33,7 @@ namespace Smarteye.GBL.Corpu
             public int solution_score;
             public int objection_and_closing_score;
             public string created_at;
+            [HideInInspector]
             public string scenario_json;
             public List<JournalNote> journalDatas;
         }

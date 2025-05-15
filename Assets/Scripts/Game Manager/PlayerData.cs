@@ -51,6 +51,20 @@ public class PlayerData : ScriptableObject
         return Datas.playerName;
     }
 
+    public void ResetPlayerProgressData()
+    {
+        Datas.gameStageProgress = GameStage.None;
+        Datas.targetCompany = "";
+        Datas.IVCAResult = "";
+        Datas.profilingScore = 0;
+        Datas.rapportScore = 0;
+        Datas.probingScore = 0;
+        Datas.solutionScore = 0;
+        Datas.closingScore = 0;
+        Datas.scenarioJsonString = "";
+        Datas.journalDatas = new List<JournalNote>();
+    }
+
     public void SaveIVCAResult(string _company, string _ivcaResult)
     {
         Datas.targetCompany = _company;
@@ -138,6 +152,16 @@ public class PlayerData : ScriptableObject
     public void SetPlayerGameStageProgress(GameStage _newProgress)
     {
         Datas.gameStageProgress = _newProgress;
+    }
+
+    public void SetPlayerScenario(string _str)
+    {
+        Datas.scenarioJsonString = _str;
+    }
+
+    public string GetScenarioString()
+    {
+        return Datas.scenarioJsonString;
     }
 }
 

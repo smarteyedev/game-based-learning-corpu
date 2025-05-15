@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa08b2012cf1dd4682de69f92f10821, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _playerToken: 
+  _playerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDcyOTA4NTcsImV4cCI6MTc0NzU1MDA1N30.2MJlkFny8p_QUQBt5knvuKCa2gj7hM-aCneJMiP7TP8
   Datas:
-    userId: 0
-    playerName: 
-    gameStageProgress: 0
-    targetCompany: 
-    IVCAResult: 
+    userId: 4
+    playerName: taufiq
+    gameStageProgress: 2
+    targetCompany: PT Telekomunikasi Indonesia
+    IVCAResult: ini penjelasanan panjangnyaa PT Telekomunikasi Indonesia ....
     profilingScore: 0
     rapportScore: 0
     probingScore: 0

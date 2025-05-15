@@ -8,6 +8,7 @@ using Smarteye.VisualNovel;
 using Smarteye.RestAPI.Sample;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using Smarteye.Manager.taufiq;
 
 namespace Smarteye.GBL.Corpu
 {
@@ -32,6 +33,7 @@ namespace Smarteye.GBL.Corpu
 
         [Header("Component References")]
         [SerializeField] private ScenarioLoader scenarioLoader;
+        [SerializeField] private GameManager gameManager;
 
         #region Local-Query
 
@@ -145,7 +147,8 @@ namespace Smarteye.GBL.Corpu
                         // selectedScenarioList = currentScenario.sceneScenarioDataRoots;
 
                         scenarioJson = fixedJson;
-                        scenarioLoader.sampleScenarios = currentScenario.sceneScenarioDataRoots;
+                        gameManager.playerData.SetPlayerScenario(scenarioJson);
+                        // scenarioLoader.sampleScenarios = currentScenario.sceneScenarioDataRoots;
                         Debug.Log($"Berhasil parsing : {scenarioJson}");
                     }
                     else
@@ -176,7 +179,11 @@ namespace Smarteye.GBL.Corpu
             { "\"CLIENT_ASSISTANT\"", "\"CLIENT\"" },
             { "\"CUSTOMER SERVICE\"", "\"ASISTEN\"" },
             { "\"PAK RUDI\"", "\"BOS\"" },
-            { "\"ASSISTANT\"", "\"ASISTEN\"" }, 
+            { "\"ASSISTANT\"", "\"ASISTEN\"" },
+            { "\"KLIEN\"", "\"CLIENT\"" },
+            { "\"TIM TEKNIS\"", "\"ASISTEN\"" },
+            { "\"TEMAN\"", "\"BOS\"" },
+            { "\"IT STAFF\"", "\"BOS\"" }, 
 
             // Mapping SceneProgress
             { "\"FAILEDRESULT\"", "\"FAILRESULT\"" },
@@ -185,7 +192,8 @@ namespace Smarteye.GBL.Corpu
             // Mapping stage
             { "\"INITIAL_MEETING\"", "\"RAPPORT\"" },
             { "\"FOLLOW_UP_MEETING_PREPARATION\"", "\"PROBING\"" },
-            { "\"FOLLOW-UP\"", "\"PROBING\"" }
+            { "\"FOLLOW-UP\"", "\"PROBING\"" },
+            { "\"WAITING\"", "\"PROBING\"" }
         };
 
         private string FixJsonForParsing(string rawJson)

@@ -92,6 +92,7 @@ namespace Smarteye.VisualNovel.taufiq
         [SerializeField] private CanvasGroup backgroundBlur;
         [SerializeField] private GameObject plankStage;
         [SerializeField] private TextMeshProUGUI textPlankStage;
+        [SerializeField] private GameObject buttonSettings;
 
         //? Introduction Story References
         [Space(5f)]
@@ -237,6 +238,9 @@ namespace Smarteye.VisualNovel.taufiq
                     });
                     break;
                 case VisualNovelView.INTRO:
+                    MainUIActive(false);
+                    decisionPanel.SetActive(false);
+
                     ShowIntroPanel();
                     break;
                 case VisualNovelView.DIALOG:
@@ -258,6 +262,7 @@ namespace Smarteye.VisualNovel.taufiq
         {
             backgroundBlur.alpha = _isActive ? 1 : 0;
             plankStage.gameObject.SetActive(_isActive);
+            buttonSettings.gameObject.SetActive(_isActive);
 
             if (_isActive == true)
             {
@@ -386,6 +391,8 @@ namespace Smarteye.VisualNovel.taufiq
             target.text = "";
             int wordIndex = 0;
 
+            buttonSettings.SetActive(false);
+
             while (m_VNState != State.COMPLETED)
             {
                 target.text += text[wordIndex];
@@ -400,6 +407,7 @@ namespace Smarteye.VisualNovel.taufiq
 
                     m_VNState = State.COMPLETED;
                     nextInstruction.SetActive(true);
+                    buttonSettings.SetActive(true);
                     m_isCanNextVisualNovel = true;
                     m_myCoroutine = null;
                     break;
@@ -521,6 +529,13 @@ namespace Smarteye.VisualNovel.taufiq
 
                 journalController.SaveCurrentJurnalNote();
                 gameManager.playerData.UpdatePlayerScore(gameManager.currentGameStage, m_currentVNScore);
+
+                int currentStgIndex = (int)gameManager.currentGameStage;
+                // Debug.Log($"currentStage number: {currentStgIndex}");
+                gameManager.currentGameStage = (GameStage)currentStgIndex + 1;
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
+
+                gameManager.StorePlayerDataToDatabase();
             }
             else
             {
@@ -537,10 +552,6 @@ namespace Smarteye.VisualNovel.taufiq
         {
             if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.SUCCESSRESULT)
             {
-                int currentStgIndex = (int)gameManager.currentGameStage;
-                // Debug.Log($"currentStage number: {currentStgIndex}");
-                gameManager.currentGameStage = (GameStage)currentStgIndex + 1;
-                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
                 ChangeSceneTo(2);
             }
             else if (m_currentBlockScenario.sceneProgress == SceneScenarioDataRoot.SceneProgress.FAILRESULT)

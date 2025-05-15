@@ -63,7 +63,7 @@ namespace Smarteye.Manager.taufiq
         public PlayerData playerData;
         public ScenarioLoader scenarioLoader;
         public HandlerScenarioData handlerScenarioData;
-        [SerializeField] private string unityEditorToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDcyOTA4NTcsImV4cCI6MTc0NzU1MDA1N30.2MJlkFny8p_QUQBt5knvuKCa2gj7hM-aCneJMiP7TP8";
+        [SerializeField] private string unityEditorToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZG1pbnVuaXR5QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ3MzE2OTczLCJleHAiOjE3NDc1NzYxNzN9.iB9YP8Iv9DZxsX1QwDaiwE9lTykXZ6TCTav09dnenLE";
 
         [Header("Component References")]
         [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -119,6 +119,21 @@ namespace Smarteye.Manager.taufiq
             handlerPlayerData.PostPlayerData(playerData.GetPlayerData);
         }
 
+        public void ResetPlayerData()
+        {
+            playerData.ResetPlayerProgressData();
+
+            StorePlayerDataToDatabase();
+        }
+
+        public void CheckAndLoadScenario()
+        {
+            if (playerData.GetPlayerGameStageProgress() > GameStage.IVCA && !String.IsNullOrEmpty(playerData.GetScenarioString()))
+            {
+                scenarioLoader.LoadJsonString(playerData.GetScenarioString());
+            }
+        }
+
         public GameStage GenerateStringToGameStage(string _str)
         {
             GameStage result = _str switch
@@ -140,7 +155,6 @@ namespace Smarteye.Manager.taufiq
         private void GetPlayerToken()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-
             string currentTokenFromWeb = PlayerTokenFromLocalStorage();
             if (!string.IsNullOrEmpty(currentTokenFromWeb))
             {
