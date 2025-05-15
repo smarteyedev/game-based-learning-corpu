@@ -87,8 +87,7 @@ namespace Smarteye.Manager.taufiq
             StartGame();
 
             handlerPlayerData.GetPlayerData();
-            handlerScenarioData.GetCompanyList();
-            handlerScenarioData.GetScenarioById(1);
+            handlerScenarioData.GetCompanyListFromAPI();
         }
 
         private void StartGame()

@@ -6,6 +6,8 @@ using UnityEngine;
 using Smarteye.RestAPI;
 using Smarteye.VisualNovel;
 using Smarteye.RestAPI.Sample;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Smarteye.GBL.Corpu
 {
@@ -19,8 +21,9 @@ namespace Smarteye.GBL.Corpu
         }
 
         [Header("Datas")]
-        public List<Company> companyList = new List<Company>();
-        public List<SceneScenarioDataRoot> selectedScenarioList;
+        [SerializeField] private List<Company> companyList = new List<Company>();
+        [SerializeField] private List<SceneScenarioDataRoot> selectedScenarioList;
+
         [HideInInspector]
         public string scenarioJson = "";
 
@@ -30,8 +33,17 @@ namespace Smarteye.GBL.Corpu
         [Header("Component References")]
         [SerializeField] private ScenarioLoader scenarioLoader;
 
+        #region Local-Query
 
-        public void GetCompanyList()
+        public List<Company> GetCompanyList()
+        {
+            return companyList.OrderBy(company => company.id_company).ToList();
+        }
+
+        #endregion
+
+        #region Web-Request
+        public void GetCompanyListFromAPI()
         {
             restAPI.GetWithAuthorization("GetCompanies", authToken, OnSuccessResult, OnProtocolErr);
         }
@@ -40,6 +52,15 @@ namespace Smarteye.GBL.Corpu
         {
             restAPI.GetWithAuthorization("GetScenario", authToken, _companyId.ToString(), OnSuccessGetScenario, OnProtocolErrGetScenario);
         }
+
+        public void GetCompanySummary(int _companyId, Action<string, string, string> onGotScenario)
+        {
+            Debug.LogWarning($"fungsi company IVCA resume masih belum bisa dihit");
+
+            var tCompany = companyList.First((x) => x.id_company == _companyId);
+            onGotScenario?.Invoke($"{tCompany.company_name}", $"ini summary sementara untuk company {tCompany.company_name}", $"ini penjelasanan panjangnyaa {tCompany.company_name} ....");
+        }
+        #endregion
 
         #region CallBack-GetCompany
         public override void OnSuccessResult(JObject result)
@@ -162,8 +183,9 @@ namespace Smarteye.GBL.Corpu
             { "\"UNEXPECTEDRESULT\"", "\"FAILRESULT\"" },
 
             // Mapping stage
-            { "\"INITIAL_MEETING\"", "\"PROLOG\"" },
-            { "\"FOLLOW_UP_MEETING_PREPARATION\"", "\"PROLOG\"" }
+            { "\"INITIAL_MEETING\"", "\"RAPPORT\"" },
+            { "\"FOLLOW_UP_MEETING_PREPARATION\"", "\"PROBING\"" },
+            { "\"FOLLOW-UP\"", "\"PROBING\"" }
         };
 
         private string FixJsonForParsing(string rawJson)

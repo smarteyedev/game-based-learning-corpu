@@ -23,12 +23,15 @@ namespace Smarteye.SceneController.taufiq
         [SerializeField] private TMP_Dropdown dropDown;
         [SerializeField] private Button generateBtn;
         [SerializeField] private List<OptionData> optionDatas;
+        [SerializeField] private Sprite dropDownBg;
+
+        private int m_TargetCompany = 0;
 
         [Serializable]
         public struct OptionData
         {
             public string namaPerusahaan;
-            public string tokenIVCA;
+            public int tokenIVCA;
             public Sprite backgroundSprite;
         }
 
@@ -62,12 +65,28 @@ namespace Smarteye.SceneController.taufiq
 
         protected override void Init()
         {
+            m_TargetCompany = 0;
+
             generateBtn.onClick.AddListener(OnClickSubmit);
             dropDown.onValueChanged.AddListener(OnDropDownValueChange);
             //? previousButton.onClick.AddListener(PreviousItem);
             //? nextButton.onClick.AddListener(NextItem);
 
             if (isForDebugging) return;
+
+            optionDatas.Clear();
+
+            var tCompanies = gameManager.handlerScenarioData.GetCompanyList();
+
+            foreach (var item in tCompanies)
+            {
+                OptionData newOpt = new OptionData();
+                newOpt.namaPerusahaan = item.company_name;
+                newOpt.tokenIVCA = item.id_company;
+                newOpt.backgroundSprite = dropDownBg;
+
+                optionDatas.Add(newOpt);
+            }
 
             introIVCAPanel.SetActive(true);
             AnimationHelper.FadeInCanvasGroup(introIVCAPanel.GetComponent<CanvasGroup>(), 1.5f);
@@ -89,22 +108,26 @@ namespace Smarteye.SceneController.taufiq
 
         public void OnClickSubmit()
         {
-            GetAndShowIVCA();
+            gameManager.handlerScenarioData.GetScenarioById(m_TargetCompany);
+            gameManager.handlerScenarioData.GetCompanySummary(m_TargetCompany, ShowIVCA);
+            // ShowIVCA();
         }
 
-        private void GetAndShowIVCA()
+        private void ShowIVCA(string _companyName, string _summary, string _longResume)
         {
-            // ! ini akan jadi fungsi async untuk ngehit API IVCA
-
             rowInputIVCA.SetActive(false);
             rowOutputIVCA.SetActive(true);
 
-            outputTitle.text = outputIVCAData.companyName;
-            outputSummary.text = outputIVCAData.summary;
+            /* outputTitle.text = outputIVCAData.companyName;
+            outputSummary.text = outputIVCAData.summary; */
+
+            outputTitle.text = _companyName;
+            outputSummary.text = _summary;
 
             gameManager.currentGameStage = (GameStage)gameManager.currentGameStage + 1;
             gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
-            gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
+            // gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
+            gameManager.playerData.SaveIVCAResult(_companyName, _longResume);
         }
 
         public void OnClickOpenIVCAResult(bool _isActive)
@@ -114,8 +137,10 @@ namespace Smarteye.SceneController.taufiq
                 generateIVCAPanel.SetActive(false);
                 resultIVCAPanel.SetActive(true);
 
-                resultTitleText.text = outputIVCAData.companyName;
-                resultText.text = outputIVCAData.IVCAResult;
+                var temp_ivca = gameManager.playerData.GetIVCAData();
+
+                resultTitleText.text = temp_ivca[0];
+                resultText.text = temp_ivca[1];
 
                 //? m_currentIndex = 0;
                 //? UpdateCarousel();
@@ -136,12 +161,16 @@ namespace Smarteye.SceneController.taufiq
         public void OnDropDownValueChange(int _val)
         {
             // Debug.Log($"{_val}");
+            m_TargetCompany = _val;
 
             if (dropDown.value == 0)
             {
                 generateBtn.gameObject.SetActive(false);
             }
-            else generateBtn.gameObject.SetActive(true);
+            else
+            {
+                generateBtn.gameObject.SetActive(true);
+            }
         }
 
         #region Carousel-Function

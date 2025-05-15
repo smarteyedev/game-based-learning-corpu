@@ -92,7 +92,7 @@ namespace Smarteye.RestAPI
             Action<JObject> err = (Action<JObject>)callback[2];
             Action<JObject> success = (Action<JObject>)callback[3];
 
-            Debug.Log($"request to: {uri}");
+            // Debug.Log($"request to: {uri}");
 
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
