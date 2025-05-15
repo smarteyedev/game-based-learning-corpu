@@ -61,6 +61,12 @@ namespace Smarteye.RestAPI
             StartCoroutine(nameof(GetWithAuthCoroutine), callbacks);
         }
 
+        public void GetWithAuthorization(string _endpointTitle, string _authTokenBase64, string _id, Action<JObject> _success, Action<JObject> _err)
+        {
+            object[] callbacks = new object[4] { targetAPIConfig.url + targetAPIConfig.GetEndpoint(_endpointTitle) + _id, _authTokenBase64, _err, _success };
+            StartCoroutine(nameof(GetWithAuthCoroutine), callbacks);
+        }
+
         #endregion
 
         #region Coroutines
@@ -85,6 +91,8 @@ namespace Smarteye.RestAPI
             string authTokenBase64 = (string)callback[1];
             Action<JObject> err = (Action<JObject>)callback[2];
             Action<JObject> success = (Action<JObject>)callback[3];
+
+            Debug.Log($"request to: {uri}");
 
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {

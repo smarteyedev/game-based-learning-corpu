@@ -1,7 +1,7 @@
 using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Smarteye.VisualNovel.taufiq;
+using Smarteye.VisualNovel;
 using System.Linq;
 
 namespace Smarteye.RestAPI.Sample
@@ -9,10 +9,15 @@ namespace Smarteye.RestAPI.Sample
     public class ScenarioLoader : MonoBehaviour
     {
         public TextAsset jsonFile; // Masukkan file JSON dari Inspector
-        [SerializeField] private List<SceneScenarioDataRoot> sampleScenarios; // Diisi setelah parsing
+        public List<SceneScenarioDataRoot> sampleScenarios; // Diisi setelah parsing
         // public List<SceneScenarioDataRoot> sceneProbing;
 
         void Start()
+        {
+            // LoadJsonFile();
+        }
+
+        public void LoadJsonFile()
         {
             if (jsonFile == null)
             {

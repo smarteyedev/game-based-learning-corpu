@@ -838,7 +838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restAPI: {fileID: 1925724580}
   companyList: []
+  selectedScenarioList: []
   authToken: aW1tZXJzaXZlOlhzV3dvb3d4YlFCRUNIV1BwNFNHQkxEbXlXTFFoQ0FrSTFFS0tFM21BRVpVTmdwcHN6
+  scenarioLoader: {fileID: 1457097626}
 --- !u!1 &2072775672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,9 +1317,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 1259759153}
+  - {fileID: 2072775673}
   - {fileID: 815615334}
   - {fileID: 1457097625}
-  - {fileID: 2072775673}
   - {fileID: 824295780}
   - {fileID: 1040245906097334188}
   - {fileID: 1601391487}

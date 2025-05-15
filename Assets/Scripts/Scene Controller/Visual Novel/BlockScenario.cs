@@ -5,7 +5,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Smarteye.VisualNovel.taufiq
+namespace Smarteye.VisualNovel
 {
     [Serializable]
     public class MasterData

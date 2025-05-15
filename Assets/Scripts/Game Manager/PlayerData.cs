@@ -30,7 +30,7 @@ public class PlayerData : ScriptableObject
 
     public void SetupPlayerData(int _userId, string _playerName, GameStage _gameStageProgress, string _targetCompany,
     string _IVCAResult, int _profilingScore, int _rapportScore, int _probingScore, int _solutionScore,
-    int _closingScore, List<JournalNote> _journalDatas)
+    int _closingScore, string _scenarioData, List<JournalNote> _journalDatas)
     {
         Datas.userId = _userId;
         Datas.playerName = _playerName;
@@ -42,6 +42,7 @@ public class PlayerData : ScriptableObject
         Datas.probingScore = _probingScore;
         Datas.solutionScore = _solutionScore;
         Datas.closingScore = _closingScore;
+        Datas.scenarioJsonString = _scenarioData;
         Datas.journalDatas = _journalDatas == null ? new List<JournalNote>() : new List<JournalNote>(_journalDatas);
     }
 
@@ -153,6 +154,7 @@ public class PlayerDataRoot
     public int probingScore = 0;
     public int solutionScore = 0;
     public int closingScore = 0;
+    [HideInInspector]
     public string scenarioJsonString = "";
 
     public List<JournalNote> journalDatas;

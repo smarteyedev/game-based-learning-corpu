@@ -16,3 +16,5 @@ MonoBehaviour:
   endpoints:
   - title: GetCompanies
     targetEndpoint: immersive/ai/v1/immersive/company/companies
+  - title: GetScenario
+    targetEndpoint: immersive/ai/v1/immersive/result/get-scenario?id_company=

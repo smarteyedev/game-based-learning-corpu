@@ -34,7 +34,7 @@ namespace Smarteye.GBL.Corpu
             public int objection_and_closing_score;
             public string created_at;
             public string scenario_json;
-            public List<object> journalDatas;
+            public List<JournalNote> journalDatas;
         }
 
         [Serializable]
@@ -79,7 +79,7 @@ namespace Smarteye.GBL.Corpu
                 { "probingScore", _PlayerData.probingScore },
                 { "solutionScore", _PlayerData.solutionScore },
                 { "objectionAndClosingScore", _PlayerData.closingScore },
-                { "scenario_json", _PlayerData.scenarioJsonString },
+                { "scenarioData", _PlayerData.scenarioJsonString },
                 { "journalDatas", journalList }
             };
 
@@ -94,36 +94,29 @@ namespace Smarteye.GBL.Corpu
                 OnPostProtocolErr,
                 PostDataProcessingErr,
                 "PostPlayerData",
-                gameManager.playerData.PlayerToken
+                $"{gameManager.playerData.PlayerToken}/players"
             );
         }
 
         public override void OnSuccessResult(JObject result)
         {
-            Debug.Log("Get Player Data Success: " + result);
-
             currentPlayerData = JsonConvert.DeserializeObject<PlayerResponse>(result.ToString());
 
-            List<JournalNote> myJournals = new List<JournalNote>
-                {
-                    new JournalNote(GameStage.PROSPECTINGANDPROFILING, "Learn the basics"),
-                    new JournalNote(GameStage.PROSPECTINGANDPROFILING, "Completed stage 1"),
-                    new JournalNote(GameStage.PROSPECTINGANDPROFILING, "Halfway there")
-                };
+            PlayerData currentPlayer = currentPlayerData.players[currentPlayerData.players.Count - 1];
 
             gameManager.playerData.SetupPlayerData(
                 _userId: currentPlayerData.user.id,
                 _playerName: currentPlayerData.user.name,
-                _gameStageProgress: gameManager.GenerateStringToGameStage(""), //! masih belum bisa ngambil dari API
-                                                                               // _gameStageProgress: gameManager.GenerateStringToGameStage("IVCA"), //! masih belum bisa ngambil dari API
-                _targetCompany: "", //! masih belum bisa ngambil dari API
-                _IVCAResult: "", //! masih belum bisa ngambil dari API
-                _profilingScore: 0, //! masih belum bisa ngambil dari API
-                _rapportScore: 0, //! masih belum bisa ngambil dari API
-                _probingScore: 0, //! masih belum bisa ngambil dari API
-                _solutionScore: 0, //! masih belum bisa ngambil dari API
-                _closingScore: 0, //! masih belum bisa ngambil dari API
-                _journalDatas: null //! masih belum bisa ngambil dari API
+                _gameStageProgress: gameManager.GenerateStringToGameStage($"{currentPlayer.game_stage_progress}"),
+                _targetCompany: $"{currentPlayer.target_company_selected}",
+                _IVCAResult: $"{currentPlayer.ivca_company_result}",
+                _profilingScore: currentPlayer.prospecting_and_profiling_score,
+                _rapportScore: currentPlayer.rapport_score,
+                _probingScore: currentPlayer.probing_score,
+                _solutionScore: currentPlayer.solution_score,
+                _closingScore: currentPlayer.objection_and_closing_score,
+                _scenarioData: currentPlayer.scenario_json,
+                _journalDatas: currentPlayer.journalDatas
             );
         }
 

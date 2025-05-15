@@ -63,6 +63,7 @@ namespace Smarteye.Manager.taufiq
         public PlayerData playerData;
         public ScenarioLoader scenarioLoader;
         public HandlerScenarioData handlerScenarioData;
+        [SerializeField] private string unityEditorToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDcyOTA4NTcsImV4cCI6MTc0NzU1MDA1N30.2MJlkFny8p_QUQBt5knvuKCa2gj7hM-aCneJMiP7TP8";
 
         [Header("Component References")]
         [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -87,6 +88,7 @@ namespace Smarteye.Manager.taufiq
 
             handlerPlayerData.GetPlayerData();
             handlerScenarioData.GetCompanyList();
+            handlerScenarioData.GetScenarioById(1);
         }
 
         private void StartGame()
@@ -148,7 +150,7 @@ namespace Smarteye.Manager.taufiq
 #endif
 
 #if UNITY_EDITOR 
-            playerData.PlayerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDcyNjQxNDcsImV4cCI6MTc0NzUyMzM0N30.W0fSbQpuENobhnU8w1LPPGVfqdrVXNU_QyUehxfVUw4";
+            playerData.PlayerToken = unityEditorToken;
 #endif
         }
 
