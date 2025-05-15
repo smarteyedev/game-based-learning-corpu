@@ -114,8 +114,8 @@ namespace Smarteye.GBL.Corpu
             gameManager.playerData.SetupPlayerData(
                 _userId: currentPlayerData.user.id,
                 _playerName: currentPlayerData.user.name,
-                _gameStageProgress: gameManager.GenerateStringToGameStage("s"), //! masih belum bisa ngambil dari API
-                                                                                // _gameStageProgress: gameManager.GenerateStringToGameStage("IVCA"), //! masih belum bisa ngambil dari API
+                _gameStageProgress: gameManager.GenerateStringToGameStage(""), //! masih belum bisa ngambil dari API
+                                                                               // _gameStageProgress: gameManager.GenerateStringToGameStage("IVCA"), //! masih belum bisa ngambil dari API
                 _targetCompany: "", //! masih belum bisa ngambil dari API
                 _IVCAResult: "", //! masih belum bisa ngambil dari API
                 _profilingScore: 0, //! masih belum bisa ngambil dari API

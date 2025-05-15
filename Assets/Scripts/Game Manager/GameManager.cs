@@ -62,6 +62,7 @@ namespace Smarteye.Manager.taufiq
         public HandlerPlayerData handlerPlayerData;
         public PlayerData playerData;
         public ScenarioLoader scenarioLoader;
+        public HandlerScenarioData handlerScenarioData;
 
         [Header("Component References")]
         [SerializeField] private LoadingScreenHandler loadingScreenHandler;
@@ -85,6 +86,7 @@ namespace Smarteye.Manager.taufiq
             StartGame();
 
             handlerPlayerData.GetPlayerData();
+            handlerScenarioData.GetCompanyList();
         }
 
         private void StartGame()

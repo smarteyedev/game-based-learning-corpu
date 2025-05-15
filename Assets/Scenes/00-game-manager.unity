@@ -491,6 +491,7 @@ MonoBehaviour:
   handlerPlayerData: {fileID: 824295781}
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   scenarioLoader: {fileID: 1457097626}
+  handlerScenarioData: {fileID: 1925724581}
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1001 &1457097625
 PrefabInstance:
@@ -553,7 +554,7 @@ PrefabInstance:
     - target: {fileID: 6647491475340463517, guid: 692159682aaddf5449e3f47a1d12bb52,
         type: 3}
       propertyPath: m_Name
-      value: '#Scenario Loader'
+      value: '#RestAPI-Scenario Loader'
       objectReference: {fileID: 0}
     - target: {fileID: 7897641339139297599, guid: 692159682aaddf5449e3f47a1d12bb52,
         type: 3}
@@ -563,7 +564,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6647491475340463517, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1925724581}
+    - targetCorrespondingSourceObject: {fileID: 6647491475340463517, guid: 692159682aaddf5449e3f47a1d12bb52,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1925724580}
   m_SourcePrefab: {fileID: 100100000, guid: 692159682aaddf5449e3f47a1d12bb52, type: 3}
 --- !u!114 &1457097626 stripped
 MonoBehaviour:
@@ -571,7 +580,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1457097625}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1925724578}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 547fac38b6b599f47bde858844395de3, type: 3}
@@ -796,6 +805,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878656188}
   m_CullTransparentMesh: 1
+--- !u!1 &1925724578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6647491475340463517, guid: 692159682aaddf5449e3f47a1d12bb52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457097625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1925724580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925724578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47563a031cc04241af18100873db7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAPIConfig: {fileID: 11400000, guid: e9528658916750f4fb4bbeb7fd85fb5c, type: 2}
+--- !u!114 &1925724581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925724578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2ba4033a4c98f4d873fb10cff0b0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restAPI: {fileID: 1925724580}
+  companyList: []
+  authToken: aW1tZXJzaXZlOlhzV3dvb3d4YlFCRUNIV1BwNFNHQkxEbXlXTFFoQ0FrSTFFS0tFM21BRVpVTmdwcHN6
 --- !u!1 &2072775672
 GameObject:
   m_ObjectHideFlags: 0

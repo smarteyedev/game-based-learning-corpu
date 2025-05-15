@@ -13,33 +13,25 @@ namespace Smarteye.RestAPI
     {
         public TargetAPIConfig targetAPIConfig;
         private string endpointTitle = "";
-
-        string tempDataJson;
+        private string tempDataJson;
 
         #region RestAPI Services
+
         public void PostAction(Dictionary<string, string> _data, Action<JObject> success, Action<JObject> err, Action<JObject> dataErr, string _endpointTitle, string uniqValue = "")
         {
             endpointTitle = _endpointTitle;
-
-            var jsonDataToSend = JsonConvert.SerializeObject(_data);
-
-            tempDataJson = jsonDataToSend;
+            tempDataJson = JsonConvert.SerializeObject(_data);
 
             object[] callbacks = new object[4] { success, err, dataErr, uniqValue };
-
             StartCoroutine(nameof(Post), callbacks);
         }
 
         public void PostActionCustom(Dictionary<string, object> _data, Action<JObject> success, Action<JObject> err, Action<JObject> dataErr, string _endpointTitle, string uniqValue = "")
         {
             endpointTitle = _endpointTitle;
-
-            var jsonDataToSend = JsonConvert.SerializeObject(_data);
-
-            tempDataJson = jsonDataToSend;
+            tempDataJson = JsonConvert.SerializeObject(_data);
 
             object[] callbacks = new object[4] { success, err, dataErr, uniqValue };
-
             StartCoroutine(nameof(Post), callbacks);
         }
 
@@ -51,26 +43,29 @@ namespace Smarteye.RestAPI
 
         public void PatchAction(string _endpointTitle, string patchData, Action<JObject> success, Action<JObject> err)
         {
-            //Debug.Log(targetAPIConfig.url + targetAPIConfig.GetEndpoint(_endpointTitle) + patchData);
             object[] callbacks = new object[3] { targetAPIConfig.url + targetAPIConfig.GetEndpoint(_endpointTitle) + patchData, success, err };
             StartCoroutine(nameof(Patch), callbacks);
         }
 
         public void PatchActionWithBody(Dictionary<string, string> _data, string _endpointTitle, string patchData, Action<JObject> success, Action<JObject> err)
         {
-            var jsonDataToSend = JsonConvert.SerializeObject(_data);
-            tempDataJson = jsonDataToSend;
-
-            // Debug.Log(tempDataJson);
+            tempDataJson = JsonConvert.SerializeObject(_data);
 
             object[] callbacks = new object[3] { targetAPIConfig.url + targetAPIConfig.GetEndpoint(_endpointTitle) + patchData, success, err };
             StartCoroutine(nameof(PatchWithBody), callbacks);
         }
 
+        public void GetWithAuthorization(string _endpointTitle, string authTokenBase64, Action<JObject> success, Action<JObject> err)
+        {
+            object[] callbacks = new object[4] { targetAPIConfig.url + targetAPIConfig.GetEndpoint(_endpointTitle), authTokenBase64, err, success };
+            StartCoroutine(nameof(GetWithAuthCoroutine), callbacks);
+        }
+
         #endregion
 
+        #region Coroutines
 
-        IEnumerator Get(object[] callback)
+        private IEnumerator Get(object[] callback)
         {
             string uri = (string)callback[0];
             Action<JObject> err = (Action<JObject>)callback[1];
@@ -80,25 +75,29 @@ namespace Smarteye.RestAPI
             {
                 yield return request.SendWebRequest();
 
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    string responseDataProcessingError = request.downloadHandler.text;
-                    JObject dataDataProcessingError = JObject.Parse(responseDataProcessingError);
-                    // Debug.LogError(dataDataProcessingError);
-
-                    err?.Invoke(dataDataProcessingError);
-                }
-                else
-                {
-                    string json = request.downloadHandler.text;
-                    // Debug.Log(json); 
-                    JObject dataSuccess = JObject.Parse(json);
-                    success?.Invoke(dataSuccess);
-                }
+                HandleResponse(request, success, err);
             }
         }
 
-        IEnumerator Post(object[] callback)
+        private IEnumerator GetWithAuthCoroutine(object[] callback)
+        {
+            string uri = (string)callback[0];
+            string authTokenBase64 = (string)callback[1];
+            Action<JObject> err = (Action<JObject>)callback[2];
+            Action<JObject> success = (Action<JObject>)callback[3];
+
+            using (UnityWebRequest request = UnityWebRequest.Get(uri))
+            {
+                request.SetRequestHeader("Accept", "application/json");
+                request.SetRequestHeader("Authorization", $"Basic {authTokenBase64}");
+
+                yield return request.SendWebRequest();
+
+                HandleResponse(request, success, err);
+            }
+        }
+
+        private IEnumerator Post(object[] callback)
         {
             Action<JObject> successCallback = (Action<JObject>)callback[0];
             Action<JObject> errCallback = (Action<JObject>)callback[1];
@@ -106,7 +105,7 @@ namespace Smarteye.RestAPI
             string uniqVal = (string)callback[3];
 
             string uri = targetAPIConfig.url + targetAPIConfig.GetEndpoint(endpointTitle) + uniqVal;
-            Debug.Log($"Start post request to: {uri}");
+            Debug.Log($"Start POST request to: {uri}");
 
             using UnityWebRequest webRequest = new UnityWebRequest(uri, "POST");
             webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -117,71 +116,12 @@ namespace Smarteye.RestAPI
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                string responseSuccess = webRequest.downloadHandler.text;
-                JObject dataSuccess = JObject.Parse(responseSuccess);
+                JObject dataSuccess = JObject.Parse(webRequest.downloadHandler.text);
                 successCallback?.Invoke(dataSuccess);
-            }
-            else if (webRequest.result == UnityWebRequest.Result.ProtocolError || webRequest.result == UnityWebRequest.Result.DataProcessingError)
-            {
-                int responseCode = (int)webRequest.responseCode;
-                string responseError = webRequest.downloadHandler.text;
-
-                try
-                {
-                    JObject dataError = JObject.Parse(responseError);
-
-                    // Handle specific HTTP error codes
-                    if (responseCode == 500)
-                    {
-                        Debug.LogError("Internal Server Error (500): " + dataError);
-                        errCallback?.Invoke(dataError);
-                    }
-                    else
-                    {
-                        Debug.LogError("Protocol or Data Processing Error: " + dataError);
-                        if (webRequest.result == UnityWebRequest.Result.ProtocolError)
-                        {
-                            errCallback?.Invoke(dataError);
-                        }
-                        else if (webRequest.result == UnityWebRequest.Result.DataProcessingError)
-                        {
-                            dataErrCallback?.Invoke(dataError);
-                        }
-                    }
-                }
-                catch (JsonReaderException e)
-                {
-                    Debug.LogError("Failed to parse JSON error response: " + e.Message);
-                    JObject dataError = new JObject
-                    {
-                        ["error"] = "Internal Server Error",
-                        ["message"] = "An unexpected error occurred on the server.",
-                        ["details"] = new JObject
-                        {
-                            ["timestamp"] = "2024-07-09T12:34:56Z",
-                            ["path"] = "/api/example-endpoint",
-                            ["status"] = 500,
-                            ["errorId"] = "1234567890abcdef"
-                        }
-                    };
-
-                    if (responseCode == 500)
-                    {
-                        errCallback?.Invoke(dataError);
-                    }
-                    else if (webRequest.result == UnityWebRequest.Result.ProtocolError)
-                    {
-                        errCallback?.Invoke(dataError);
-                    }
-                    else if (webRequest.result == UnityWebRequest.Result.DataProcessingError)
-                    {
-                        dataErrCallback?.Invoke(dataError);
-                    }
-                }
             }
             else
             {
-                Debug.LogError("Unexpected Error: " + webRequest.error);
+                HandlePostError(webRequest, errCallback, dataErrCallback);
             }
         }
 
@@ -191,28 +131,18 @@ namespace Smarteye.RestAPI
             Action<JObject> successCallback = (Action<JObject>)callback[1];
             Action<JObject> errCallback = (Action<JObject>)callback[2];
 
-            // Buat UnityWebRequest dengan method PUT
-            UnityWebRequest webRequest = new UnityWebRequest(url, "PATCH");
-
-            // Kirim request
+            using UnityWebRequest webRequest = new UnityWebRequest(url, "PATCH");
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                //string response = webRequest.downloadHandler.text;
-                string response = "{\"Pesan\":\"success\"}";
-
-                JObject dataDataProcessing = JObject.Parse(response);
-
-                successCallback?.Invoke(dataDataProcessing);
+                JObject dataSuccess = JObject.Parse("{\"Pesan\":\"success\"}");
+                successCallback?.Invoke(dataSuccess);
             }
             else
             {
-                //string response = webRequest.downloadHandler.text;
-                string response = "{\"Pesan\":\"error\"}";
-                JObject dataDataProcessing = JObject.Parse(response);
-
-                errCallback?.Invoke(dataDataProcessing);
+                JObject dataError = JObject.Parse("{\"Pesan\":\"error\"}");
+                errCallback?.Invoke(dataError);
             }
         }
 
@@ -222,34 +152,103 @@ namespace Smarteye.RestAPI
             Action<JObject> successCallback = (Action<JObject>)callback[1];
             Action<JObject> errCallback = (Action<JObject>)callback[2];
 
-            // Buat UnityWebRequest dengan method PUT
-            UnityWebRequest webRequest = new UnityWebRequest(url, "PATCH");
-
-            // Set data yang ingin Anda kirim
-            byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(tempDataJson);
+            using UnityWebRequest webRequest = new UnityWebRequest(url, "PATCH");
+            byte[] bodyRaw = new UTF8Encoding().GetBytes(tempDataJson);
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
             webRequest.downloadHandler = new DownloadHandlerBuffer();
 
-            // Kirim request
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                //string response = webRequest.downloadHandler.text;
-                string response = "{\"Pesan\":\"success\"}";
-
-                JObject dataDataProcessing = JObject.Parse(response);
-
-                successCallback?.Invoke(dataDataProcessing);
+                JObject dataSuccess = JObject.Parse("{\"Pesan\":\"success\"}");
+                successCallback?.Invoke(dataSuccess);
             }
             else
             {
-                //string response = webRequest.downloadHandler.text;
-                string response = "{\"Pesan\":\"error\"}";
-                JObject dataDataProcessing = JObject.Parse(response);
-
-                errCallback?.Invoke(dataDataProcessing);
+                JObject dataError = JObject.Parse("{\"Pesan\":\"error\"}");
+                errCallback?.Invoke(dataError);
             }
         }
+
+        #endregion
+
+        #region Helper Functions
+
+        private void HandleResponse(UnityWebRequest request, Action<JObject> success, Action<JObject> err)
+        {
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string text = request.downloadHandler.text;
+
+                try
+                {
+                    var token = JToken.Parse(text);
+
+                    if (token is JObject obj)
+                    {
+                        success?.Invoke(obj);
+                    }
+                    else
+                    {
+                        // Kalau result berupa array, bungkus ke dalam objek baru
+                        JObject arrayWrapper = new JObject
+                        {
+                            ["data"] = token
+                        };
+                        success?.Invoke(arrayWrapper);
+                    }
+                }
+                catch (JsonReaderException e)
+                {
+                    Debug.LogError("Failed to parse response: " + e.Message);
+                    err?.Invoke(new JObject { ["error"] = "Invalid JSON format" });
+                }
+            }
+            else
+            {
+                Debug.LogError($"HTTP Error: {request.responseCode} - {request.error}");
+                try
+                {
+                    JObject errorObj = JObject.Parse(request.downloadHandler.text);
+                    err?.Invoke(errorObj);
+                }
+                catch
+                {
+                    err?.Invoke(new JObject { ["error"] = "Unknown Error" });
+                }
+            }
+        }
+
+        private void HandlePostError(UnityWebRequest webRequest, Action<JObject> errCallback, Action<JObject> dataErrCallback)
+        {
+            int responseCode = (int)webRequest.responseCode;
+            string responseError = webRequest.downloadHandler.text;
+
+            try
+            {
+                JObject dataError = JObject.Parse(responseError);
+
+                if (responseCode == 500)
+                {
+                    Debug.LogError("Internal Server Error (500): " + dataError);
+                    errCallback?.Invoke(dataError);
+                }
+                else if (webRequest.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    errCallback?.Invoke(dataError);
+                }
+                else if (webRequest.result == UnityWebRequest.Result.DataProcessingError)
+                {
+                    dataErrCallback?.Invoke(dataError);
+                }
+            }
+            catch (JsonReaderException e)
+            {
+                Debug.LogError("Failed to parse error response: " + e.Message);
+            }
+        }
+
+        #endregion
     }
 }
