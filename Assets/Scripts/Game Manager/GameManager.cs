@@ -63,6 +63,7 @@ namespace Smarteye.Manager.taufiq
         public PlayerData playerData;
         public ScenarioLoader scenarioLoader;
         public HandlerScenarioData handlerScenarioData;
+        [Space(10f)]
         [SerializeField] private string unityEditorToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZG1pbnVuaXR5QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ3MzE2OTczLCJleHAiOjE3NDc1NzYxNzN9.iB9YP8Iv9DZxsX1QwDaiwE9lTykXZ6TCTav09dnenLE";
 
         [Header("Component References")]
@@ -88,6 +89,7 @@ namespace Smarteye.Manager.taufiq
 
             handlerPlayerData.GetPlayerData();
             handlerScenarioData.GetCompanyListFromAPI();
+            //? handlerScenarioData.GetCompanySummary(1); buat ngetes
         }
 
         private void StartGame()
@@ -131,6 +133,7 @@ namespace Smarteye.Manager.taufiq
             if (playerData.GetPlayerGameStageProgress() > GameStage.IVCA && !String.IsNullOrEmpty(playerData.GetScenarioString()))
             {
                 scenarioLoader.LoadJsonString(playerData.GetScenarioString());
+                // scenarioLoader.LoadJsonFileManually();
             }
         }
 
@@ -169,7 +172,7 @@ namespace Smarteye.Manager.taufiq
 
 #if UNITY_WEBGL && !UNITY_EDITOR
         [DllImport("__Internal")]
-        private static extern string PlayerTokenFromUrl();
+        private static extern string PlayerTokenFromLocalStorage();
 #endif
 
         #endregion

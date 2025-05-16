@@ -92,12 +92,18 @@ namespace Smarteye.RestAPI
             Action<JObject> err = (Action<JObject>)callback[2];
             Action<JObject> success = (Action<JObject>)callback[3];
 
+            string username = "immersive";
+            string password = "XsWwoowxbQBECHWPp4SGBLDmyWLQhCAkI1EKKE3mAEZUNgppsz";
+
+            string combined = $"{username}:{password}";
+            string encoded = Convert.ToBase64String(Encoding.ASCII.GetBytes(combined));
+
             // Debug.Log($"request to: {uri}");
 
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
                 request.SetRequestHeader("Accept", "application/json");
-                request.SetRequestHeader("Authorization", $"Basic {authTokenBase64}");
+                request.SetRequestHeader("Authorization", $"Basic {encoded}");
 
                 yield return request.SendWebRequest();
 

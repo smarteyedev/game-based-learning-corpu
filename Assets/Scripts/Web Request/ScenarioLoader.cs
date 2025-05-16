@@ -14,10 +14,10 @@ namespace Smarteye.RestAPI.Sample
 
         void Start()
         {
-            // LoadJsonFile();
+            // LoadJsonFileManually();
         }
 
-        public void LoadJsonFile()
+        public void LoadJsonFileManually()
         {
             if (jsonFile == null)
             {

@@ -178,20 +178,23 @@ namespace Smarteye.VisualNovel.taufiq
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && m_VNState == State.PLAYING)
+            if (Input.GetMouseButtonDown(0) && currentView == VisualNovelView.INTRO)
+            {
+                OnClickCloseIntroStory();
+            }
+        }
+
+        public void OnClickSpeedupOrNextVisualNovel()
+        {
+            if (m_VNState == State.PLAYING)
             {
                 SpeedupRunningText();
                 // Debug.Log("Mouse kiri ditekan");
             }
-            else if (Input.GetMouseButtonDown(0) && m_VNState == State.COMPLETED && m_isCanNextVisualNovel)
+            else if (m_VNState == State.COMPLETED && m_isCanNextVisualNovel)
             {
                 OnClickNext();
                 m_isCanNextVisualNovel = false;
-            }
-
-            else if (Input.GetMouseButtonDown(0) && currentView == VisualNovelView.INTRO)
-            {
-                OnClickCloseIntroStory();
             }
         }
 

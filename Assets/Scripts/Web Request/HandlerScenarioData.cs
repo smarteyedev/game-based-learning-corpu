@@ -35,6 +35,9 @@ namespace Smarteye.GBL.Corpu
         [SerializeField] private ScenarioLoader scenarioLoader;
         [SerializeField] private GameManager gameManager;
 
+        Action<string, string, string> m_onGotSummary;
+        int m_targetId = 0;
+
         #region Local-Query
 
         public List<Company> GetCompanyList()
@@ -50,17 +53,18 @@ namespace Smarteye.GBL.Corpu
             restAPI.GetWithAuthorization("GetCompanies", authToken, OnSuccessResult, OnProtocolErr);
         }
 
-        public void GetScenarioById(int _companyId)
+        public void GetScenarioById(int _companyId, Action<string, string, string> _onGotSummary)
         {
             restAPI.GetWithAuthorization("GetScenario", authToken, _companyId.ToString(), OnSuccessGetScenario, OnProtocolErrGetScenario);
+            m_targetId = _companyId;
+            m_onGotSummary = _onGotSummary;
         }
 
-        public void GetCompanySummary(int _companyId, Action<string, string, string> onGotScenario)
+        public void GetCompanySummary(int _companyId, Action<string, string, string> _onGotSummary = null)
         {
-            Debug.LogWarning($"fungsi company IVCA resume masih belum bisa dihit");
+            restAPI.GetWithAuthorization("GetSummary", authToken, _companyId.ToString(), OnSuccessGetSummary, OnProtocolErrGetSummary);
 
-            var tCompany = companyList.First((x) => x.id_company == _companyId);
-            onGotScenario?.Invoke($"{tCompany.company_name}", $"ini summary sementara untuk company {tCompany.company_name}", $"ini penjelasanan panjangnyaa {tCompany.company_name} ....");
+            Debug.Log($"target company id: {_companyId}");
         }
         #endregion
 
@@ -149,6 +153,8 @@ namespace Smarteye.GBL.Corpu
                         scenarioJson = fixedJson;
                         gameManager.playerData.SetPlayerScenario(scenarioJson);
                         // scenarioLoader.sampleScenarios = currentScenario.sceneScenarioDataRoots;
+
+                        GetCompanySummary(m_targetId, m_onGotSummary);
                         Debug.Log($"Berhasil parsing : {scenarioJson}");
                     }
                     else
@@ -159,6 +165,11 @@ namespace Smarteye.GBL.Corpu
             }
             catch (JsonSerializationException jsonEx)
             {
+                gameManager.LoadScene(1);
+                gameManager.currentGameStage = GameStage.IVCA;
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
+                gameManager.StorePlayerDataToDatabase();
+
                 Debug.LogError("JSON Serialization Error: " + jsonEx.Message);
             }
             catch (Exception ex)
@@ -180,20 +191,20 @@ namespace Smarteye.GBL.Corpu
             { "\"CUSTOMER SERVICE\"", "\"ASISTEN\"" },
             { "\"PAK RUDI\"", "\"BOS\"" },
             { "\"ASSISTANT\"", "\"ASISTEN\"" },
-            { "\"KLIEN\"", "\"CLIENT\"" },
+            /* { "\"KLIEN\"", "\"CLIENT\"" },
             { "\"TIM TEKNIS\"", "\"ASISTEN\"" },
             { "\"TEMAN\"", "\"BOS\"" },
-            { "\"IT STAFF\"", "\"BOS\"" }, 
+            { "\"IT STAFF\"", "\"BOS\"" },  */
 
             // Mapping SceneProgress
             { "\"FAILEDRESULT\"", "\"FAILRESULT\"" },
             { "\"UNEXPECTEDRESULT\"", "\"FAILRESULT\"" },
 
             // Mapping stage
-            { "\"INITIAL_MEETING\"", "\"RAPPORT\"" },
+            /* { "\"INITIAL_MEETING\"", "\"RAPPORT\"" },
             { "\"FOLLOW_UP_MEETING_PREPARATION\"", "\"PROBING\"" },
             { "\"FOLLOW-UP\"", "\"PROBING\"" },
-            { "\"WAITING\"", "\"PROBING\"" }
+            { "\"WAITING\"", "\"PROBING\"" } */
         };
 
         private string FixJsonForParsing(string rawJson)
@@ -210,5 +221,39 @@ namespace Smarteye.GBL.Corpu
         }
 
         #endregion
+
+        public void OnSuccessGetSummary(JObject result)
+        {
+            try
+            {
+                if (result != null)
+                {
+                    // RootSummary currentSummary = JsonConvert.DeserializeObject<RootSummary>(result.ToString());
+                    Debug.Log($"Sort : {result["short_description"]} | Long : {result["long_description"]}");
+
+                    var tCompany = companyList.First((x) => x.id_company == m_targetId);
+                    m_onGotSummary?.Invoke($"{tCompany.company_name}", $"{result["short_description"]}", $"{result["short_description"]}");
+                }
+            }
+            catch (JsonSerializationException jsonEx)
+            {
+                Debug.LogError("JSON Serialization Error: " + jsonEx.Message);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("General Error parsing scenario list: " + ex.Message);
+            }
+        }
+
+        public void OnProtocolErrGetSummary(JObject result)
+        {
+            Debug.LogError($"Protocol Error: {GetFormattedError(result)}");
+        }
+
+        public class RootSummary
+        {
+            public string short_description { get; set; }
+            public string long_description { get; set; }
+        }
     }
 }

@@ -492,7 +492,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   scenarioLoader: {fileID: 1457097626}
   handlerScenarioData: {fileID: 1925724581}
-  unityEditorToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZG1pbnVuaXR5QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ3MzE2OTczLCJleHAiOjE3NDc1NzYxNzN9.iB9YP8Iv9DZxsX1QwDaiwE9lTykXZ6TCTav09dnenLE
+  unityEditorToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDczNjY1MjgsImV4cCI6MTc0NzYyNTcyOH0.xcjl3aouIA3bcE5hVxcKgEnZVcQoQ34eCDXWamtkg5I
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1001 &1457097625
 PrefabInstance:
@@ -561,7 +561,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jsonFile
       value: 
-      objectReference: {fileID: 4900000, guid: 9286a4812b9ee254894f0155adb01398, type: 3}
+      objectReference: {fileID: 4900000, guid: d2269242ac0126f468e72902444e50b6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

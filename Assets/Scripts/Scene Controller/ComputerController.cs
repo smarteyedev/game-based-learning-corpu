@@ -108,8 +108,8 @@ namespace Smarteye.SceneController.taufiq
 
         public void OnClickSubmit()
         {
-            gameManager.handlerScenarioData.GetScenarioById(m_TargetCompany);
-            gameManager.handlerScenarioData.GetCompanySummary(m_TargetCompany, ShowIVCA);
+            gameManager.handlerScenarioData.GetScenarioById(m_TargetCompany, ShowIVCA);
+            // gameManager.handlerScenarioData.GetCompanySummary(m_TargetCompany, ShowIVCA);
             // ShowIVCA();
         }
 
@@ -127,9 +127,17 @@ namespace Smarteye.SceneController.taufiq
             gameManager.currentGameStage = (GameStage)gameManager.currentGameStage + 1;
             gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
             // gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
-            gameManager.playerData.SaveIVCAResult(_companyName, _longResume);
+            gameManager.playerData.SaveIVCAResult(_companyName, TruncateTo255Characters(_longResume));
 
             gameManager.StorePlayerDataToDatabase();
+        }
+
+        public string TruncateTo255Characters(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return "";
+
+            return input.Length > 255 ? input.Substring(0, 255) : input;
         }
 
         public void OnClickOpenIVCAResult(bool _isActive)
