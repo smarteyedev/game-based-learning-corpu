@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 using System;
+using Newtonsoft.Json;
 
 namespace Smarteye.RestAPI
 {
@@ -12,6 +13,19 @@ namespace Smarteye.RestAPI
         public abstract void OnSuccessResult(JObject result);
         public abstract void OnProtocolErr(JObject result);
         public abstract void DataProcessingErr(JObject result);
+
+        // Utility untuk format error agar lebih rapi
+        protected string GetFormattedError(JObject errorObj)
+        {
+            try
+            {
+                return JsonConvert.SerializeObject(errorObj, Formatting.Indented);
+            }
+            catch
+            {
+                return errorObj.ToString();
+            }
+        }
     }
 
     [Serializable]

@@ -492,7 +492,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: c7ae4c2a68484074aa3fa3c29012337e, type: 2}
   scenarioLoader: {fileID: 1457097626}
   handlerScenarioData: {fileID: 1925724581}
-  unityEditorToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDczNjY1MjgsImV4cCI6MTc0NzYyNTcyOH0.xcjl3aouIA3bcE5hVxcKgEnZVcQoQ34eCDXWamtkg5I
+  unityEditorToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0YXVmaXFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDczODAwMDAsImV4cCI6MTc0NzYzOTIwMH0.qge-4JOnRlXK36v-uX5_t022aHPeScK7ysbjgP4RpNk
   loadingScreenHandler: {fileID: 815615335}
 --- !u!1001 &1457097625
 PrefabInstance:
@@ -839,11 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restAPI: {fileID: 1925724580}
   companyList: []
-  selectedScenarioList: []
-  scenarioJson: 
   authToken: aW1tZXJzaXZlOlhzV3dvb3d4YlFCRUNIV1BwNFNHQkxEbXlXTFFoQ0FrSTFFS0tFM21BRVpVTmdwcHN6
-  scenarioLoader: {fileID: 1457097626}
-  gameManager: {fileID: 1259759154}
 --- !u!1 &2072775672
 GameObject:
   m_ObjectHideFlags: 0

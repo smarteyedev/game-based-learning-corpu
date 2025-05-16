@@ -8,8 +8,11 @@ using UnityEngine.UI;
 
 namespace Smarteye.SceneController.taufiq
 {
-
+    using System.Linq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Smarteye.AnimationHelper;
+    using Smarteye.VisualNovel;
 
     public class ComputerController : SceneControllerAbstract
     {
@@ -31,15 +34,13 @@ namespace Smarteye.SceneController.taufiq
         public struct OptionData
         {
             public string namaPerusahaan;
-            public int tokenIVCA;
+            public int companyID;
             public Sprite backgroundSprite;
         }
 
         [Header("Result IVCA Panel")]
         [SerializeField] private TextMeshProUGUI outputTitle;
         [SerializeField] private TextMeshProUGUI outputSummary;
-        [Space(10)]
-        [SerializeField] private IVCADataMap outputIVCAData;
 
         [Space(10)]
         [SerializeField] private GameObject resultIVCAPanel;
@@ -82,7 +83,7 @@ namespace Smarteye.SceneController.taufiq
             {
                 OptionData newOpt = new OptionData();
                 newOpt.namaPerusahaan = item.company_name;
-                newOpt.tokenIVCA = item.id_company;
+                newOpt.companyID = item.id_company;
                 newOpt.backgroundSprite = dropDownBg;
 
                 optionDatas.Add(newOpt);
@@ -108,9 +109,7 @@ namespace Smarteye.SceneController.taufiq
 
         public void OnClickSubmit()
         {
-            gameManager.handlerScenarioData.GetScenarioById(m_TargetCompany, ShowIVCA);
-            // gameManager.handlerScenarioData.GetCompanySummary(m_TargetCompany, ShowIVCA);
-            // ShowIVCA();
+            gameManager.handlerScenarioData.GetScenarioById(m_TargetCompany, OnSuccessGetScenario, OnProtocolErrGetScenario);
         }
 
         private void ShowIVCA(string _companyName, string _summary, string _longResume)
@@ -118,16 +117,12 @@ namespace Smarteye.SceneController.taufiq
             rowInputIVCA.SetActive(false);
             rowOutputIVCA.SetActive(true);
 
-            /* outputTitle.text = outputIVCAData.companyName;
-            outputSummary.text = outputIVCAData.summary; */
-
             outputTitle.text = _companyName;
             outputSummary.text = _summary;
 
             gameManager.currentGameStage = (GameStage)gameManager.currentGameStage + 1;
             gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
-            // gameManager.playerData.SaveIVCAResult(outputIVCAData.companyName, outputIVCAData.IVCAResult);
-            gameManager.playerData.SaveIVCAResult(_companyName, TruncateTo255Characters(_longResume));
+            gameManager.playerData.SaveIVCAResult(_companyName, _longResume);
 
             gameManager.StorePlayerDataToDatabase();
         }
@@ -183,6 +178,131 @@ namespace Smarteye.SceneController.taufiq
             }
         }
 
+        #region CallBack-GetScenarioById
+
+        public void OnSuccessGetScenario(JObject result)
+        {
+            try
+            {
+                if (result != null)
+                {
+                    // Sebelum parsing, fix JSON dulu
+                    string fixedJson = FixJsonForParsing(result.ToString());
+
+                    MasterData currentScenario = JsonConvert.DeserializeObject<MasterData>(fixedJson);
+
+                    if (currentScenario != null && currentScenario.sceneScenarioDataRoots != null)
+                    {
+                        gameManager.playerData.SetPlayerScenario(fixedJson);
+
+                        gameManager.handlerScenarioData.GetCompanySummary(m_TargetCompany, OnSuccessGetSummary, OnProtocolErrGetSummary);
+                        Debug.Log($"Berhasil parsing : {fixedJson}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Scenario data kosong atau tidak terformat dengan benar.");
+                    }
+                }
+            }
+            catch (JsonSerializationException jsonEx)
+            {
+                /* gameManager.LoadScene(1);
+                gameManager.currentGameStage = GameStage.IVCA;
+                gameManager.playerData.SetPlayerGameStageProgress(gameManager.currentGameStage);
+                gameManager.StorePlayerDataToDatabase(); */
+
+                Debug.LogError("JSON Serialization Error: " + jsonEx.Message);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("General Error parsing scenario list: " + ex.Message);
+            }
+        }
+
+        public void OnProtocolErrGetScenario(JObject result)
+        {
+            Debug.LogError($"Protocol Error: {GetFormattedError(result)}");
+        }
+
+        private static readonly Dictionary<string, string> enumCorrections = new Dictionary<string, string>
+        {
+            // Mapping SpeakerRoot
+            { "\"REKAN\"", "\"ASISTEN\"" },
+            { "\"CLIENT_ASSISTANT\"", "\"CLIENT\"" },
+            { "\"CUSTOMER SERVICE\"", "\"ASISTEN\"" },
+            { "\"PAK RUDI\"", "\"BOS\"" },
+            { "\"ASSISTANT\"", "\"ASISTEN\"" },
+            /* { "\"KLIEN\"", "\"CLIENT\"" },
+            { "\"TIM TEKNIS\"", "\"ASISTEN\"" },
+            { "\"TEMAN\"", "\"BOS\"" },
+            { "\"IT STAFF\"", "\"BOS\"" },  */
+
+            // Mapping SceneProgress
+            { "\"FAILEDRESULT\"", "\"FAILRESULT\"" },
+            { "\"UNEXPECTEDRESULT\"", "\"FAILRESULT\"" },
+
+            // Mapping stage
+            /* { "\"INITIAL_MEETING\"", "\"RAPPORT\"" },
+            { "\"FOLLOW_UP_MEETING_PREPARATION\"", "\"PROBING\"" },
+            { "\"FOLLOW-UP\"", "\"PROBING\"" },
+            { "\"WAITING\"", "\"PROBING\"" } */
+        };
+
+        private string FixJsonForParsing(string rawJson)
+        {
+            if (string.IsNullOrEmpty(rawJson))
+                return rawJson;
+
+            foreach (var correction in enumCorrections)
+            {
+                rawJson = rawJson.Replace(correction.Key, correction.Value);
+            }
+
+            return rawJson;
+        }
+
+        #endregion
+
+        #region CallBack-GetCompany
+        public void OnSuccessGetSummary(JObject result)
+        {
+            try
+            {
+                if (result != null)
+                {
+                    string compName = optionDatas.First((x) => x.companyID == m_TargetCompany).namaPerusahaan;
+                    ShowIVCA($"{compName}", result["short_description"].ToString(), result["long_description"].ToString());
+                    Debug.Log($"Sort : {result["short_description"]} | Long : {result["long_description"]}");
+                }
+            }
+            catch (JsonSerializationException jsonEx)
+            {
+                Debug.LogError("JSON Serialization Error: " + jsonEx.Message);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("General Error parsing scenario list: " + ex.Message);
+            }
+        }
+
+        public void OnProtocolErrGetSummary(JObject result)
+        {
+            Debug.LogError($"Protocol Error: {GetFormattedError(result)}");
+        }
+
+        private string GetFormattedError(JObject errorObj)
+        {
+            try
+            {
+                return JsonConvert.SerializeObject(errorObj, Formatting.Indented);
+            }
+            catch
+            {
+                return errorObj.ToString();
+            }
+        }
+        #endregion
+
         #region Carousel-Function
         // public void UpdateCarousel()
         // {
@@ -219,13 +339,5 @@ namespace Smarteye.SceneController.taufiq
         //     UpdateCarousel();
         // }
         #endregion
-    }
-
-    [Serializable]
-    public class IVCADataMap
-    {
-        public string companyName;
-        public string summary;
-        public string IVCAResult;
     }
 }
